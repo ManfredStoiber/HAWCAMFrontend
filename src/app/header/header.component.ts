@@ -9,7 +9,7 @@ import { HeaderData } from '../headerData.model';
 export class HeaderComponent implements OnInit {
 
   // Auslesen des Input
-  @Input('headerData') headerData : HeaderData;
+  @Input('objHeaderData') objHeaderData : HeaderData;
 
 
   constructor() {

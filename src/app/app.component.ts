@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'HAWCAMFrontend';
 
 // Membervariable für HTML
-  headerData : HeaderData;
+  objHeaderData : HeaderData;
 
   constructor() {
 
@@ -20,7 +20,7 @@ export class AppComponent {
     let strPath    : string = "Startseite";
     let strMessage : string = "Hallo Administrator, was möchten Sie tun?";
 
-    this.headerData = new HeaderData(strTitle, strPath, strMessage);
+    this.objHeaderData = new HeaderData(strTitle, strPath, strMessage);
 
   }
 
