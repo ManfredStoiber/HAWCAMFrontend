@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HeaderData } from '../headerData.model';
 
 @Component({
   selector: 'appHeader',
@@ -7,14 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input('title') strTitle : string;
-  @Input('path') strPath : string;
-  @Input('message') strMessage : string;
+  // Auslesen des Input
+  @Input('headerData') headerData : HeaderData;
 
 
-  constructor() { }
+  constructor() {
+
+   }
+
 
   ngOnInit() {
+
   }
 
 }
