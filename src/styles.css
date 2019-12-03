@@ -6,3 +6,11 @@
   font-family: Arial, sans-serif;
 
 }
+
+.redBackground {
+  background-color: #d80030;
+}
+
+.greyBackground {
+  background-color: rgba(234,235,235);
+}
