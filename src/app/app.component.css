@@ -1,7 +1,9 @@
 
+/*
 * {
-    background-color: #FFEBCD;
+    background-color: rgba(234,235,235);  geregelt über class und globale styles.css
 }
+*/
 
 #container {
   display: grid;
