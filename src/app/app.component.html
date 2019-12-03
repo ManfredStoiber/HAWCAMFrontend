@@ -1,14 +1,17 @@
 
-<div id="container">
+<div id="container" class="greyBackground">
 
-  <appHeader title="Inventarverwaltung" path="Startseite" message="Hallo Administrator, was möchten Sie tun?">
+  <!--  [] übergeben das Objekt
+        "<name>" ist der Name des Objects -->
+
+  <appHeader [objHeaderData]="objHeaderData">
   </appHeader>
 
   <div id="leftPlaceholder">
   </div>
 
   <main>
-    <appStartButtons></appStartButtons>
+      <router-outlet></router-outlet>
   </main>
 
   <div id="rightPlaceholder">

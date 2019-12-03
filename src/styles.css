@@ -6,3 +6,19 @@
   font-family: Arial, sans-serif;
 
 }
+
+
+/* Klasse für roten Hintergrund mit Hochschulfarbe */
+.redBackground {
+  background-color: #d80030;
+}
+
+/* Klasse für grauen Hintergrund mit Hochschulfarbe */
+.greyBackground {
+  background-color: rgba(234,235,235);
+}
+
+/* Hovereffekt für Button mit Farbe der Hochschule für Hovereffekt*/
+button:hover {
+   background-color: #4b565e;
+}

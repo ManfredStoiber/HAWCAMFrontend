@@ -1,7 +1,10 @@
 
+/*
 * {
-    background-color: #FFEBCD;
+    background-color: rgba(234,235,235);  geregelt über class und globale styles.css
 }
+*/
+
 
 #container {
   display: grid;
@@ -12,15 +15,6 @@
 
 }
 
-/*
-#container div:nth-child(even) {
-  background-color: lightgreen;
-}
-
-#container div:nth-child(odd) {      odd geht nicht
-  background-color: red;
-}
-*/
 
 /*
 appHeader, #leftPlaceholder, main, #rightPlaceholder {
