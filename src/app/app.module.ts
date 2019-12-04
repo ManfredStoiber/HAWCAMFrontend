@@ -9,6 +9,11 @@ import { DateComponent } from './date/date.component';
 import { MessageComponent } from './message/message.component';
 import { StartButtonsComponent } from './start-buttons/start-buttons.component';
 import { HeaderComponent } from './header/header.component';
+import { CreateCategoryFormsComponent } from './create-category-forms/create-category-forms.component';
+import { CreateCategoryEditorComponent } from './create-category-editor/create-category-editor.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -18,10 +23,14 @@ import { HeaderComponent } from './header/header.component';
     DateComponent,
     MessageComponent,
     StartButtonsComponent,
-    HeaderComponent
+    HeaderComponent,
+    CreateCategoryFormsComponent,
+    CreateCategoryEditorComponent,
+    CreateCategoryComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

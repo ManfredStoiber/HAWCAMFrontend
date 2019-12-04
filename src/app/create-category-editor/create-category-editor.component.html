@@ -1,0 +1,32 @@
+<div class="container">
+<form [formGroup]="objFormControl" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <label>
+      <span >Kategoriename:</span>
+      <input type="text" formControlName="objCatName">
+    </label>
+  </div>
+
+  <div class="row">
+    <label>
+      <span>Anzahl Stühle:</span>
+      <input type="text" formControlName="objCatName">
+    </label>
+    <button class="delete">löschen</button>
+  </div>
+
+  <div class="row">
+    <label>
+      <span>Stuhlanordnung:</span>
+      <input type="text" formControlName="objCatName">
+    </label>
+    <button class="delete">löschen</button>
+  </div>
+
+  <div class="row">
+    <button class="addField">Feld hinzufügen!</button><button class="submit" type="submit" [disabled]="!objFormControl.valid">Fertig!</button>
+  </div>
+
+</form>
+</div>
