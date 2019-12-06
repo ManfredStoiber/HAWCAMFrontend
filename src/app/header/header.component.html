@@ -1,12 +1,28 @@
 <header>
 
-  <app-title title="{{objHeaderData.getTitle()}}"></app-title>
+  <div id="app-title">
+    <p>
+      {{objHeaderData.getTitle()}}
+    </p>
+  </div>
 
-  <app-path path="{{objHeaderData.getPath()}}"></app-path>
+  <div id="app-path">
+    <p>
+      {{objHeaderData.getPath()}}
+    </p>
+  </div>
 
-  <app-date></app-date>
+  <div id="app-date">
+    <p>
+      {{strDatetime}}
+    </p>
+  </div>
 
-  <app-message message="{{objHeaderData.getMessage()}}"></app-message>
+  <div id="app-message">
+    <p>
+      {{objHeaderData.getMessage()}}
+    </p>
+  </div>
 
 </header>
 
