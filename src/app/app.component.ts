@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderData } from './headerData.model';
 
 @Component({
-  selector: 'appRoot',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

@@ -5,7 +5,6 @@ export class HeaderData {
   private strPath:     string;
   private strMessage:  string;
 
-
   constructor(strTitle:string, strPath:string, strMessage:string) {
     this.strTitle   = strTitle;
     this.strPath    = strPath;
