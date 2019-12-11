@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartButtonsComponent } from './start-buttons/start-buttons.component';
 import { HeaderComponent } from './header/header.component';
+import { ListCategoriesComponent } from './list-categories/list-categories.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartButtonsComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListCategoriesComponent,
+    NotFoundComponent  
   ],
   imports: [
     BrowserModule,
