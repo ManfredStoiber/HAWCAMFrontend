@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { StartButtonsComponent } from './start-buttons/start-buttons.component';
 import { HeaderComponent } from './header/header.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     StartButtonsComponent,
     HeaderComponent,
     ListCategoriesComponent,
-    NotFoundComponent  
+    PageNotFoundComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

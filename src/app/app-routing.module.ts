@@ -3,16 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { StartButtonsComponent } from './start-buttons/start-buttons.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
 
+  { path: '', redirectTo: "/start", pathMatch: "full" },
   { path: 'start', component: StartButtonsComponent },
   { path: 'listCategories', component: ListCategoriesComponent },
-  { path: 'notFound', component: NotFoundComponent },
+  { path: 'pageNotFound', component: PageNotFoundComponent },
   // wenn nichts greift -> Startseite
-  { path: '', redirectTo: "/start", pathMatch: "full" },
-  { path: '**', redirectTo: "/notFound", pathMatch: "full" }
+  { path: '**', redirectTo: "/pageNotFound", pathMatch: "full" }
 
 ];
 
