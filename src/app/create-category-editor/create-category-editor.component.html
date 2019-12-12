@@ -8,24 +8,51 @@
     </label>
   </div>
 
-  <div class="row">
+  <!--<div class="row detailrow">
     <label>
       <span>Anzahl Stühle:</span>
-      <input type="text" formControlName="objCatName">
+      <select>
+        <option value="Textfeld">Textfeld</option>
+        <option value="Datei">Datei</option>
+        <option value="Datum">Datum</option>
+        <option value="Datum und Uhrzeit">Datum und Uhrzeit</option>
+      </select>
     </label>
-    <button class="delete">löschen</button>
+    <!--<button type="button" class="delete" (click)="delDetail($event,item)">löschen</button>
+    <button type="button" class="delete" (click)="delDetail($event,item)" >löschen</button>
+  </div>-->
+
+
+  <div formArrayName="contentDescriptions">
+    <div *ngFor="let contentItem of contentDescriptions.controls; let i=index">
+      <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
+      <label>
+        <input type="text" placeholder="Name des Details" name="detailName">
+        <select [formControlName]="i" name="detailtype">
+          <option value="textfield" selected="selected">Textfeld</option>
+          <option value="file">Datei</option>
+          <option value="date">Datum</option>
+          <option value="dateAndTime">Datum und Uhrzeit</option>
+        </select>
+
+        <select [formControlName]="i" name="optionalOrMandatory">
+          <option value="optional" selected="selected">Optional</option>
+          <option value="mandatory">Pflichtfeld</option>
+        </select>
+      </label>
+      <button (click)="deleteContentDescription(i)" type="button" class="delete"  > löschen</button>
+
+    </div>
+
+
   </div>
 
-  <div class="row">
-    <label>
-      <span>Stuhlanordnung:</span>
-      <input type="text" formControlName="objCatName">
-    </label>
-    <button class="delete">löschen</button>
-  </div>
 
-  <div class="row">
-    <button class="addField">Feld hinzufügen!</button><button class="submit" type="submit" [disabled]="!objFormControl.valid">Fertig!</button>
+  <div class="row submitrow">
+    <button (click)="addNewDetail()" type="button" class="addField">
+     Detail hinzufügen!
+    </button>
+    <button class="submit" type="submit" [disabled]="!objFormControl.valid">Fertig!</button>
   </div>
 
 </form>
