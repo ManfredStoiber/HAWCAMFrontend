@@ -24,7 +24,7 @@ export class ListCategoriesComponent implements OnInit {
 
     console.log("--onInit");
 
-    // this.restService.callRESTService("users")
+    // this.restService.callRESTService("listCategories")
     //   .subscribe( (response :JSON) => {
     //         this.dataJSON = response;
     //         console.log(this.dataJSON);
