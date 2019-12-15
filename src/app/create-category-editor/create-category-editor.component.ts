@@ -12,9 +12,9 @@ export class CreateCategoryEditorComponent implements OnInit {
 
     //@ContentChild('loading') testEl: any;
 
-    objFormControl = this.fb.group({
-      objCatName: ['', Validators.required],
-    });
+    //objFormControl = this.fb.group({
+    //  objCatName: ['', Validators.required],
+    //});
 
     contentSelected: any;
 
@@ -42,13 +42,18 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   //}
 
-
+  //objFormControl = this.fb.group({
+  //  objCatName: ['', Validators.required],
+  //});
 
       form = this.fb.group({
+        objCatName: ['', Validators.required],
         contentDescriptions: this.fb.array([
-          this.fb.control('')
+
         ])
+
       });
+
 
       get contentDescriptions() {
         return this.form.get('contentDescriptions') as FormArray;
@@ -59,10 +64,14 @@ export class CreateCategoryEditorComponent implements OnInit {
         this.form.patchValue({
           contentDescriptions: this.contentSelected.descriptionArray
         });
+
       }
 
       addNewDetail(){
          this.contentDescriptions.push(this.fb.control(''));
+//detailName: ['', [Validators.required]],
+          //detailType: ['', [Validators.required]],
+          //optionalOrMandatory: ['', [Validators.required]],
       }
 
       deleteContentDescription(i){
