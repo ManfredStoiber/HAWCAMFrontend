@@ -2,63 +2,67 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class RESTService {
 
-  json: JSON = null;
+  private json: JSON = null;
+  private url: string = "http://jsonplaceholder.typicode.com/";
 
   // declaration of the HttpClient - dependency injection
   constructor( private http: HttpClient ) { }
 
 
-  // method for sending REST
-    // returnwert ???
-  public callRESTService() {
+  public callRESTService( pathending: string ) {
 
-    // geht aber kommt nicht in component an
-    // let observer = this.http.get<string>('https://api.github.com/users/DanGitHub123');
-   // observer.subscribe( (strResponse: string) => this.processingResponse(strResponse) );
-
-    // let observer = this.http.get<JSON>('https://api.github.com/users/DanGitHub123');
-    // observer.subscribe( (response: JSON) => console.log(response) );
-
-
-    return this.http.get<JSON>('https://api.github.com/users/DanGitHub123');
-
-    // return this.json;
+    console.log("--callRESTService");
+    return this.http.get( this.url + pathending );
+    // return this.http.get("https://api.github.com/users/DanGitHub123")
   }
 
+
+
   // processing response
-  private processingResponse( strResponse: string ) {
+  private processingResponse( strResponse: string ) : JSON {
+
+    console.log("--processingResponse");
 
     let valid : boolean = this.validateResponse(strResponse);
     if( valid == true ){
           console.log("yes yes yes");
           console.log("mach was");
+          return this.json;
     } else {
         console.log("abbruch");
         this.json = null;
+        return JSON.parse( '{"Fehler":"fehlerhaftes JSON aus Backend"}' )
     }
 
   }
+
 
   // method for validating the response
   // check whether the returned JSON is valid
   private validateResponse( strResponse: string ) : boolean {
 
+    console.log("--validateResponse");
+    console.log("------------");
+    console.log("Response wäre:");
+    console.log(strResponse);
+    console.log("------------");
+
     try {
         // kann er nicht wegen dem vorangestellten Test
+        // das ist schon ein JSON - kann er nicht nochmal da rein hauen
     // this.json = JSON.parse( 'Test {"name":"bob","age":34}' );
 
       // kann er
-      this.json = JSON.parse( '{"name":"bob","age":34}' );
+      this.json = JSON.parse( '[ {"id": 1, "name": "Leanne Graham", "username": "Bret" } ]' );
+      // this.json = JSON.parse( strResponse );
 
-    // this.json = JSON.parse( strResponse );
-      console.log("validateResponse");
+      console.log("--validateResponse nach JSON.parse");
       console.log(this.json)
       return true;
 
