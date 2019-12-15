@@ -1,25 +1,35 @@
 
 <main>
 
-  <h1>vorhandene Kategorien: </h1>
+  <div *ngIf="dataJSON?.categories.length == 0" >
+    <h1> Keine Kategorien vorhanden </h1>
+    <br>
+    <p>Zum Anlegen von Kategorien bitte "Kategorie erstellen" wählen </p>
+  </div>
 
-  <div id="container" class="redBackground" *ngFor="let category of dataJSON?.categories">
+  <div *ngIf="dataJSON?.categories.length > 0">
 
-    <div class="leftPlaceholder">
-    </div>
+    <h1>vorhandene Kategorien: </h1>
 
-    <div class="divname">
-      <p> {{ category.name }} </p>
+    <div id="container" class="redBackground" *ngFor="let category of dataJSON?.categories">
 
-    </div>
+      <div class="leftPlaceholder">
+      </div>
 
-    <div class="divcount">
-      <p> Anzahl Objekte: {{ category.count }}</p>
-    </div>
+      <div class="divname">
+        <p> {{ category.name }} </p>
 
-    <div class="rightPlaceholder">
-    </div>
+      </div>
 
-  </div>  <!-- container ende -->
+      <div class="divcount">
+        <p> Anzahl Objekte: {{ category.count }}</p>
+      </div>
+
+      <div class="rightPlaceholder">
+      </div>
+
+    </div>  <!-- container ende -->
+
+</div>
 
 </main>

@@ -36,10 +36,9 @@ export class ListCategoriesComponent implements OnInit {
       this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2},{"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2}  ] }' );
       // this.dataJSON = JSON.parse(' { "categories": [ ] }' );
 
-      console.log("yes yes yes");
+      console.log("Parsing worked");
       console.log(this.dataJSON);
     } catch ( exception ) {
-      console.log("no no no");
       console.log("errorroutine here");
     }
 

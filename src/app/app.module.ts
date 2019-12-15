@@ -15,7 +15,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 // declaration of services to module
 import { RESTService } from './rest.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
