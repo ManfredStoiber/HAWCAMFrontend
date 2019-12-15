@@ -18,7 +18,7 @@ export class RESTService {
   public callRESTService( pathending: string ) {
 
     console.log("--callRESTService");
-    return this.http.get( this.url + pathending );
+    return this.http.get<JSON>( this.url + pathending );
     // return this.http.get("https://api.github.com/users/DanGitHub123")
   }
 

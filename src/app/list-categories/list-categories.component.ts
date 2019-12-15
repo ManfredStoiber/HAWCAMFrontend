@@ -15,6 +15,8 @@ export class ListCategoriesComponent implements OnInit {
 
   dataArray : any[];
 
+  response : Response;
+
   // declaration of the RESTService - dependency injection
   constructor( private restService: RESTService) { }
 
@@ -22,37 +24,26 @@ export class ListCategoriesComponent implements OnInit {
 
     console.log("--onInit");
 
-    this.restService.callRESTService("users")
-      .subscribe( (response :Response) => {
-            this.data = response;
-            console.log(this.data);
-      });
-
-
-
-    // data: Object;
-    // this.http.request('http://api.themoviedb.org/3/movie/top_rated?api_key=API-KEY')
-    //   .subscribe((res: Response) => {
-    //     this.data = res.json().results;
-    //
+    // this.restService.callRESTService("users")
+    //   .subscribe( (response :JSON) => {
+    //         this.dataJSON = response;
+    //         console.log(this.dataJSON);
     //   });
-    //
 
-    // try {
-    //   this.dataJSON = JSON.parse(' {	"categories": { "category1": {"name":"Raum","count":3}, "category2": {"name":"Buch","count":14 } } }' );
-    //   console.log("yes yes yes");
-    //   console.log(this.dataJSON);
-    // } catch ( exception ) {
-    //   console.log("no no no");
-    //   console.log("errorroutine here");
-    // }
+    try {
+      // this.dataJSON = JSON.parse(' {	"categories": { "category1": {"name":"Raum","count":3}, "category2": {"name":"Buch","count":14 } } }' );
+      // this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 }  ] }' );
+      this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2},{"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2}  ] }' );
+      // this.dataJSON = JSON.parse(' { "categories": [ ] }' );
 
-    // this.dataArray = Array.of(this.dataJSON);
-    // console.log(this.dataArray);
+      console.log("yes yes yes");
+      console.log(this.dataJSON);
+    } catch ( exception ) {
+      console.log("no no no");
+      console.log("errorroutine here");
+    }
 
   }
-
-
 
 
 }
