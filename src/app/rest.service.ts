@@ -9,7 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class RESTService {
 
   private json: JSON = null;
-  private url: string = "localhost:5000/api/v1.0/";
+  // private url: string = "localhost:5000/api/v1.0/";
+  private url: string = "/api/v1.0/";
 
   // declaration of the HttpClient - dependency injection
   constructor( private http: HttpClient ) { }
