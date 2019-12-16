@@ -10,50 +10,23 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CreateCategoryEditorComponent implements OnInit {
 
-    //@ContentChild('loading') testEl: any;
 
-    //objFormControl = this.fb.group({
-    //  objCatName: ['', Validators.required],
-    //});
 
     contentSelected: any;
 
 
+      form: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+        objCatName: ['', Validators.required],
+        contentDescriptions: this.fb.array([])
+    });
+  }
 
   onSubmit() {
     alert("Kategorie wurde angelegt!");
   }
-
-
-  //public delDetail(e,i){
-//    e.srcElement.parentNode.parentNode.removeChild(e.srcElement.parentNode);
-//  }
-
-
-  //public addDetail(e,i){
-  //  var nameDetail = prompt("Wie soll das Detail heißen?");
-
-    //var newRow = document.getElementsByClassName("detailrow")[0].cloneNode(true);
-    //newRow.firstChild.firstChild.textContent=nameDetail+":";
-
-//    document.getElementsByClassName("submitrow")[0].parentNode.insertBefore(newRow, document.getElementsByClassName("submitrow")[0]);
-
-  //}
-
-  //objFormControl = this.fb.group({
-  //  objCatName: ['', Validators.required],
-  //});
-
-      form = this.fb.group({
-        objCatName: ['', Validators.required],
-        contentDescriptions: this.fb.array([
-
-        ])
-
-      });
-
 
       get contentDescriptions() {
         return this.form.get('contentDescriptions') as FormArray;
@@ -64,19 +37,20 @@ export class CreateCategoryEditorComponent implements OnInit {
         this.form.patchValue({
           contentDescriptions: this.contentSelected.descriptionArray
         });
-
       }
 
       addNewDetail(){
-         this.contentDescriptions.push(this.fb.control(''));
-//detailName: ['', [Validators.required]],
-          //detailType: ['', [Validators.required]],
-          //optionalOrMandatory: ['', [Validators.required]],
+        let ctrl = <FormArray>this.form.controls.contentDescriptions;
+        ctrl.push(this.fb.group({
+          detailName: ['', Validators.required],
+          detailType: ['textfield', Validators.required],
+          optionalOrMandatory: ['optional', Validators.required]
+
+        }))
+
       }
 
       deleteContentDescription(i){
         this.contentDescriptions.removeAt(i);
       }
-
-
 }

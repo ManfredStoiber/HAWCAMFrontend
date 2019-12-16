@@ -7,6 +7,7 @@
       <span >Kategoriename:</span>
       <!--<input type="text">-->
       <input type="text" formControlName="objCatName">
+      <!--<input type="text">-->
     </label>
   </div>
   <!--<div class="row detailrow">
@@ -26,18 +27,18 @@
 
   <div formArrayName="contentDescriptions">
 
-    <div *ngFor="let contentItem of contentDescriptions.controls; let i=index">
+    <div [formGroupName]="i" *ngFor="let contentItem of form.controls.contentDescriptions.controls; let i=index">
       <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
-      <label>
-        <input type="text"  [formControlName]="i" placeholder="Name des Details" value="Detail" name="detailName">
-        <select [formControlName]="i" name="detailtype">
+      <label >
+        <input type="text"  formControlName="detailName" placeholder="Name des Details" value="Detail" name="detailName">
+        <select formControlName="detailType" name="detailType">
           <option value="textfield" selected="selected">Textfeld</option>
           <option value="file">Datei</option>
           <option value="date">Datum</option>
           <option value="dateAndTime">Datum und Uhrzeit</option>
         </select>
 
-        <select [formControlName]="i" name="optionalOrMandatory">
+        <select formControlName="optionalOrMandatory" name="optionalOrMandatory">
           <option value="optional" selected="selected">Optional</option>
           <option value="mandatory">Pflichtfeld</option>
         </select>

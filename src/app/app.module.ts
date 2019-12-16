@@ -14,7 +14,6 @@ import { CreateCategoryEditorComponent } from './create-category-editor/create-c
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     AppComponent,
