@@ -35,10 +35,10 @@ p {
   font-size: 25px;
 }
 
-#app-title > p {
-    font-size: 60px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+#app-title > h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #app-path > p , #app-message > p {
