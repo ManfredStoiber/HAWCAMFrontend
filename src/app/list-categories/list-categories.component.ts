@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RESTService } from '../rest.service';
-// import { HttpClient } from '@angular/common/http';
+import { HttpEvent } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-categories',
@@ -9,27 +9,24 @@ import { RESTService } from '../rest.service';
 })
 export class ListCategoriesComponent implements OnInit {
 
-  data: Object;
-
-  dataJSON : any = null;
-
-  dataArray : any[];
-
+  dataJSON : JSON = null;
   response : Response;
+
 
   // declaration of the RESTService - dependency injection
   constructor( private restService: RESTService) { }
 
   ngOnInit() {
-
     console.log("--onInit");
 
-    this.restService.callRESTService("listCategories")
+    this.restService.getFromRESTService("listCategories")
        .subscribe( (response :JSON) => {
              this.dataJSON = response;
              console.log(this.dataJSON);
-           }, err => { console.log(err); }
+           }
         );
+  }
+
 
     // try {
       // this.dataJSON = JSON.parse(' {	"categories": { "category1": {"name":"Raum","count":3}, "category2": {"name":"Buch","count":14 } } }' );
@@ -42,8 +39,6 @@ export class ListCategoriesComponent implements OnInit {
     // } catch ( exception ) {
     //   console.log("errorroutine here");
     // }
-
-  }
 
 
 }

@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { HttpHeaders } from '@angular/common/http';
+
 
 
 @Injectable({
@@ -9,21 +14,66 @@ import { HttpClient } from '@angular/common/http';
 export class RESTService {
 
   private json: JSON = null;
-  // private url: string = "localhost:5000/api/v1.0/";
-  private url: string = "/api/v1.0/";
+  private portDEV: number = 5000;
+  private portPR: number = 5000;
+  private url: string = "http://snirps.ddns.net:5000/api/v1.0/";
 
-  // declaration of the HttpClient - dependency injection
-  constructor( private http: HttpClient ) { }
+  private headerDict : any;
 
 
-  public callRESTService( pathending: string ) {
+    // declaration of the HttpClient - dependency injection
+  constructor( private http: HttpClient ) {
 
-    console.log("--callRESTService");
-    return this.http.get<JSON>( this.url + pathending );
-    // return this.http.get("https://api.github.com/users/DanGitHub123")
+    this.headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    }
+
   }
 
 
+  public getFromRESTService( pathending: string ) : Observable<JSON> {
+
+    console.log("--getFromRESTService");
+    let httpOptions = {
+      headers: new HttpHeaders(this.headerDict),
+    };
+
+    return this.http.get<JSON>( this.url + pathending, httpOptions );
+    // return this.http.get("https://api.github.com/users/DanGitHub123")
+
+  }
+
+
+  public postToRESTService( pathending: string, dataJSON: JSON) {
+
+    console.log("--postToRESTService");
+    let httpOptions = {
+      headers: new HttpHeaders(this.headerDict),
+    };
+
+    return this.http.post<JSON>( this.url + pathending, dataJSON, httpOptions );
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
   // processing response
   private processingResponse( strResponse: string ) : JSON {
@@ -74,6 +124,6 @@ export class RESTService {
     return false;
   }
 
-
+*/
 
 }
