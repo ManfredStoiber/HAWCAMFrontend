@@ -28,7 +28,8 @@ export class ListCategoriesComponent implements OnInit {
        .subscribe( (response :JSON) => {
              this.dataJSON = response;
              console.log(this.dataJSON);
-       });
+           }, err => { console.log(err); }
+        );
 
     // try {
       // this.dataJSON = JSON.parse(' {	"categories": { "category1": {"name":"Raum","count":3}, "category2": {"name":"Buch","count":14 } } }' );
