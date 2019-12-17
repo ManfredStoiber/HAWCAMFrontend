@@ -30,6 +30,7 @@
     <div [formGroupName]="i" *ngFor="let contentItem of form.controls.contentDescriptions.controls; let i=index">
       <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
       <label >
+        <input type="text" formControlName="hiddenIndex" type="hidden" name="hiddenIndex" value="{{i+1}}">
         <input type="text"  formControlName="detailName" placeholder="Name des Details" value="Detail" name="detailName">
         <select formControlName="detailType" name="detailType">
           <option value="textfield" selected="selected">Textfeld</option>
@@ -46,8 +47,6 @@
       <button (click)="deleteContentDescription(i)" type="button" class="delete"  > löschen</button>
 
     </div>
-
-
   </div>
 
 

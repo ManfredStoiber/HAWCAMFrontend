@@ -2,6 +2,7 @@ import { Component, OnInit, ContentChild } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+//import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-create-category-editor',
@@ -26,6 +27,23 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   onSubmit() {
     alert("Kategorie wurde angelegt!");
+
+    let formObj = this.form.getRawValue();
+
+    for(var i=0;i<formObj.contentDescriptions.length;i++){
+      formObj.contentDescriptions[i].hiddenIndex = (i+1);
+
+    }
+    let serializedForm = JSON.stringify(formObj);
+
+
+    console.log(serializedForm);
+
+    //this.http.post("www.domain.com/api", serializedForm)
+    //        .subscribe(
+    //            data => console.log("success!", data),
+    //            error => console.error("couldn't post because", error)
+    //        );
   }
 
       get contentDescriptions() {
@@ -42,11 +60,14 @@ export class CreateCategoryEditorComponent implements OnInit {
       addNewDetail(){
         let ctrl = <FormArray>this.form.controls.contentDescriptions;
         ctrl.push(this.fb.group({
+          hiddenIndex: [''],
           detailName: ['', Validators.required],
           detailType: ['textfield', Validators.required],
           optionalOrMandatory: ['optional', Validators.required]
 
         }))
+
+
 
       }
 
