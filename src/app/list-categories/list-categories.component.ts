@@ -9,7 +9,7 @@ import { HttpEvent } from '@angular/common/http';
 })
 export class ListCategoriesComponent implements OnInit {
 
-  dataJSON : JSON = null;
+  dataJSON : any = null;
   response : Response;
 
 
