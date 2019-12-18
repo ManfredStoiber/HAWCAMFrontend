@@ -13,6 +13,39 @@ import { CreateCategoryFormsComponent } from './create-category-forms/create-cat
 import { CreateCategoryEditorComponent } from './create-category-editor/create-category-editor.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule }
+from '@angular/material';
+import { MatNativeDateModule } from '@angular/material';
+import { MatButtonModule} from '@angular/material';
+
+
+const modules: any[] = [
+
+  MatAutocompleteModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+
+  MatNativeDateModule,
+  // MatMomentDateModule,
+
+
+
+];
 
 @NgModule({
   declarations: [
@@ -25,12 +58,28 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     CreateCategoryFormsComponent,
     CreateCategoryEditorComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+  
+
   ],
   providers: [],
   bootstrap: [AppComponent]
