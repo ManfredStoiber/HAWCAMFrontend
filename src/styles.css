@@ -1,3 +1,4 @@
+
 * {
 
   box-sizing: border-box;
@@ -14,10 +15,13 @@
 
 /* Klasse für grauen Hintergrund mit Hochschulfarbe */
 .greyBackground {
-  background-color: rgba(234,235,235);
+  /*background-color: rgba(234,235,235);*/
 }
 
 /* Hovereffekt für Button mit Farbe der Hochschule für Hovereffekt*/
 button:hover {
    background-color: #4b565e;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
