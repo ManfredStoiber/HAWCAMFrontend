@@ -2,7 +2,9 @@ import { Component, OnInit, ContentChild } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-//import { Http } from '@angular/http';
+
+import { RESTService } from '../rest.service';
+
 
 @Component({
   selector: 'app-create-category-editor',
@@ -11,15 +13,20 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CreateCategoryEditorComponent implements OnInit {
 
-  contentSelected: any;
+
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private restService: RESTService) {
     this.form = this.fb.group({
         objCatName: ['', Validators.required],
         contentDescriptions: this.fb.array([])
-    });
+      });
   }
+
+  ngOnInit(){
+
+  }
+
 
   onSubmit() {
     alert("Kategorie wurde angelegt!");
@@ -31,65 +38,63 @@ export class CreateCategoryEditorComponent implements OnInit {
 
     }
 
-    let temp: string = " { 'name':'" + formObj.objCatName + "', 'contentDescriptions': { ";
+    let strTemp: string = " { 'name':'" + formObj.objCatName + "', 'contentDescriptions': { ";
     for (let i=0; i < formObj.contentDescriptions.length; i++){
-	     temp += "'" + formObj.contentDescriptions[i].hiddenIndex + "': {"
-	     temp += "'name':'" + formObj.contentDescriptions[i].detailName + "',"
-	     temp += "'typ':'" + formObj.contentDescriptions[i].detailType + "',"
-	     temp += "'optionalOrMandatory':'" + formObj.contentDescriptions[i].optionalOrMandatory + ",";
-       temp += "'deleted':'0'}";
+	     strTemp += "'" + formObj.contentDescriptions[i].hiddenIndex + "': {"
+	     strTemp += "'name':'" + formObj.contentDescriptions[i].detailName + "',"
+	     strTemp += "'typ':'" + formObj.contentDescriptions[i].detailType + "',"
+	     strTemp += "'optionalOrMandatory':'" + formObj.contentDescriptions[i].optionalOrMandatory + ",";
+       strTemp += "'deleted':'0'}";
        //console.log("i: " + i + " | length: " + formObj.contentDescription.length);
        if (i < formObj.contentDescriptions.length-1){
-         temp += ",";
+         strTemp += ",";
        }else{
-         temp += "},'deleted':'0'}";
+         strTemp += "},'deleted':'0'}";
        }
     }
 
-    console.log("temp:");
-    console.log(temp);
+    console.log("strTemp:");
+    console.log(strTemp);
 
-    //let serializedForm = JSON.stringify(formObj);
+    let JSONserializedForm: JSON = null;
+    try {
+      JSONserializedForm: JSON = JSON.parse(formObj);
+      console.log("JSONserializedForm is valid");
+      console.log(JSONserializedForm);
+    } catch ( exception ) {
+      console.log("JSONserializedForm is not valid");
+    }
 
+    this.restService.postToRESTService("createCategory", JSONserializedForm)
+        .subscribe( (JSONresponse :JSON) => {
+              console.log(JSONresponse);
+            }
+         );
 
-    //console.log(serializedForm);
-
-    //this.http.post("www.domain.com/api", serializedForm)
-    //        .subscribe(
-    //            data => console.log("success!", data),
-    //            error => console.error("couldn't post because", error)
-    //        );
   }
 
-      get contentDescriptions() {
-        return this.form.get('contentDescriptions') as FormArray;
-      };
-
-
-      ngOnInit(){
-
-        console.log(this.contentSelected);
-
-        this.form.patchValue({
-          contentDescriptions: this.contentSelected.descriptionArray
-        });
-      }
-
-      addNewDetail(){
-        let ctrl = <FormArray>this.form.controls.contentDescriptions;
-        ctrl.push(this.fb.group({
-          hiddenIndex: [''],
-          detailName: ['', Validators.required],
-          detailType: ['textfield', Validators.required],
-          optionalOrMandatory: ['optional', Validators.required]
-
-        }))
+  get contentDescriptions() {
+    return this.form.get('contentDescriptions') as FormArray;
+  };
 
 
 
-      }
+  addNewDetail(){
+    let ctrl = <FormArray>this.form.controls.contentDescriptions;
+    ctrl.push(this.fb.group({
+      hiddenIndex: [''],
+      detailName: ['', Validators.required],
+      detailType: ['textfield', Validators.required],
+      optionalOrMandatory: ['optional', Validators.required]
 
-      deleteContentDescription(i){
-        this.contentDescriptions.removeAt(i);
-      }
+    }))
+
+  }
+
+
+  deleteContentDescription(i){
+    this.contentDescriptions.removeAt(i);
+  }
+
+
 }

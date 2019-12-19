@@ -13,10 +13,9 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class RESTService {
 
-  private json: JSON = null;
-  private portDEV: number = 5000;
-  private portPR: number = 5000;
-  private url: string = "http://snirps.ddns.net:5000/api/v1.0/";
+  private nPortDEV: number = 5000;
+  private nPortPR: number = 5000;
+  private strUrl: string = "http://snirps.ddns.net:5000/api/v1.0/";
 
   private headerDict : any;
 
@@ -35,27 +34,27 @@ export class RESTService {
   }
 
 
-  public getFromRESTService( pathending: string ) : Observable<JSON> {
+  public getFromRESTService( strPathending: string ) : Observable<JSON> {
 
     console.log("--getFromRESTService");
     let httpOptions = {
       headers: new HttpHeaders(this.headerDict),
     };
 
-    return this.http.get<JSON>( this.url + pathending, httpOptions );
+    return this.http.get<JSON>( this.strUrl + strPathending, httpOptions );
     // return this.http.get("https://api.github.com/users/DanGitHub123")
 
   }
 
 
-  public postToRESTService( pathending: string, dataJSON: JSON) {
+  public postToRESTService( strPathending: string, JSONdata: JSON) {
 
     console.log("--postToRESTService");
     let httpOptions = {
       headers: new HttpHeaders(this.headerDict),
     };
 
-    return this.http.post<JSON>( this.url + pathending, dataJSON, httpOptions );
+    return this.http.post<JSON>( this.strUrl + strPathending, JSONdata, httpOptions );
 
   }
 
