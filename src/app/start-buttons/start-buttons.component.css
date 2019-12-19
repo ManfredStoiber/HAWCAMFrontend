@@ -8,12 +8,20 @@
   grid-template-rows: repeat(2, 1fr);
 }
 
-button {
+a {
   margin: 10px;
+}
+
+button {
+
+  width: 100%;
+
   padding: 30px;
   font-size: 25px;
 
-/*  background-color: #d80030;   geregelt über class und globale styles.css*/
+/*  background-color: #d80030;   geregelt über class und globale styles.css
+    :hover ebenfalls
+*/
   color: white;
   border: 1px solid black;
   border-radius: 8px;

@@ -23,7 +23,7 @@ appHeader, #leftPlaceholder, main, #rightPlaceholder {
 }
 */
 
-appHeader {
+app-header {
   grid-column: 2 / 9;
   grid-row: 1 / 2;
 }
