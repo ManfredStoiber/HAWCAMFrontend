@@ -11,11 +11,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CreateCategoryEditorComponent implements OnInit {
 
-
-
   contentSelected: any;
-
-
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -29,8 +25,6 @@ export class CreateCategoryEditorComponent implements OnInit {
     alert("Kategorie wurde angelegt!");
 
     let formObj = this.form.getRawValue();
-
-
 
     for(var i=0;i<formObj.contentDescriptions.length;i++){
       formObj.contentDescriptions[i].hiddenIndex = (i+1);
@@ -52,12 +46,10 @@ export class CreateCategoryEditorComponent implements OnInit {
        }
     }
 
-    console.log("formObj:");
-    console.log(formObj);
     console.log("temp:");
     console.log(temp);
 
-    let serializedForm = JSON.stringify(formObj);
+    //let serializedForm = JSON.stringify(formObj);
 
 
     //console.log(serializedForm);
@@ -75,6 +67,9 @@ export class CreateCategoryEditorComponent implements OnInit {
 
 
       ngOnInit(){
+
+        console.log(this.contentSelected);
+
         this.form.patchValue({
           contentDescriptions: this.contentSelected.descriptionArray
         });
