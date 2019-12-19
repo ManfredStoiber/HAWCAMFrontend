@@ -35,7 +35,6 @@ import { RESTService } from './rest.service';
 
 
 const modules: any[] = [
-
   MatAutocompleteModule,
   MatCheckboxModule,
   MatDatepickerModule,
@@ -46,9 +45,8 @@ const modules: any[] = [
   MatSliderModule,
   MatSlideToggleModule,
 
-  MatNativeDateModule,
+  MatNativeDateModule
   // MatMomentDateModule,
-
 ];
 
 
@@ -66,7 +64,7 @@ const modules: any[] = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
@@ -81,7 +79,7 @@ const modules: any[] = [
     MatNativeDateModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule,
+    MatFormFieldModule
   ],
   providers: [
     RESTService
