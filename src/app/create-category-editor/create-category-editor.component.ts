@@ -13,10 +13,10 @@ export class CreateCategoryEditorComponent implements OnInit {
 
 
 
-    contentSelected: any;
+  contentSelected: any;
 
 
-      form: FormGroup;
+  form: FormGroup;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -30,14 +30,37 @@ export class CreateCategoryEditorComponent implements OnInit {
 
     let formObj = this.form.getRawValue();
 
+
+
     for(var i=0;i<formObj.contentDescriptions.length;i++){
       formObj.contentDescriptions[i].hiddenIndex = (i+1);
 
     }
+
+    let temp: string = " { 'name':'" + formObj.objCatName + "', 'contentDescriptions': { ";
+    for (let i=0; i < formObj.contentDescriptions.length; i++){
+	     temp += "'" + formObj.contentDescriptions[i].hiddenIndex + "': {"
+	     temp += "'name':'" + formObj.contentDescriptions[i].detailName + "',"
+	     temp += "'typ':'" + formObj.contentDescriptions[i].detailType + "',"
+	     temp += "'optionalOrMandatory':'" + formObj.contentDescriptions[i].optionalOrMandatory + ",";
+       temp += "'deleted':'0'}";
+       //console.log("i: " + i + " | length: " + formObj.contentDescription.length);
+       if (i < formObj.contentDescriptions.length-1){
+         temp += ",";
+       }else{
+         temp += "},'deleted':'0'}";
+       }
+    }
+
+    console.log("formObj:");
+    console.log(formObj);
+    console.log("temp:");
+    console.log(temp);
+
     let serializedForm = JSON.stringify(formObj);
 
 
-    console.log(serializedForm);
+    //console.log(serializedForm);
 
     //this.http.post("www.domain.com/api", serializedForm)
     //        .subscribe(
