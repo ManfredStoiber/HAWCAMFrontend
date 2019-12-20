@@ -30,10 +30,10 @@
 
   <div formArrayName="contentDescriptions">
 
-    <div *ngIf="form.controls.contentDescriptions.controls">
+    <div *ngIf="form.controls.contentDescriptions?.controls">
 
-      <div [formGroupName]="i" *ngFor="let contentItem of form.controls.contentDescriptions.controls; let i=index">
-        <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
+      <div [formGroupName]="i" *ngFor="let contentItem of form.controls.contentDescriptions?.controls; let i=index">
+          <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
         <label >
 
           <input  type="text" formControlName="hiddenIndex" class="hide" name="hiddenIndex" value="{{i+1}}">
