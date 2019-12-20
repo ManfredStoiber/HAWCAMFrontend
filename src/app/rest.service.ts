@@ -52,7 +52,7 @@ export class RESTService {
 
   public putToRESTService( strPathending: string, JSONdata: JSON) {
 
-    console.log("--postToRESTService");
+    console.log("--putToRESTService");
     let httpOptions = {
       headers: new HttpHeaders(this.headerDict),
     };

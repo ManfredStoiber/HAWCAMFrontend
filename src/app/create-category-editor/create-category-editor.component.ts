@@ -23,7 +23,7 @@ export class CreateCategoryEditorComponent implements OnInit {
       });
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 
@@ -46,9 +46,9 @@ export class CreateCategoryEditorComponent implements OnInit {
 	     strTemp += '"optionalOrMandatory":"' + formObj.contentDescriptions[i].optionalOrMandatory + '",';
        strTemp += '"deleted":"0"}';
        //console.log('i: ' + i + ' | length: ' + formObj.contentDescription.length);
-       if (i < formObj.contentDescriptions.length-1){
+       if (i < formObj.contentDescriptions.length-1) {
          strTemp += ',';
-       }else{
+       } else {
          strTemp += '},"deleted":"0"}';
        }
     }
@@ -58,7 +58,7 @@ export class CreateCategoryEditorComponent implements OnInit {
 
     let JSONserializedForm: JSON = null;
     try {
-      JSONserializedForm: JSON = JSON.parse(strTemp);
+      JSONserializedForm = JSON.parse(strTemp);
       console.log("JSONserializedForm is valid");
       console.log(JSONserializedForm);
 
