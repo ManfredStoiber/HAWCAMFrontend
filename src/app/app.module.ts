@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 // imports of other modules this module depends on
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +19,7 @@ import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } fro
 import { MatNativeDateModule } from '@angular/material';
 import { MatButtonModule} from '@angular/material';
 
+
 // declarations of components to module
 import { AppComponent } from './app.component';
 import { StartButtonsComponent } from './start-buttons/start-buttons.component';
@@ -27,7 +29,6 @@ import { CreateCategoryEditorComponent } from './create-category-editor/create-c
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
 
 
 // declaration of services to module

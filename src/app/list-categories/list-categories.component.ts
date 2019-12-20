@@ -9,7 +9,7 @@ import { HttpEvent } from '@angular/common/http';
 })
 export class ListCategoriesComponent implements OnInit {
 
-  dataJSON : any = null;
+  JSONdata : any = null;
   response : Response;
 
 
@@ -20,9 +20,9 @@ export class ListCategoriesComponent implements OnInit {
     console.log("--onInit");
 
     this.restService.getFromRESTService("listCategories")
-       .subscribe( (response :JSON) => {
-             this.dataJSON = response;
-             console.log(this.dataJSON);
+       .subscribe( (JSONresponse :JSON) => {
+             this.JSONdata = JSONresponse;
+             console.log(this.JSONdata);
            }
         );
   }
