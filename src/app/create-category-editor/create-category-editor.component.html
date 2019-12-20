@@ -30,31 +30,35 @@
 
   <div formArrayName="contentDescriptions">
 
-    <div [formGroupName]="i" *ngFor="let contentItem of form.controls.contentDescriptions.controls; let i=index">
-      <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
-      <label >
+    <div *ngIf="form.controls.contentDescriptions.controls">
 
-        <input  type="text" formControlName="hiddenIndex" class="hide" name="hiddenIndex" value="{{i+1}}">
+      <div [formGroupName]="i" *ngFor="let contentItem of form.controls.contentDescriptions.controls; let i=index">
+        <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
+        <label >
 
-        <input type="text"  formControlName="detailName" placeholder="Name des Details" value="Detail" name="detailName">
+          <input  type="text" formControlName="hiddenIndex" class="hide" name="hiddenIndex" value="{{i+1}}">
 
-        <select formControlName="detailType" name="detailType">
-          <option value="textfield" selected="selected">Textfeld</option>
-          <option value="number">Zahl</option>
-          <option value="file">Datei</option>
-          <option value="date">Datum</option>
-          <option value="dateAndTime">Datum und Uhrzeit</option>
-        </select>
-        <select formControlName="optionalOrMandatory" name="optionalOrMandatory">
-          <option value="optional" selected="selected">Optional</option>
-          <option value="mandatory">Pflichtfeld</option>
-        </select>
+          <input type="text"  formControlName="detailName" placeholder="Name des Details" value="Detail" name="detailName">
 
-      </label>
-      <button mat-button (click)="deleteContentDescription(i)" type="button" class="delete"  > löschen</button>
+          <select formControlName="detailType" name="detailType">
+            <option value="textfield" selected="selected">Textfeld</option>
+            <option value="number">Zahl</option>
+            <option value="file">Datei</option>
+            <option value="date">Datum</option>
+            <option value="dateAndTime">Datum und Uhrzeit</option>
+          </select>
+          <select formControlName="optionalOrMandatory" name="optionalOrMandatory">
+            <option value="optional" selected="selected">Optional</option>
+            <option value="mandatory">Pflichtfeld</option>
+          </select>
 
+        </label>
+        <button mat-button (click)="deleteContentDescription(i)" type="button" class="delete"  > löschen</button>
+
+      </div>
     </div>
   </div>
+
 
 
   <div class="row submitrow">
