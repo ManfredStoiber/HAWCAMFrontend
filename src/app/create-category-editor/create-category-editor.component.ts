@@ -38,18 +38,18 @@ export class CreateCategoryEditorComponent implements OnInit {
 
     }
 
-    let strTemp: string = " { 'name':'" + formObj.objCatName + "', 'contentDescriptions': { ";
+    let strTemp: string = ' { "name":"' + formObj.objCatName + '", "contentDescriptions": { ';
     for (let i=0; i < formObj.contentDescriptions.length; i++){
-	     strTemp += "'" + formObj.contentDescriptions[i].hiddenIndex + "': {"
-	     strTemp += "'name':'" + formObj.contentDescriptions[i].detailName + "',"
-	     strTemp += "'typ':'" + formObj.contentDescriptions[i].detailType + "',"
-	     strTemp += "'optionalOrMandatory':'" + formObj.contentDescriptions[i].optionalOrMandatory + ",";
-       strTemp += "'deleted':'0'}";
-       //console.log("i: " + i + " | length: " + formObj.contentDescription.length);
+	     strTemp += '"' + formObj.contentDescriptions[i].hiddenIndex + '": {'
+	     strTemp += '"name":"' + formObj.contentDescriptions[i].detailName + '",'
+	     strTemp += '"typ":"' + formObj.contentDescriptions[i].detailType + '",'
+	     strTemp += '"optionalOrMandatory":"' + formObj.contentDescriptions[i].optionalOrMandatory + '",';
+       strTemp += '"deleted":"0"}';
+       //console.log('i: ' + i + ' | length: ' + formObj.contentDescription.length);
        if (i < formObj.contentDescriptions.length-1){
-         strTemp += ",";
+         strTemp += ',';
        }else{
-         strTemp += "},'deleted':'0'}";
+         strTemp += '},"deleted":"0"}';
        }
     }
 
@@ -58,18 +58,21 @@ export class CreateCategoryEditorComponent implements OnInit {
 
     let JSONserializedForm: JSON = null;
     try {
-      JSONserializedForm: JSON = JSON.parse(formObj);
+      JSONserializedForm: JSON = JSON.parse(strTemp);
       console.log("JSONserializedForm is valid");
       console.log(JSONserializedForm);
+
+      this.restService.putToRESTService("createCategory", JSONserializedForm)
+          .subscribe( (JSONresponse :JSON) => {
+                console.log(JSONresponse);
+              }
+           );
+
     } catch ( exception ) {
       console.log("JSONserializedForm is not valid");
     }
 
-    this.restService.postToRESTService("createCategory", JSONserializedForm)
-        .subscribe( (JSONresponse :JSON) => {
-              console.log(JSONresponse);
-            }
-         );
+
 
   }
 

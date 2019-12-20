@@ -13,9 +13,9 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class RESTService {
 
-  private nPortDEV: number = 5000;
-  private nPortPR: number = 5000;
-  private strUrl: string = "http://snirps.ddns.net:5000/api/v1.0/";
+  private nPort: number = 5000;
+  // private strUrl: string = "http://snirps.ddns.net:5000/api/v1.0/";
+  private strUrl: string = "http://snirps.ddns.net:" + this.nPort + "/api/v1.0/";
 
   private headerDict : any;
 
@@ -27,6 +27,9 @@ export class RESTService {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      /*'Access-Control-Allow-Origin': '*',
+        manfred: allow origin ist der host von dem die Daten empfangen werden
+          nicht mit * heist zwar alle aber könnte sein, das im das zu unsicher ist */
       'Access-Control-Allow-Methods': '*',
       'Access-Control-Allow-Headers': 'Content-Type',
     }
@@ -47,15 +50,21 @@ export class RESTService {
   }
 
 
-  public postToRESTService( strPathending: string, JSONdata: JSON) {
+  public putToRESTService( strPathending: string, JSONdata: JSON) {
 
     console.log("--postToRESTService");
     let httpOptions = {
       headers: new HttpHeaders(this.headerDict),
     };
 
-    return this.http.post<JSON>( this.strUrl + strPathending, JSONdata, httpOptions );
+    return this.http.put<JSON>( this.strUrl + strPathending, JSONdata, httpOptions );
 
+    /*
+    return this.http.put<JSON>( this.strUrl + strPathending, JSONdata, httpOptions )
+    .pipe(
+          catchError(this.handleError('sendCreateCategory', JSONdata))
+        );
+        */
   }
 
 
