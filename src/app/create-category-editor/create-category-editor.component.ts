@@ -28,6 +28,7 @@ export class CreateCategoryEditorComponent implements OnInit {
   }
 
 
+
   onSubmit() {
     alert("Kategorie wurde angelegt!");
 
@@ -95,7 +96,7 @@ export class CreateCategoryEditorComponent implements OnInit {
   }
 
 
-  deleteContentDescription(i){
+  deleteContentDescription(i: number){
     this.contentDescriptions.removeAt(i);
   }
 
