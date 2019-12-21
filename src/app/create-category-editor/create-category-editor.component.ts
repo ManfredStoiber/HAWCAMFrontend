@@ -82,7 +82,6 @@ export class CreateCategoryEditorComponent implements OnInit {
   };
 
 
-
   addNewDetail(){
     let ctrl = <FormArray>this.form.controls.contentDescriptions;
     ctrl.push(this.fb.group({
@@ -94,7 +93,6 @@ export class CreateCategoryEditorComponent implements OnInit {
     }))
 
   }
-
 
   deleteContentDescription(i: number){
     this.contentDescriptions.removeAt(i);
