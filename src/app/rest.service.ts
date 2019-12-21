@@ -23,13 +23,13 @@ export class RESTService {
     // declaration of the HttpClient - dependency injection
   constructor( private http: HttpClient ) {
 
+    /*'Access-Control-Allow-Origin': '*',
+      manfred: allow origin ist der host von dem die Daten empfangen werden
+        nicht mit * heist zwar alle aber könnte sein, das im das zu unsicher ist */
     this.headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      /*'Access-Control-Allow-Origin': '*',
-        manfred: allow origin ist der host von dem die Daten empfangen werden
-          nicht mit * heist zwar alle aber könnte sein, das im das zu unsicher ist */
       'Access-Control-Allow-Methods': '*',
       'Access-Control-Allow-Headers': 'Content-Type',
     }
