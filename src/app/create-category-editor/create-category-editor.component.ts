@@ -78,12 +78,12 @@ export class CreateCategoryEditorComponent implements OnInit {
   }
 
   get contentDescriptions() {
-    return this.form.get('contentDescriptions') as FormArray;
+    return <FormArray> this.form.get('contentDescriptions') ;
   };
 
 
   addNewDetail(){
-    let ctrl = <FormArray>this.form.controls.contentDescriptions;
+    let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.push(this.fb.group({
       hiddenIndex: [''],
       detailName: ['', Validators.required],
@@ -95,7 +95,8 @@ export class CreateCategoryEditorComponent implements OnInit {
   }
 
   deleteContentDescription(i: number){
-    this.contentDescriptions.removeAt(i);
+    let ctrl = <FormArray>this.form.get('contentDescriptions');
+    ctrl.removeAt(i);
   }
 
 
