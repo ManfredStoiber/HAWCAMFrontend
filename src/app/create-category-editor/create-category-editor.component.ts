@@ -78,7 +78,7 @@ export class CreateCategoryEditorComponent implements OnInit {
   }
 
   get contentDescriptions(){
-    return <FormArray> this.form.get('contentDescriptions')['controls'] ;
+    return <FormArray> this.form.get('contentDescriptions');
   };
 
 
