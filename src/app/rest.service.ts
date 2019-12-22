@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-import { HttpHeaders } from '@angular/common/http';
-
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -13,8 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class RESTService {
 
-  private nPort: number = 5000;
-  // private strUrl: string = "http://snirps.ddns.net:5000/api/v1.0/";
+  private nPort: number = 5001;
   private strUrl: string = "http://snirps.ddns.net:" + this.nPort + "/api/v1.0/";
 
   private headerDict : any;
@@ -23,9 +19,6 @@ export class RESTService {
     // declaration of the HttpClient - dependency injection
   constructor( private http: HttpClient ) {
 
-    /*'Access-Control-Allow-Origin': '*',
-      manfred: allow origin ist der host von dem die Daten empfangen werden
-        nicht mit * heist zwar alle aber könnte sein, das im das zu unsicher ist */
     this.headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -44,8 +37,9 @@ export class RESTService {
       headers: new HttpHeaders(this.headerDict),
     };
 
-    return this.http.get<JSON>( this.strUrl + strPathending, httpOptions );
-    // return this.http.get("https://api.github.com/users/DanGitHub123")
+    return this.http.get<JSON>( this.strUrl + strPathending, httpOptions )
+        .pipe( catchError( this.handleError))
+    ;
 
   }
 
@@ -57,16 +51,26 @@ export class RESTService {
       headers: new HttpHeaders(this.headerDict),
     };
 
-    return this.http.put<JSON>( this.strUrl + strPathending, JSONdata, httpOptions );
-
-    /*
     return this.http.put<JSON>( this.strUrl + strPathending, JSONdata, httpOptions )
-    .pipe(
-          catchError(this.handleError('sendCreateCategory', JSONdata))
-        );
-        */
+        .pipe( catchError( this.handleError))
+    ;
   }
 
+
+  handleError( error: any) {
+
+    let strErrorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      error = `Error: ${error.message}`;
+    } else {
+      // server-side error
+      strErrorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(strErrorMessage);
+    return throwError(strErrorMessage);
+
+  }
 
 
 

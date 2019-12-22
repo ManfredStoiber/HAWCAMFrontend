@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListCategoriesComponent } from './list-categories.component';
 
 describe('ListCategoriesComponent', () => {
+
   let component: ListCategoriesComponent;
   let fixture: ComponentFixture<ListCategoriesComponent>;
 
@@ -19,7 +20,9 @@ describe('ListCategoriesComponent', () => {
     fixture.detectChanges();
   });
 
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });
