@@ -1,15 +1,18 @@
 import {by, element, browser, protractor} from 'protractor';
 
 var createCategoryPage = function() {
-  var submit = element(by.cssContainingText('button', 'Fertig'));
 
   this.get = function() {
-    browser.get('http://www.angularjs.org');
+    browser.get('http://snirps.ddns.net/SE-Project/DEV/Inventarverwaltung');
   };
 
   this.getSubmitButton = function() {
-    return submit;
+    return element(by.cssContainingText('button', 'Fertig'));
   };
+
+  this.getAddDetailButton = function() {
+    return element(by.cssContainingText('button', 'Detail hinzufügen!'));
+  }
 
 };
 module.exports = new createCategoryPage();

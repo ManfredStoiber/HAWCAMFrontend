@@ -6,7 +6,7 @@ describe('HAWCAM feature createCategory', function () {
 		debugger;
 		
 		// go to homepage
-		browser.get('http://snirps.ddns.net/SE-Project/DEV/Inventarverwaltung');
+		createCategoryPage.get();
 
 		// select createCategory
 		element(by.id('bttnCreateCategory')).click();
@@ -16,9 +16,9 @@ describe('HAWCAM feature createCategory', function () {
 		element(by.css('input[formcontrolname=objCatName]')).sendKeys(catName);
 
 		// add details
-		element(by.cssContainingText('button', 'Detail hinzufügen!')).click();
+		createCategoryPage.getAddDetailButton().click();
 		element.all(by.css('input[formcontrolname=detailName')).last().sendKeys('Testdetail1');
-		element(by.cssContainingText('button', 'Detail hinzufügen!')).click();
+		createCategoryPage.getAddDetailButton().click();
 		element.all(by.css('input[formcontrolname=detailName')).last().sendKeys('Testdetail2');
 
 		// submit
