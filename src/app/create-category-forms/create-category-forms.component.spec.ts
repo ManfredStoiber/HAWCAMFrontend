@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateCategoryFormsComponent } from './create-category-forms.component';
+import { Component } from '@angular/core';
 
 describe('CreateCategoryFormsComponent', () => {
   let component: CreateCategoryFormsComponent;
@@ -8,7 +9,10 @@ describe('CreateCategoryFormsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateCategoryFormsComponent ]
+      declarations: [
+        CreateCategoryFormsComponent,
+        MockCreateCategoryEditor
+       ]
     })
     .compileComponents();
   }));
@@ -23,3 +27,11 @@ describe('CreateCategoryFormsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+@Component({
+  selector: 'app-create-category-editor',
+  template: ''
+})
+class MockCreateCategoryEditor {
+}

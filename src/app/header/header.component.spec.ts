@@ -36,8 +36,8 @@ describe('HeaderComponent', () => {
 
 
   it('should create headerComponent with Input', async(() => {
-     // provide inputs here
-     headerComponent.objHeaderData = new HeaderData("Inventarverwaltung", "Startseite","Hallo Administrator, was möchten Sie tun?");
+    // provide inputs here
+    headerComponent.objHeaderData = new HeaderData("Inventarverwaltung", "Startseite","Hallo Administrator, was möchten Sie tun?");
     expect(headerComponent).toBeTruthy();
   }));
 
