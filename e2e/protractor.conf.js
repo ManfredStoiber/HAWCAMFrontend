@@ -23,6 +23,7 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
+  specs: ['src/homepage.e2e-spec.ts'],
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
