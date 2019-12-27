@@ -9,7 +9,7 @@ import { HttpEvent } from '@angular/common/http';
 })
 export class ListCategoriesComponent implements OnInit {
 
-  JSONdata : any = null;
+  jsonData : any = null;
   response : Response;
 
 
@@ -21,24 +21,10 @@ export class ListCategoriesComponent implements OnInit {
 
     this.restService.getFromRESTService("listCategories")
        .subscribe( (JSONresponse :JSON) => {
-             this.JSONdata = JSONresponse;
-             console.log(this.JSONdata);
+             this.jsonData = JSONresponse;
+             console.log(this.jsonData);
            }
         );
   }
-
-
-    // try {
-      // this.dataJSON = JSON.parse(' {	"categories": { "category1": {"name":"Raum","count":3}, "category2": {"name":"Buch","count":14 } } }' );
-      // this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 }  ] }' );
-      // this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2},{"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2}  ] }' );
-      // this.dataJSON = JSON.parse(' { "categories": [ ] }' );
-
-    //   console.log("Parsing worked");
-    //   console.log(this.dataJSON);
-    // } catch ( exception ) {
-    //   console.log("errorroutine here");
-    // }
-
 
 }

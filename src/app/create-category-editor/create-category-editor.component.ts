@@ -41,7 +41,7 @@ export class CreateCategoryEditorComponent implements OnInit {
     let nMandatory: number = 0;
     let strTemp: string = ' { "name":"' + formObj.objCatName + '", "contentDescriptions": { ';
 
-    if( formObj.contentDescriptions.length > 1 ) {      //  Attribute vorhanden
+    if( formObj.contentDescriptions.length > 0 ) {      //  Attribute vorhanden
       for (let i=0; i < formObj.contentDescriptions.length; i++) {
          strTemp += '"' + formObj.contentDescriptions[i].hiddenIndex + '": {';
          strTemp += '"name":"' + formObj.contentDescriptions[i].detailName + '",';
@@ -62,20 +62,20 @@ export class CreateCategoryEditorComponent implements OnInit {
     console.log("strTemp:");
     console.log(strTemp);
 
-    let JSONserializedForm: JSON = null;
+    let jsonSerializedForm: JSON = null;
     try {
-      JSONserializedForm = JSON.parse(strTemp);
-      console.log("JSONserializedForm is valid");
-      console.log(JSONserializedForm);
+      jsonSerializedForm = JSON.parse(strTemp);
+      console.log("jsonSerializedForm is valid");
+      console.log(jsonSerializedForm);
 
-      this.restService.putToRESTService("createCategory", JSONserializedForm)
+      this.restService.putToRESTService("createCategory", jsonSerializedForm)
           .subscribe( (JSONresponse :JSON) => {
                 console.log(JSONresponse);
               }
            );
 
     } catch ( exception ) {
-      console.log("JSONserializedForm is not valid");
+      console.log("jsonSerializedForm is not valid");
     }
 
 
