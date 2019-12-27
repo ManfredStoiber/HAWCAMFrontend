@@ -33,6 +33,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 // declaration of services to module
 import { RESTService } from './rest.service';
+import { HeaderData } from './headerData.model';
 
 
 const modules: any[] = [
@@ -60,7 +61,8 @@ const modules: any[] = [
     CreateCategoryEditorComponent,
     CreateCategoryComponent,
     ListCategoriesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HeaderData
   ],
   imports: [
     BrowserModule,

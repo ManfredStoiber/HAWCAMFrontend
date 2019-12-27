@@ -1,12 +1,16 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+import { HeaderData } from './headerData.model';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        StubAppHeaderComponent,
+        HeaderData
       ],
       declarations: [
         AppComponent
@@ -33,3 +37,11 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('.content span').textContent).toContain('HAWCAMFrontend app is running!');
   });
 });
+
+
+@Component({
+  selector: 'app-header',
+  template: ''
+})
+class StubAppHeaderComponent {
+}

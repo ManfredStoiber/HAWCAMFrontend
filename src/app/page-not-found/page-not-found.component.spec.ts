@@ -11,7 +11,7 @@ describe('PageNotFoundComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         PageNotFoundComponent,
-        MockStartButtonsComponent
+        StubStartButtonsComponent
       ]
     })
     .compileComponents();
@@ -33,5 +33,5 @@ describe('PageNotFoundComponent', () => {
   selector: 'app-start-buttons',
   template: ''
 })
-class MockStartButtonsComponent {
+class StubStartButtonsComponent {
 }

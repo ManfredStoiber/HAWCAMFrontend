@@ -11,7 +11,7 @@ describe('CreateCategoryFormsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CreateCategoryFormsComponent,
-        MockCreateCategoryEditor
+        StubCreateCategoryEditor
        ]
     })
     .compileComponents();
@@ -33,5 +33,5 @@ describe('CreateCategoryFormsComponent', () => {
   selector: 'app-create-category-editor',
   template: ''
 })
-class MockCreateCategoryEditor {
+class StubCreateCategoryEditor {
 }
