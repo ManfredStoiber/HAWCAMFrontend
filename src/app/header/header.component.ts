@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Location} from '@angular/common';
+
 import { HeaderData } from '../headerData.model';
 
 @Component({
@@ -14,13 +16,17 @@ export class HeaderComponent implements OnInit {
   // Membervariable für Datum
   strDatetime : string;
 
-  constructor() {
+  constructor( private location: Location ) {
 
-   }
+  }
 
 
   ngOnInit() {
     this.setStrDateTime();
+  }
+
+  clickedBack() {
+    this.location.back();
   }
 
   setStrDateTime() {
