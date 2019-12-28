@@ -1,0 +1,37 @@
+
+<main>
+
+  <div *ngIf="JSONdata?.categories.length == 0" >
+    <h1> Keine Kategorien vorhanden </h1>
+    <br>
+    <p>Zum Anlegen von Kategorien bitte "Kategorie erstellen" wählen </p>
+  </div>
+
+  <div *ngIf="JSONdata?.categories.length > 0">
+
+    <h1>Auf basis welcher Kategorie möchten Sie ein Objekt erstellen: </h1>
+
+      <div id="container">
+          <button (click)="sendChosenCat( category.name )" class="redBackground classOption" *ngFor="let category of JSONdata?.categories">{{ category.name }}</button>
+
+
+      <!--<form [formGroup]="form">
+        <select name="cats2">
+          <option [value]="test3">test</option>
+        </select>
+      </form>-->
+
+
+        <div class="leftPlaceholder">
+        </div>
+
+        <div class="rightPlaceholder">
+        </div>
+
+
+
+    </div>  <!-- container ende -->
+
+</div>
+
+</main>

@@ -1,0 +1,83 @@
+
+*{
+  font-size: 25px;
+}
+
+.hide{
+  display:none;
+}
+
+.delete{
+  color: white;
+  padding: 5px;
+  background-color: #d80030;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+select{
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
+}
+
+
+input{
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
+
+}
+
+button.submit[disabled]:hover {
+    cursor: not-allowed;
+}
+
+.submit{
+  background-color: lightgreen;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: black;
+  padding: 5px;
+}
+
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);   /* 1 - 10 */
+  grid-template-rows: repeat(4, 1fr);      /* 1 - 5 */
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.row > label > span{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.row > label > input{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.row > label > span{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.detailName{
+    -margin-top:10px;
+}
+
+.mandatory{
+  color:red;
+}
+
+hr{
+  border: 0.5px solid grey;
+  opacity: 0.5;
+  margin: 10px 0px;
+}

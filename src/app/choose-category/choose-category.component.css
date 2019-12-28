@@ -1,0 +1,26 @@
+button {
+
+  width: 100%;
+
+  padding: 30px;
+  font-size: 25px;
+
+/*  background-color: #d80030;   geregelt über class und globale styles.css
+    :hover ebenfalls
+*/
+  color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.classOption{
+    margin: 10px 0px;
+}
+
+.submit{
+  background-color: lightgreen;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: black;
+  padding: 5px;
+}
