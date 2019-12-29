@@ -1,1 +1,49 @@
-<p>show-category works!</p>
+
+<main>
+
+  <div class="container">
+
+      <div id="divAllAttributes" *ngFor="let attribute of objAttributes?.attributes">
+
+        <div class="divOneAttribute">
+
+          <p class="attributeName"> {{attribute.name}} </p>
+
+          <p class="attributeTyp"> {{attribute.typ}} </p>
+
+          <p class="attributeMandatory" *ngIf="attribute.mandatory === '1'"> Pflichtfeld </p>
+          <p class="attributeMandatory" *ngIf="attribute.mandatory === '0'"> optionales Feld </p>
+          <hr>
+        </div>
+
+      </div>
+
+
+
+  </div>
+
+</main>
+
+
+  <!--
+      <div *ngFor="let attribute of objAttributes?.attributes; let i=index">
+            <p class="attributeName">{{attribute.name}}<span class="mandatory" *ngIf="attribute.mandatory === '1'">*</span></p>
+            <div *ngIf="attribute.typ === 'Einfaches Textfeld'">
+              <input formControlName="{{attribute.name}}" type="text"  placeholder="Wert des Attributes" name="attribute">
+            </div>
+            <div *ngIf="attribute.typ === 'Datum'">
+              <input formControlName="{{attribute.name}}" type="date"  placeholder="Wert des Attributes" name="attribute">
+            </div>
+            <div *ngIf="attribute.typ === 'file'">
+              <input formControlName="{{attribute.name}}" type="file"  placeholder="Wert des Attributes" name="attribute">
+            </div>
+            <div *ngIf="attribute.typ === 'Zahl'">
+              <input formControlName="{{attribute.name}}" type="number"  placeholder="Wert des Attributes" name="attribute">
+            </div>
+            <div *ngIf="attribute.typ === 'dateAndTime'">
+              Datum: <input formControlName="{{attribute.name}}-Date" type="date"  placeholder="Wert des Attributes" name="attribute">
+              Uhrzeit: <input formControlName="{{attribute.name}}-Clock" type="time"  placeholder="Wert des Attributes" name="attribute">
+            </div>
+            <hr />
+      </div>
+      -->

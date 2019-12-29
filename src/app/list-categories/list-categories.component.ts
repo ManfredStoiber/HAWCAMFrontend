@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RESTService } from '../rest.service';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
+import { RESTService } from '../rest.service';
 
 @Component({
   selector: 'app-list-categories',
@@ -14,7 +15,7 @@ export class ListCategoriesComponent implements OnInit {
 
 
   // declaration of the RESTService - dependency injection
-  constructor( private restService: RESTService, private router: Router ) { }
+  constructor( private restService: RESTService, private dataService: DataService, private router: Router ) { }
 
   ngOnInit() {
 
@@ -26,10 +27,30 @@ export class ListCategoriesComponent implements OnInit {
         );
   }
 
-  testmethod( strCategoryName: string) {
-    console.log(strCategoryName);
+  navigateToChosenCategory( strChosenCatName: string) {
 
-    this.router.navigate(['/showCategory']);
+    let strTemp: string = null;
+    strTemp = '{"strChosenCatName":"' + strChosenCatName + '"}';
+    let jsonSerializedForm: JSON = null;
+
+    try {
+
+      jsonSerializedForm = JSON.parse(strTemp);
+      console.log("jsonSerializedForm is valid");
+      console.log(jsonSerializedForm);
+
+      this.restService.putToRESTService("listAttributesForCategory", jsonSerializedForm)
+          .subscribe( (jsonResponse :JSON) => {
+               console.log(jsonResponse);
+               this.dataService.setJsonAttributes(jsonResponse);
+               this.router.navigate(["/showCategory"]);
+             }
+          );
+
+    } catch ( exception ) {
+     console.log("jsonSerializedForm is not valid");
+   }
+
 
   }
 
