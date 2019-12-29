@@ -18,7 +18,7 @@ export class CreateObjectComponent implements OnInit {
   form: FormGroup;
 
   private jsonAttributes: JSON = null;
-  private objAttributes: any = null;
+  objAttributes: any = null;
 
   constructor(private fb: FormBuilder, private restService: RESTService, private dataService: DataService ) {
 

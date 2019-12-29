@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ChooseCategoryComponent implements OnInit {
 
-  private jsonData : any = null;
+  jsonData : any = null;
 
   constructor( private restService: RESTService, private router: Router, private dataService: DataService ) {
   }
