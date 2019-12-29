@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RESTService } from '../rest.service';
-import { HttpEvent } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-categories',
@@ -14,10 +14,9 @@ export class ListCategoriesComponent implements OnInit {
 
 
   // declaration of the RESTService - dependency injection
-  constructor( private restService: RESTService) { }
+  constructor( private restService: RESTService, private router: Router ) { }
 
   ngOnInit() {
-    console.log("--onInit");
 
     this.restService.getFromRESTService("listCategories")
        .subscribe( (JSONresponse :JSON) => {
@@ -25,6 +24,13 @@ export class ListCategoriesComponent implements OnInit {
              console.log(this.jsonData);
            }
         );
+  }
+
+  testmethod( strCategoryName: string) {
+    console.log(strCategoryName);
+
+    this.router.navigate(['/showCategory']);
+
   }
 
 }
