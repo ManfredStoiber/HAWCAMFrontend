@@ -3,24 +3,17 @@
   font-size: 25px;
 }
 
-.hide{
-  display:none;
+
+main {
+  margin: 40px;
 }
 
-.delete{
-  color: white;
-  padding: 5px;
-  background-color: #d80030;
-  border: 1px solid black;
-  border-radius: 8px;
+main > h1 {
+  font-size: 33px;
+  margin-left: 9px;
+  margin-bottom: 20px;
 }
 
-select{
-  border: 1px solid black;
-  border-radius: 8px;
-  padding: 5px;
-  margin: 5px;
-}
 
 
 input{
@@ -43,30 +36,6 @@ button.submit[disabled]:hover {
   padding: 5px;
 }
 
-
-#container {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);   /* 1 - 10 */
-  grid-template-rows: repeat(4, 1fr);      /* 1 - 5 */
-  width: 100vw;
-  height: 100vh;
-}
-
-
-.row > label > span{
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
-
-.row > label > input{
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
-
-.row > label > span{
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
 
 
 .detailName{

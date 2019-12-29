@@ -23,7 +23,7 @@ export class CreateObjectComponent implements OnInit {
   constructor(private fb: FormBuilder, private restService: RESTService, private dataService: DataService ) {
 
     this.form = this.fb.group({
-        objCatName: ['', Validators.required]
+        objObjName: ['', Validators.required]
       });
 
   }
@@ -35,71 +35,11 @@ export class CreateObjectComponent implements OnInit {
 
     this.objAttributes = this.jsonAttributes;
 
-    this.detailsObj = {
-     details:[
-       {
-         name: "Notiz",
-         type: "textfield",
-         optionalOrMandatory: "optional",
-         value: ""
-       },
-       {
-         name: "Garantie bis",
-         type: "date",
-         optionalOrMandatory: "optional",
-         value: ""
-       },
-       {
-         name: "Nächster Wartungstermin",
-         type: "dateAndTime",
-         optionalOrMandatory: "optional",
-         value: ""
-       },
-       {
-         name: "Verantwortlicher",
-         type: "textfield",
-         optionalOrMandatory: "optional",
-         value: ""
-       },
-       {
-         name: "Anschaffungspreis",
-         type: "number",
-         optionalOrMandatory: "optional",
-         value: ""
-       }
-
-     ]
-   };
 
    // this.initialiseScreen();
-
    this.initialiseScreenWithJSON();
 
   }
-
-  initialiseScreen() {
-
-    for( let i=0; i<this.detailsObj.details.length; i++ ) {
-      if(this.detailsObj.details[i].ma=="Pflichtfeld"){
-        if(this.detailsObj.details[i].type=="dateAndTime"){
-          this.form.addControl(this.detailsObj.details[i].name+"-Date", new FormControl('', Validators.required));
-          this.form.addControl(this.detailsObj.details[i].name+"-Clock", new FormControl('', Validators.required));
-        }else{
-          this.form.addControl(this.detailsObj.details[i].name, new FormControl('', Validators.required));
-        }
-      }else if(this.detailsObj.details[i].optionalOrMandatory=="optional" ){
-
-        if(this.detailsObj.details[i].type=="dateAndTime"){
-          this.form.addControl(this.detailsObj.details[i].name+"-Date", new FormControl(''));
-          this.form.addControl(this.detailsObj.details[i].name+"-Clock", new FormControl(''));
-        }else{
-          this.form.addControl(this.detailsObj.details[i].name, new FormControl(''));
-        }
-      }
-    }
-
-  }
-
 
   initialiseScreenWithJSON() {
 
@@ -145,7 +85,5 @@ export class CreateObjectComponent implements OnInit {
              console.log(jsonResponse);
            }
         );
-
   }
-
 }
