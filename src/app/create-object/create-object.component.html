@@ -14,8 +14,9 @@
     </label>
   </div>
   <hr />
+  <!--
       <div *ngFor="let detail of detailsObj.details; let i=index">
-          <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
+          <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>
             <p class="detailName">{{detail.name}}<span class="mandatory" *ngIf="detail.optionalOrMandatory === 'Pflichtfeld'">*</span></p>
             <div *ngIf="detail.type === 'textfield'">
               <input formControlName="{{detail.name}}" type="text"  placeholder="Wert des Details" name="detail">
@@ -35,7 +36,29 @@
             </div>
             <hr />
       </div>
+  -->
 
+      <div *ngFor="let attribute of objAttributes?.attributes; let i=index">
+          <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
+            <p class="attributeName">{{attribute.name}}<span class="mandatory" *ngIf="attribute.mandatory === '1'">*</span></p>
+            <div *ngIf="attribute.typ === 'Einfaches Textfeld'">
+              <input formControlName="{{attribute.name}}" type="text"  placeholder="Wert des attributes" name="attribute">
+            </div>
+            <div *ngIf="attribute.typ === 'Datum'">
+              <input formControlName="{{attribute.name}}" type="date"  placeholder="Wert des attributes" name="attribute">
+            </div>
+            <div *ngIf="attribute.typ === 'file'">
+              <input formControlName="{{attribute.name}}" type="file"  placeholder="Wert des attributes" name="attribute">
+            </div>
+            <div *ngIf="attribute.typ === 'Zahl'">
+              <input formControlName="{{attribute.name}}" type="number"  placeholder="Wert des attributes" name="attribute">
+            </div>
+            <div *ngIf="attribute.typ === 'dateAndTime'">
+              Datum: <input formControlName="{{attribute.name}}-Date" type="date"  placeholder="Wert des attributes" name="attribute">
+              Uhrzeit: <input formControlName="{{attribute.name}}-Clock" type="time"  placeholder="Wert des attributes" name="attribute">
+            </div>
+            <hr />
+      </div>
 
 
   <div class="row submitrow">
@@ -44,4 +67,4 @@
   </div>
 
 </form>
-</div>
+</div> -->

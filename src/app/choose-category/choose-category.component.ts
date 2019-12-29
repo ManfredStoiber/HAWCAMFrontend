@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RESTService } from '../rest.service';
-import { HttpEvent } from '@angular/common/http';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -13,67 +12,49 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ChooseCategoryComponent implements OnInit {
 
-  JSONdata : any = null;
-  response : Response;
-  form: FormGroup;
+  private jsonData : any = null;
 
-  constructor(private fb:FormBuilder, private restService: RESTService) {
-
-
+  constructor( private restService: RESTService, private router: Router, private dataService: DataService ) {
   }
 
   ngOnInit() {
 
-
-
-    console.log("--onInit");
-
     this.restService.getFromRESTService("listCategories")
-       .subscribe( (JSONresponse :JSON) => {
-             this.JSONdata = JSONresponse;
-             console.log(this.JSONdata);
+       .subscribe( (jsonResponse :JSON) => {
+             this.jsonData = jsonResponse;
+             console.log("Response from listCategories:");
+             console.log(this.jsonData);
            }
         );
 
   }
 
-  // try {
-    // this.dataJSON = JSON.parse(' {	"categories": { "category1": {"name":"Raum","count":3}, "category2": {"name":"Buch","count":14 } } }' );
-    // this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 }  ] }' );
-    // this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2},{"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2}  ] }' );
-    // this.dataJSON = JSON.parse(' { "categories": [ ] }' );
 
-  //   console.log("Parsing worked");
-  //   console.log(this.dataJSON);
-  // } catch ( exception ) {
-  //   console.log("errorroutine here");
-  // }
+  sendChosenCat( strChosenCat:string ) {
 
-  sendChosenCat(cat:string){
-    alert("chosen:"+cat);
+    let strTemp: string = null;
+    strTemp = '{"strChosenCatName":"' + strChosenCat + '"}';
+    let jsonSerializedForm: JSON = null;
 
     try {
-      let strTemp:string;
 
-      strTemp = '{"catName":"'+cat+'"};'
+      jsonSerializedForm = JSON.parse(strTemp);
+      console.log("jsonSerializedForm is valid");
+      console.log(jsonSerializedForm);
 
-      let JSONserializedForm: JSON = null;
-      JSONserializedForm = JSON.parse(strTemp);
-      console.log("JSONserializedForm is valid");
-      console.log(JSONserializedForm);
-
-      this.restService.putToRESTService("choseCategory", JSONserializedForm)
-          .subscribe( (JSONresponse :JSON) => {
-                console.log(JSONresponse);
+      this.restService.putToRESTService("listAttributesForCategory", jsonSerializedForm)
+          .subscribe( (jsonResponse :JSON) => {
+                console.log(jsonResponse);
+                this.dataService.setJsonAttributes(jsonResponse);
+                this.router.navigate(["/createObject"]);
               }
            );
 
     } catch ( exception ) {
-      console.log("JSONserializedForm is not valid");
+      console.log("jsonSerializedForm is not valid");
     }
 
-
-  }
+  } // end of sendChosenCat
 
 
 }

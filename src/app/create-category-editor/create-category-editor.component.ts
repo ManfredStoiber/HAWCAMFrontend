@@ -42,7 +42,7 @@ export class CreateCategoryEditorComponent implements OnInit {
     let strTemp: string = ' { "name":"' + formObj.objCatName + '", "contentDescriptions": { ';
 
     if( formObj.contentDescriptions.length > 1 ) {      //  Attribute vorhanden
-      for (let i=0; i < formObj.contentDescriptions.length; i++) {
+      for ( let i=0; i < formObj.contentDescriptions.length; i++) {
          strTemp += '"' + formObj.contentDescriptions[i].hiddenIndex + '": {';
          strTemp += '"name":"' + formObj.contentDescriptions[i].detailName + '",';
          strTemp += '"typ":"' + formObj.contentDescriptions[i].detailType + '",';

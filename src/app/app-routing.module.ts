@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: '**', redirectTo: "/pageNotFound", pathMatch: "full" }
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

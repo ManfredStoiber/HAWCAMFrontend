@@ -68,7 +68,11 @@ button.submit[disabled]:hover {
   grid-column-end: 2;
 }
 
+
 .detailName{
+    -margin-top:10px;
+}
+.attributeName{
     -margin-top:10px;
 }
 

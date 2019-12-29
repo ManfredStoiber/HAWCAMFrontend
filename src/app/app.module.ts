@@ -29,12 +29,13 @@ import { CreateCategoryEditorComponent } from './create-category-editor/create-c
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ChooseCategoryComponent } from './choose-category/choose-category.component';
+import { CreateObjectComponent } from './create-object/create-object.component';
 
 
 // declaration of services to module
 import { RESTService } from './rest.service';
-import { ChooseCategoryComponent } from './choose-category/choose-category.component';
-import { CreateObjectComponent } from './create-object/create-object.component';
+import { DataService } from './data.service';
 
 
 const modules: any[] = [
@@ -87,7 +88,8 @@ const modules: any[] = [
     MatFormFieldModule
   ],
   providers: [
-    RESTService
+    RESTService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
