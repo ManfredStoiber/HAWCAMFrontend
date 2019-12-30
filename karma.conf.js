@@ -24,7 +24,6 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml', 'junit'],
     junitReporter: {
       outputFile: 'test-results.xml',
-      outputDir: '../',
       useBrowserName: false
     },
     port: 9876,
