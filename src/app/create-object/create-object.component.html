@@ -4,6 +4,7 @@
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" >
 
+  <!-- display the meta input field for the name of the object -->
   <div class="row">
     <label>
       <span >Objektname:</span><span class="mandatory">*</span>
@@ -12,9 +13,10 @@
   </div>
   <hr />
 
+      <!-- iterate through the attributes array -->
       <div *ngFor="let attribute of objAttributes?.attributes; let i=index">
-          <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
             <p class="attributeName">{{attribute.name}}<span class="mandatory" *ngIf="attribute.mandatory === '1'">*</span></p>
+            <!-- display the input fields with the proper type depending on array -->
             <div *ngIf="attribute.typ === 'Einfaches Textfeld'">
               <input formControlName="{{attribute.name}}" type="text"  placeholder="Wert des attributes" name="attribute">
             </div>
@@ -37,6 +39,7 @@
 
   <div class="row submitrow">
 
+    <!-- if all required inputs fields are filled it is clickable and can be sent to backend -->
     <button  mat-button class="submit" type="submit" [disabled]="!form.valid">Fertig!</button>
   </div>
 

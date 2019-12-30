@@ -16,6 +16,8 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   form: FormGroup;
 
+  // create a form group with the category name and an empty array for
+  // addable attributes
   constructor(private fb: FormBuilder, private restService: RESTService) {
     this.form = this.fb.group({
         objCatName: ['', Validators.required],
@@ -27,18 +29,22 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   }
 
-
-
   onSubmit() {
     alert("Kategorie wurde angelegt!");
 
+    // get the form data as an object
     let formObj = this.form.getRawValue();
 
+    // hidden index begins with 1 and not with 0 (required from the backend guys)
     for(var i=0;i<formObj.contentDescriptions.length;i++){
       formObj.contentDescriptions[i].hiddenIndex = (i+1);
-
     }
+
+
     let nMandatory: number = 0;
+
+    // create the json object with the name of the createCategory
+    // and the added attributes
     let strTemp: string = ' { "name":"' + formObj.objCatName + '", "contentDescriptions": { ';
 
     if( formObj.contentDescriptions.length > 1 ) {      //  Attribute vorhanden
@@ -62,6 +68,7 @@ export class CreateCategoryEditorComponent implements OnInit {
     console.log("strTemp:");
     console.log(strTemp);
 
+    // send it to the backend
     let JSONserializedForm: JSON = null;
     try {
       JSONserializedForm = JSON.parse(strTemp);
@@ -81,11 +88,14 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   }
 
+  // getter for the content descriptions array
   get contentDescriptions(){
     return <FormArray> this.form.get('contentDescriptions');
   };
 
 
+  // add a new attribute by clicking on the button
+  // results in adding some new form controls in the array
   addNewDetail(){
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.push(this.fb.group({
@@ -98,6 +108,7 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   }
 
+  // remove the chosen form controls from the array
   deleteContentDescription(i: number){
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.removeAt(i);

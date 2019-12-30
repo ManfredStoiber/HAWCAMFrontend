@@ -1,17 +1,21 @@
 
 <main>
 
+  <!-- if there are no categories in the categories array -->
   <div *ngIf="jsonData?.categories.length == 0" >
     <h1> Keine Kategorien vorhanden </h1>
     <br>
     <p>Zum Anlegen von Kategorien bitte "Kategorie erstellen" wählen </p>
   </div>
 
+  <!-- iterate through the categories -->
   <div *ngIf="jsonData?.categories.length > 0">
 
     <h1>Auf basis welcher Kategorie möchten Sie ein Objekt erstellen: </h1>
 
       <div id="container">
+
+          <!-- create a button for every category in the array and send the name "on click" to the backend-->
           <button (click)="sendChosenCat( category.name )" class="redBackground classOption" *ngFor="let category of jsonData?.categories">{{ category.name }}</button>
 
 

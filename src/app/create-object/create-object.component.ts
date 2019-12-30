@@ -22,13 +22,17 @@ export class CreateObjectComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private restService: RESTService, private dataService: DataService ) {
 
+    // create a form group, at first only with the input for the objects name
+    // "''" is the initial value of the input
     this.form = this.fb.group({
         objObjName: ['', Validators.required]
       });
 
   }
 
+
   ngOnInit() {
+
     this.jsonAttributes = this.dataService.getJsonAttributes();
     console.log("CreateObject --onInit")
     console.log(this.jsonAttributes);
@@ -43,13 +47,8 @@ export class CreateObjectComponent implements OnInit {
 
   initialiseScreenWithJSON() {
 
-        // was zum GEIER, warum geht das nicht
-  // console.log(this.jsonAttributes);
-  // console.log(this.jsonAttributes.attributes[0].name);
-  // console.log(objAttributes);
-  // console.log(objAttributes.attributes[0].name);
-
-
+    // create further form controls depending on the given json
+    // if required make the inputs mandatory
     for ( let i=0; i < this.objAttributes.attributes.length; i++ ) {
       if ( this.objAttributes.attributes[i].mandatory == "1" ) {
         if ( this.objAttributes.attributes[i].type == "dateAndTime" ) {
@@ -71,9 +70,11 @@ export class CreateObjectComponent implements OnInit {
 
   }
 
+  // send the form data to the backend
   onSubmit() {
     alert("Objekt wurde angelegt!");
 
+    // get the form data as an object
     let formObj = this.form.getRawValue();
 
     let jsonObject: JSON = formObj;

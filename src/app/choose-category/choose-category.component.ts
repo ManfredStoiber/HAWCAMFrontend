@@ -17,6 +17,7 @@ export class ChooseCategoryComponent implements OnInit {
   constructor( private restService: RESTService, private router: Router, private dataService: DataService ) {
   }
 
+  // get the existing categories from the backend and list them in the template
   ngOnInit() {
 
     this.restService.getFromRESTService("listCategories")
@@ -33,6 +34,8 @@ export class ChooseCategoryComponent implements OnInit {
   sendChosenCat( strChosenCat:string ) {
 
     let strTemp: string = null;
+
+    //create string for json and send it
     strTemp = '{"strChosenCatName":"' + strChosenCat + '"}';
     let jsonSerializedForm: JSON = null;
 
