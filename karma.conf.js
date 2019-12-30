@@ -24,6 +24,7 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml', 'junit'],
     junitReporter: {
       outputFile: 'test-results.xml',
+      outputDir: '/root/.jenkins/jobs/HAWCAMFrontendDEV/workspace',
       useBrowserName: false
     },
     port: 9876,
