@@ -15,7 +15,12 @@ exports.config = {
   capabilities: {
     browserName: 'chrome'
   },
-  directConnect: true,
+  chromeOptions: {
+    binary: '/usr/bin/chromium-browser',
+  },
+  chromeDriver: '/usr/bin/chromedriver',
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  directConnect: false,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
@@ -23,10 +28,6 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
-  specs: [
-    'src/homepage.e2e-spec.ts',
-    'src/createCategory.e2e-spec.ts'
-  ],
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
