@@ -11,10 +11,8 @@ import { RESTService } from '../rest.service';
 export class ListCategoriesComponent implements OnInit {
 
   jsonData : any = null;
-  response : Response;
 
-
-  // declaration of the RESTService - dependency injection
+  // declaration of the RESTService, DataService, Router - dependency injection
   constructor( private restService: RESTService, private dataService: DataService, private router: Router ) { }
 
   ngOnInit() {
@@ -30,7 +28,7 @@ export class ListCategoriesComponent implements OnInit {
   navigateToChosenCategory( strChosenCatName: string) {
 
     let strTemp: string = null;
-    strTemp = '{"strChosenCatName":"' + strChosenCatName + '"}';
+    strTemp = '{"catName":"' + "'" + strChosenCatName + "'"+ '"}';
     let jsonSerializedForm: JSON = null;
 
     try {
@@ -50,7 +48,6 @@ export class ListCategoriesComponent implements OnInit {
     } catch ( exception ) {
      console.log("jsonSerializedForm is not valid");
    }
-
 
   }
 
