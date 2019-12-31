@@ -52,15 +52,27 @@ button.submit[disabled]:hover {
   border-radius: 8px;
 }
 
-
-#container {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);   /* 1 - 10 */
-  grid-template-rows: repeat(4, 1fr);      /* 1 - 5 */
-  width: 100vw;
-  height: 100vh;
+        /*  WORKARROUND
+            ÜBERPRÜFUNG NÖTIG */
+.container {
+  margin-left: 40px;
+  margin-top: 20px;
 }
 
+/*
+                dieser Block greift nicht, da mit # auf eine class zugegriffen wird
+                daduch wird nie ein GRID erstellt
+                auch die CSS zu .row haben damit keine Wirkung
+#container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);   /* 1 - 10
+  grid-template-rows: repeat(4, 1fr);      /* 1 - 5
+  width: 100vw;
+  height: 100vh;
+  margin-left: 40px;
+  margin-top: 20px;
+
+}
 
 .row > label > span{
   grid-column-start: 1;
@@ -71,11 +83,14 @@ button.submit[disabled]:hover {
   grid-column-start: 1;
   grid-column-end: 2;
 }
-
-.row > label > span{
+            ist doppelt vorhanden
+.row > label > span {
   grid-column-start: 1;
   grid-column-end: 2;
 }
+
+*/
+
 
 ::placeholder {
   color: #ff3232;

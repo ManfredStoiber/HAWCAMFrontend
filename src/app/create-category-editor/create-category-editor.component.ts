@@ -47,8 +47,9 @@ export class CreateCategoryEditorComponent implements OnInit {
     // and the added attributes
     let strTemp: string = ' { "name":"' + formObj.objCatName + '", "contentDescriptions": { ';
 
-    if( formObj.contentDescriptions.length > 1 ) {      //  Attribute vorhanden
-      for ( let i=0; i < formObj.contentDescriptions.length; i++) {
+
+    if( formObj.contentDescriptions.length > 0 ) {      //  Attribute vorhanden
+      for (let i=0; i < formObj.contentDescriptions.length; i++) {
          strTemp += '"' + formObj.contentDescriptions[i].hiddenIndex + '": {';
          strTemp += '"name":"' + formObj.contentDescriptions[i].detailName + '",';
          strTemp += '"typ":"' + formObj.contentDescriptions[i].detailType + '",';
@@ -70,21 +71,23 @@ export class CreateCategoryEditorComponent implements OnInit {
     console.log("strTemp:");
     console.log(strTemp);
 
-    // send it to the backend
-    let JSONserializedForm: JSON = null;
-    try {
-      JSONserializedForm = JSON.parse(strTemp);
-      console.log("JSONserializedForm is valid");
-      console.log(JSONserializedForm);
 
-      this.restService.putToRESTService("createCategory", JSONserializedForm)
+    // send it to the backend
+    let jsonSerializedForm: JSON = null;
+
+    try {
+      jsonSerializedForm = JSON.parse(strTemp);
+      console.log("jsonSerializedForm is valid");
+      console.log(jsonSerializedForm);
+
+      this.restService.putToRESTService("createCategory", jsonSerializedForm)
           .subscribe( (JSONresponse :JSON) => {
                 console.log(JSONresponse);
               }
            );
 
     } catch ( exception ) {
-      console.log("JSONserializedForm is not valid");
+      console.log("jsonSerializedForm is not valid");
     }
 
 
