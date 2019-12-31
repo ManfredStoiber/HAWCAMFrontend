@@ -15,7 +15,12 @@ exports.config = {
   capabilities: {
     browserName: 'chrome'
   },
-  directConnect: true,
+  chromeOptions: {
+    binary: '/usr/bin/chromium-browser',
+  },
+  chromeDriver: '/usr/bin/chromedriver',
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  directConnect: false,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {

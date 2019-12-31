@@ -44,14 +44,14 @@ export class RESTService {
   }
 
 
-  public putToRESTService( strPathending: string, JSONdata: JSON) {
+  public putToRESTService( strPathending: string, jsonData: JSON) {
 
     console.log("--putToRESTService");
     let httpOptions = {
       headers: new HttpHeaders(this.headerDict),
     };
 
-    return this.http.put<JSON>( this.strUrl + strPathending, JSONdata, httpOptions )
+    return this.http.put<JSON>( this.strUrl + strPathending, jsonData, httpOptions )
         .pipe( catchError( this.handleError))
     ;
   }
