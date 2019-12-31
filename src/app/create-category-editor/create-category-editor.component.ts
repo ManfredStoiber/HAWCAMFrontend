@@ -55,7 +55,7 @@ export class CreateCategoryEditorComponent implements OnInit {
          strTemp += '"typ":"' + formObj.contentDescriptions[i].detailType + '",';
          if( formObj.contentDescriptions[i].optionalOrMandatory === "mandatory") {
            nMandatory = 1;
-         }else if (formObj.contentDescriptions[i].optionalOrMandatory === "optional"){
+         } else if (formObj.contentDescriptions[i].optionalOrMandatory === "optional") {
            nMandatory = 0;
          }
          strTemp += '"optionalOrMandatory":"' + nMandatory + '",';
