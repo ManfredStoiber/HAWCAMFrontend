@@ -15,9 +15,7 @@ export class ShowCategoryComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private dataService: DataService ) {
 
-
-
-    }
+  }
 
   ngOnInit() {
 
