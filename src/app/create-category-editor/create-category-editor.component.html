@@ -5,12 +5,10 @@
   <div class="row">
     <label>
 
+      <!-- display the meta input field for the name of the category -->
       <span >Kategoriename:</span>
-      <!--<input type="text">-->
+      <input  type="text" formControlName="objCatName" placeholder="z. B. 'Raum'" >
 
-        <input  type="text" formControlName="objCatName" placeholder="z. B. 'Raum'" >
-
-      <!--<input type="text">-->
     </label>
   </div>
 
@@ -19,12 +17,12 @@
 
     <div *ngIf="form.get('contentDescriptions')['controls']">
 
+      <!-- iterate through the content descriptions array -->
       <div [formGroupName]="i" *ngFor="let contentItem of form.get('contentDescriptions')['controls']; let i=index">
-          <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
-        <label >
+          <label >
 
+          <!-- create a index in a hidden input field, because the backend needs it -->
           <input  type="text" formControlName="hiddenIndex" class="hide" name="hiddenIndex" value="{{i+1}}">
-
           <input type="text"  formControlName="detailName" placeholder="Name des Details" value="Detail" name="detailName">
 
           <select formControlName="detailType" name="detailType">
@@ -40,6 +38,7 @@
           </select>
 
         </label>
+        <!-- delete the attribute in the array and in the template -->
         <button mat-button (click)="deleteContentDescription(i)" type="button" class="delete"  > löschen</button>
 
       </div>
