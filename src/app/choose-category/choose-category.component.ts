@@ -36,7 +36,7 @@ export class ChooseCategoryComponent implements OnInit {
     let strTemp: string = null;
 
     //create string for json and send it
-    strTemp = '{"strChosenCatName":"' + strChosenCat + '"}';
+    strTemp = '{"catName":"' + "'" + strChosenCat + "'" + '"}';
     let jsonSerializedForm: JSON = null;
 
     try {

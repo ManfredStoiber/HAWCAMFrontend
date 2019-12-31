@@ -1,7 +1,7 @@
 
 <main>
 
-<div class="container">
+
   <form [formGroup]="form" (ngSubmit)="onSubmit()" >
 
   <!-- display the meta input field for the name of the object -->
@@ -13,37 +13,53 @@
   </div>
   <hr />
 
+<div class="container" *ngIf="objAttributes?.attributes.length > 0">
+
       <!-- iterate through the attributes array -->
       <div *ngFor="let attribute of objAttributes?.attributes; let i=index">
             <p class="attributeName">{{attribute.name}}<span class="mandatory" *ngIf="attribute.mandatory === '1'">*</span></p>
             <!-- display the input fields with the proper type depending on array -->
-            <div *ngIf="attribute.typ === 'Einfaches Textfeld'">
-              <input formControlName="{{attribute.name}}" type="text"  placeholder="Wert des attributes" name="attribute">
+            <div *ngIf="attribute.typ === 'textfield'">
+              <input formControlName="{{attribute.name}}" type="text"  placeholder="Wert des Attributs" name="attribute">
             </div>
-            <div *ngIf="attribute.typ === 'Datum'">
-              <input formControlName="{{attribute.name}}" type="date"  placeholder="Wert des attributes" name="attribute">
+            <div *ngIf="attribute.typ === 'date'">
+              <input formControlName="{{attribute.name}}" type="date"  placeholder="Wert des Attributs" name="attribute">
             </div>
             <div *ngIf="attribute.typ === 'file'">
-              <input formControlName="{{attribute.name}}" type="file"  placeholder="Wert des attributes" name="attribute">
+              <input formControlName="{{attribute.name}}" type="file"  placeholder="Wert des Attributs" name="attribute">
             </div>
-            <div *ngIf="attribute.typ === 'Zahl'">
-              <input formControlName="{{attribute.name}}" type="number"  placeholder="Wert des attributes" name="attribute">
+            <div *ngIf="attribute.typ === 'number'">
+              <input formControlName="{{attribute.name}}" type="number"  placeholder="Wert des Attributs" name="attribute">
             </div>
             <div *ngIf="attribute.typ === 'dateAndTime'">
-              Datum: <input formControlName="{{attribute.name}}-Date" type="date"  placeholder="Wert des attributes" name="attribute">
-              Uhrzeit: <input formControlName="{{attribute.name}}-Clock" type="time"  placeholder="Wert des attributes" name="attribute">
+              Datum: <input formControlName="{{attribute.name}}-Date" type="date"  placeholder="Wert des Attributs" name="attribute">
+              Uhrzeit: <input formControlName="{{attribute.name}}-Clock" type="time"  placeholder="Wert des Attributs" name="attribute">
             </div>
             <hr />
       </div>
 
 
-  <div class="row submitrow">
 
-    <!-- if all required inputs fields are filled it is clickable and can be sent to backend -->
-    <button  mat-button class="submit" type="submit" [disabled]="!form.valid">Fertig!</button>
+
+</div>
+<div class="container" *ngIf="objAttributes?.attributes.length == 0">
+
+    <p>Kategorie hat noch keine Attribute</p>
+    <p>Über "Kategorie bearbeiten" hinzufügen</p>
+
   </div>
 
+
+    <div class="row submitrow">
+
+      <!-- if all required inputs fields are filled it is clickable and can be sent to backend -->
+      <button  mat-button class="submit" type="submit" [disabled]="!form.valid">Fertig!</button>
+    </div>
+
 </form>
-</div>
+
+
+
+
 
 </main>

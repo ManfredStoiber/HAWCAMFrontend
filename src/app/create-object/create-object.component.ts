@@ -51,7 +51,8 @@ export class CreateObjectComponent implements OnInit {
     // if required make the inputs mandatory
     for ( let i=0; i < this.objAttributes.attributes.length; i++ ) {
       if ( this.objAttributes.attributes[i].mandatory == "1" ) {
-        if ( this.objAttributes.attributes[i].type == "dateAndTime" ) {
+        if ( this.objAttributes.attributes[i].typ == "dateAndTime" ) {
+          console.log("in_if_name:" + this.objAttributes.attributes[i].name);
           this.form.addControl(this.objAttributes.attributes[i].name+"-Date", new FormControl('', Validators.required));
           this.form.addControl(this.objAttributes.attributes[i].name+"-Clock", new FormControl('', Validators.required));
         } else {
@@ -59,7 +60,7 @@ export class CreateObjectComponent implements OnInit {
         }
       } else if ( this.objAttributes.attributes[i].mandatory == "0" ) {
 
-        if ( this.objAttributes.attributes[i].type == "dateAndTime" ) {
+        if ( this.objAttributes.attributes[i].typ == "dateAndTime" ) {
           this.form.addControl(this.objAttributes.attributes[i].name+"-Date", new FormControl(''));
           this.form.addControl(this.objAttributes.attributes[i].name+"-Clock", new FormControl(''));
         } else {

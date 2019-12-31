@@ -26,19 +26,4 @@ export class ListCategoriesComponent implements OnInit {
            }
         );
   }
-
-
-    // try {
-      // this.dataJSON = JSON.parse(' {	"categories": { "category1": {"name":"Raum","count":3}, "category2": {"name":"Buch","count":14 } } }' );
-      // this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 }  ] }' );
-      // this.dataJSON = JSON.parse(' { "categories": [ {"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2},{"name":"Raum","count":3},  {"name":"Buch","count":14 },  {"name":"VR-Brille","count":2}  ] }' );
-      // this.dataJSON = JSON.parse(' { "categories": [ ] }' );
-
-    //   console.log("Parsing worked");
-    //   console.log(this.dataJSON);
-    // } catch ( exception ) {
-    //   console.log("errorroutine here");
-    // }
-
-
 }
