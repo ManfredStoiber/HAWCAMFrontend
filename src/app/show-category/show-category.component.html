@@ -1,22 +1,57 @@
-
 <main>
 
   <div class="container" *ngIf="objAttributes?.attributes.length > 0">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
 
-      <div id="divAllAttributes" *ngFor="let attribute of objAttributes?.attributes">
+      <div class="row">
+        <label>
 
-        <div class="divOneAttribute">
+          <span >Kategoriename:</span>
+          <!--<input type="text">-->
 
-          <p class="attributeName"> {{attribute.name}} </p>
+            <input disabled type="text" formControlName="objCatName" placeholder="z. B. 'Raum'" >
 
-          <p class="attributeTyp"> {{attribute.typ}} </p>
-
-          <p class="attributeMandatory" *ngIf="attribute.mandatory === '1'"> Pflichtfeld </p>
-          <p class="attributeMandatory" *ngIf="attribute.mandatory === '0'"> optionales Feld </p>
-          <hr>
-        </div>
-
+          <!--<input type="text">-->
+        </label>
       </div>
+
+
+      <div formArrayName="contentDescriptions">
+
+        <div *ngIf="form.get('contentDescriptions')['controls']">
+
+          <div [formGroupName]="i" *ngFor="let contentItem of form.get('contentDescriptions')['controls']; let i=index">
+              <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
+            <label >
+
+              <input  type="text" formControlName="hiddenIndex" class="hide" name="hiddenIndex" value="{{i+1}}">
+
+              <input disabled type="text"  formControlName="detailName" placeholder="Name des Details" value="contentItem.name" name="detailName">
+
+              <select disabled formControlName="detailType" name="detailType">
+                <option value="textfield" selected="selected">Textfeld</option>
+                <option value="number">Zahl</option>
+                <option value="file">Datei</option>
+                <option value="date">Datum</option>
+                <option value="dateAndTime">Datum und Uhrzeit</option>
+              </select>
+              <select disabled formControlName="mandatory" name="mandatory">
+                <option value="0" selected="selected">Optional</option>
+                <option value="1">Pflichtfeld</option>
+              </select>
+
+            </label>
+
+          </div>
+        </div>
+      </div>
+      <div class="row submitrow">
+
+        <button  mat-button class="edit" type="submit">Bearbeiten!</button>
+      </div>
+
+
+    </form>
 
   </div>
 
@@ -28,27 +63,3 @@
   </div>
 
 </main>
-
-
-  <!--
-      <div *ngFor="let attribute of objAttributes?.attributes; let i=index">
-            <p class="attributeName">{{attribute.name}}<span class="mandatory" *ngIf="attribute.mandatory === '1'">*</span></p>
-            <div *ngIf="attribute.typ === 'Einfaches Textfeld'">
-              <input formControlName="{{attribute.name}}" type="text"  placeholder="Wert des Attributes" name="attribute">
-            </div>
-            <div *ngIf="attribute.typ === 'Datum'">
-              <input formControlName="{{attribute.name}}" type="date"  placeholder="Wert des Attributes" name="attribute">
-            </div>
-            <div *ngIf="attribute.typ === 'file'">
-              <input formControlName="{{attribute.name}}" type="file"  placeholder="Wert des Attributes" name="attribute">
-            </div>
-            <div *ngIf="attribute.typ === 'Zahl'">
-              <input formControlName="{{attribute.name}}" type="number"  placeholder="Wert des Attributes" name="attribute">
-            </div>
-            <div *ngIf="attribute.typ === 'dateAndTime'">
-              Datum: <input formControlName="{{attribute.name}}-Date" type="date"  placeholder="Wert des Attributes" name="attribute">
-              Uhrzeit: <input formControlName="{{attribute.name}}-Clock" type="time"  placeholder="Wert des Attributes" name="attribute">
-            </div>
-            <hr />
-      </div>
-      -->
