@@ -1,0 +1,106 @@
+
+*{
+  font-size: 25px;
+}
+
+.hide{
+  display:none;
+}
+
+.delete{
+  color: white;
+  padding: 5px;
+  background-color: #d80030;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+select{
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
+}
+
+
+input{
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
+
+}
+
+button.submit[disabled]:hover {
+    cursor: not-allowed;
+}
+
+.edit{
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: black;
+  padding: 5px;
+}
+
+.addField{
+  background-color: #4b565e;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+        /*  WORKARROUND
+            ÜBERPRÜFUNG NÖTIG */
+.container {
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+/*
+                dieser Block greift nicht, da mit # auf eine class zugegriffen wird
+                daduch wird nie ein GRID erstellt
+                auch die CSS zu .row haben damit keine Wirkung
+#container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);   /* 1 - 10
+  grid-template-rows: repeat(4, 1fr);      /* 1 - 5
+  width: 100vw;
+  height: 100vh;
+  margin-left: 40px;
+  margin-top: 20px;
+
+}
+
+.row > label > span{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.row > label > input{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+            ist doppelt vorhanden
+.row > label > span {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+*/
+
+
+::placeholder {
+  color: #ff3232;
+  opacity: 0.7; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: #ff3232;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: #ff3232;
+}

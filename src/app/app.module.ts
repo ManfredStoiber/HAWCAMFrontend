@@ -36,6 +36,7 @@ import { ShowCategoryComponent } from './show-category/show-category.component';
 // declaration of services to module
 import { RESTService } from './rest.service';
 import { DataService } from './data.service';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 
 const modules: any[] = [
@@ -66,7 +67,8 @@ const modules: any[] = [
     PageNotFoundComponent,
     ChooseCategoryComponent,
     CreateObjectComponent,
-    ShowCategoryComponent
+    ShowCategoryComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,

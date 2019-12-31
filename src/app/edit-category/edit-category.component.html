@@ -1,0 +1,69 @@
+<main>
+
+  <div class="container" *ngIf="objAttributes?.attributes.length > 0">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+
+      <div class="row">
+        <label>
+
+          <span >Kategoriename:</span>
+          <!--<input type="text">-->
+
+            <input disabled type="text" formControlName="objCatName" placeholder="z. B. 'Raum'" >
+
+          <!--<input type="text">-->
+        </label>
+      </div>
+
+
+      <div formArrayName="contentDescriptions">
+
+        <div *ngIf="form.get('contentDescriptions')['controls']">
+
+          <div [formGroupName]="i" *ngFor="let contentItem of form.get('contentDescriptions')['controls']; let i=index">
+              <!--<textarea [formControlName]="i" name="" id="" cols="30" rows="6" placeholder="Enter Description"></textarea>-->
+            <label >
+
+              <input  type="text" formControlName="hiddenIndex" class="hide" name="hiddenIndex" value="{{i+1}}">
+
+              <input type="text"  formControlName="detailName" placeholder="Name des Details" value="contentItem.name" name="detailName">
+
+              <select formControlName="detailType" name="detailType">
+                <option value="textfield" selected="selected">Textfeld</option>
+                <option value="number">Zahl</option>
+                <option value="file">Datei</option>
+                <option value="date">Datum</option>
+                <option value="dateAndTime">Datum und Uhrzeit</option>
+              </select>
+              <select formControlName="mandatory" name="mandatory">
+                <option value="0" selected="selected">Optional</option>
+                <option value="1">Pflichtfeld</option>
+              </select>
+
+            </label>
+            <!-- delete the attribute in the array and in the template -->
+            <button mat-button (click)="deleteContentDescription(i)" type="button" class="delete"  > löschen</button>
+
+          </div>
+        </div>
+      </div>
+      <div class="row submitrow">
+        <button mat-button (click)="addNewDetail()" type="button" class="addField">
+         Detail hinzufügen!
+        </button>
+        <button disabled mat-button class="submit" type="submit" [disabled]="!form.valid">Fertig!</button>
+      </div>
+
+
+    </form>
+
+  </div>
+
+  <div class="container" *ngIf="objAttributes?.attributes.length == 0">
+
+    <p>Kategorie hat noch keine Attribute</p>
+    <p>Über "Kategorie bearbeiten" hinzufügen</p>
+
+  </div>
+
+</main>
