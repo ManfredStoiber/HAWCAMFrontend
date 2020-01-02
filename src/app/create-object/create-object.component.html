@@ -17,7 +17,7 @@
 
       <!-- iterate through the attributes array -->
       <div *ngFor="let attribute of objAttributes?.attributes; let i=index">
-            <p class="attributeName">{{attribute.name}}<span class="mandatory" *ngIf="attribute.mandatory === '1'">*</span></p>
+            <p class="attributeName">{{attribute.name}}<span class="mandatory" *ngIf="attribute.mandatory == '1'">*</span></p>
             <!-- display the input fields with the proper type depending on array -->
             <div *ngIf="attribute.typ === 'textfield'">
               <input formControlName="{{attribute.name}}" type="text"  placeholder="Wert des Attributs" name="attribute">
