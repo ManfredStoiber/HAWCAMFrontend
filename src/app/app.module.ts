@@ -18,6 +18,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
 import { MatButtonModule} from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms'
 
 
 // declarations of components to module
@@ -36,7 +37,7 @@ import { CreateObjectComponent } from './create-object/create-object.component';
 // declaration of services to module
 import { RESTService } from './rest.service';
 import { DataService } from './data.service';
-
+import { HeaderData } from './headerData.model';
 
 const modules: any[] = [
   MatAutocompleteModule,
@@ -66,6 +67,7 @@ const modules: any[] = [
     PageNotFoundComponent,
     ChooseCategoryComponent,
     CreateObjectComponent
+    HeaderData
   ],
   imports: [
     BrowserModule,
@@ -85,7 +87,8 @@ const modules: any[] = [
     MatNativeDateModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [
     RESTService,
