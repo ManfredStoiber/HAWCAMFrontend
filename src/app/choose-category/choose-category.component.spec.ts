@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http'
 import { ChooseCategoryComponent } from './choose-category.component';
 
 describe('ChooseCategoryComponent', () => {
@@ -8,7 +8,8 @@ describe('ChooseCategoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChooseCategoryComponent ]
+      declarations: [ ChooseCategoryComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   }));
