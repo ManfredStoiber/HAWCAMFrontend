@@ -18,6 +18,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
 import { MatButtonModule} from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms'
 
 
 // declarations of components to module
@@ -82,7 +83,8 @@ const modules: any[] = [
     MatNativeDateModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [
     RESTService
