@@ -12,9 +12,10 @@ export class AppComponent {
   title = 'HAWCAMFrontend';
 
 // Membervariable für HTML
-  objHeaderData : HeaderData;
+  objHeaderData: HeaderData;
 
-  constructor() {
+  // constructor( private objHeaderData: HeaderData) {
+  constructor( ) {
 
     let strTitle   : string = "Inventarverwaltung";
     let strPath    : string = "Startseite";
