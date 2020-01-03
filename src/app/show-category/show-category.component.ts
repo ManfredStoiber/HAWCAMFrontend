@@ -22,11 +22,8 @@ export class ShowCategoryComponent implements OnInit {
     this.jsonAttributes = this.dataService.getJsonAttributes();
 
     this.objAttributes = this.jsonAttributes;
-    console.log("json dummy:");
-    console.log(this.jsonAttributes);
 
     this.initialiseScreenWithJSON();
-
   }
 
 
@@ -35,6 +32,7 @@ export class ShowCategoryComponent implements OnInit {
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
     this.form = this.fb.group({
+                                                                                  // objCatName: [this.objAttributes.name , Validators.required],
         objCatName: ['wie komm ich hier an den kat namen?', Validators.required],
         contentDescriptions: this.fb.array([])
       });

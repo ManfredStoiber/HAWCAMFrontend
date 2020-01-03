@@ -46,8 +46,8 @@ export class ListCategoriesComponent implements OnInit {
           );
 
     } catch ( exception ) {
-     console.log("jsonSerializedForm is not valid");
-   }
+      console.log("jsonSerializedForm is not valid");
+    }
 
   }
 
