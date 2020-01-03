@@ -73,7 +73,7 @@ export class EditCategoryComponent implements OnInit {
       hiddenIndex: [''],
       detailName: ['', Validators.required],
       detailType: ['textfield', Validators.required],
-      optionalOrMandatory: ['optional', Validators.required]
+      mandatory: [1, Validators.required]
 
     }))
 

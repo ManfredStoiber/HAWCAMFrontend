@@ -91,6 +91,17 @@ button.submit[disabled]:hover {
 
 */
 
+.submit{
+  background-color: lightgreen;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: black;
+  padding: 5px;
+}
+
+select{
+  width: 270px;
+}
 
 ::placeholder {
   color: #ff3232;
