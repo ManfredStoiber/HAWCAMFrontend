@@ -39,9 +39,8 @@ export class CreateObjectComponent implements OnInit {
 
     this.objAttributes = this.jsonAttributes;
 
-
-   // this.initialiseScreen();
-   this.initialiseScreenWithJSON();
+    // this.initialiseScreen();
+    this.initialiseScreenWithJSON();
 
   }
 

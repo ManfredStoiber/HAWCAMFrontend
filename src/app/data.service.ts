@@ -17,7 +17,8 @@ export class DataService {
     if ( this.jsonAttributes != null ) {
       return this.jsonAttributes;
     }
-    alert("DataService getJsonAttributes -- Fehler aufgetreten")
+    alert(" Bitte erneut auswählen");
+    console.log("DataService -- jsonAttributes is null ")
     return JSON.parse('{"Fehler":"JSON ist null"}');
   }
 
