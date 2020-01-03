@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { HeaderData } from '../headerData.model';
 import { Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('HeaderComponent', () => {
@@ -11,11 +12,19 @@ describe('HeaderComponent', () => {
   let testHostComponent: TestHostComponent;
   let testHostFixture: ComponentFixture<TestHostComponent>;
 
+  const locationStub = {
+    back: jasmine.createSpy('back')
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         HeaderComponent,
         TestHostComponent
+      ],
+      imports: [RouterTestingModule],
+      providers: [
+        {provide: Location, useValue: locationStub}
       ]
     })
       .compileComponents();
@@ -29,6 +38,8 @@ describe('HeaderComponent', () => {
     testHostFixture = TestBed.createComponent(TestHostComponent);
     testHostComponent = testHostFixture.componentInstance;
     testHostFixture.detectChanges();
+
+    const location = headerFixture.debugElement.injector.get(Location);
   });
 
 
