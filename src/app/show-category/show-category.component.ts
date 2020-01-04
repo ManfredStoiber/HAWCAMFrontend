@@ -34,8 +34,7 @@ export class ShowCategoryComponent implements OnInit {
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
     this.form = this.fb.group({
-                                                                                    // objCatName: [this.objAttributes.name , Validators.required],
-        objCatName: ['kommentier mich ein', Validators.required],
+        objCatName: [this.objAttributes.name , Validators.required],
         contentDescriptions: this.fb.array([])
       });
 
@@ -44,8 +43,6 @@ export class ShowCategoryComponent implements OnInit {
     // if required make the inputs mandatory
     for ( let i=0; i < this.objAttributes.attributes.length; i++ ) {
           let ctrl = <FormArray>this.form.get('contentDescriptions');
-
-
 
           ctrl.push(this.fb.group({
             hiddenIndex: [i],
@@ -68,7 +65,6 @@ export class ShowCategoryComponent implements OnInit {
   // onClick from Button edit
   // opens the EditCategoryComponents
   openEditCategoryComponent() {
-    console.log("got clicked");
     this.router.navigate(["/editCategory"]);
   }
 

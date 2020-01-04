@@ -11,23 +11,34 @@ import { RESTService } from '../rest.service';
 })
 export class EditCategoryComponent implements OnInit {
 
-  private jsonAttributes: JSON = null;
-  objAttributes: any = null;
+  private jsonCatAttributes: JSON = null;
+  objCatAttributes: any = null;
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private dataService: DataService,  private restService: RESTService ) {
 
   }
 
+  // initialisation of membervariables and errorhandling
   ngOnInit() {
 
-    this.jsonAttributes = this.dataService.getJsonAttributes();
-
-    this.objAttributes = this.jsonAttributes;
+    this.jsonCatAttributes = this.dataService.getJsonAttributes();
+    this.objCatAttributes = this.jsonCatAttributes;
     console.log("Category:");
-    console.log(this.jsonAttributes);
+    console.log(this.jsonCatAttributes);
 
-    this.initialiseScreenWithJSON();
+    // errorhandling
+    // when error occurs, alert for user and deny loading of html
+    if( this.objCatAttributes ) {
+
+      if ('Fehler' in this.objCatAttributes) {
+        this.objCatAttributes = null;
+        alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+      }
+      else {
+        this.initialiseScreenWithJSON();
+      }
+    }
 
   }
 
@@ -37,7 +48,7 @@ export class EditCategoryComponent implements OnInit {
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
     this.form = this.fb.group({
-                                                                                  // objCatName: [this.objAttributes.name , Validators.required],
+                                                                                  // objCatName: [this.objCatAttributes.name , Validators.required],
         objCatName: ['kommentier mich ein', Validators.required],
         contentDescriptions: this.fb.array([])
       });
@@ -45,14 +56,14 @@ export class EditCategoryComponent implements OnInit {
 
     // create further form controls depending on the given json
     // if required make the inputs mandatory
-    for ( let i=0; i < this.objAttributes.attributes.length; i++ ) {
+    for ( let i=0; i < this.objCatAttributes.attributes.length; i++ ) {
         let ctrl = <FormArray>this.form.get('contentDescriptions');
 
         ctrl.push(this.fb.group({
           hiddenIndex: [i],
-          detailName: [this.objAttributes.attributes[i].name, Validators.required],
-          detailType: [this.objAttributes.attributes[i].typ, Validators.required],
-          mandatory: [this.objAttributes.attributes[i].mandatory, Validators.required]
+          detailName: [this.objCatAttributes.attributes[i].name, Validators.required],
+          detailType: [this.objCatAttributes.attributes[i].typ, Validators.required],
+          mandatory: [this.objCatAttributes.attributes[i].mandatory, Validators.required]
 
         }));
 
@@ -147,6 +158,5 @@ export class EditCategoryComponent implements OnInit {
     }
 
   }
-
 
 }
