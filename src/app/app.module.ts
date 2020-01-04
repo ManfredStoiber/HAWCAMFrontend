@@ -31,7 +31,7 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ChooseCategoryComponent } from './choose-category/choose-category.component';
 import { CreateObjectComponent } from './create-object/create-object.component';
-
+import { ShowCategoryComponent } from './show-category/show-category.component';
 
 // declaration of services to module
 import { RESTService } from './rest.service';
@@ -66,6 +66,7 @@ const modules: any[] = [
     PageNotFoundComponent,
     ChooseCategoryComponent,
     CreateObjectComponent,
+    ShowCategoryComponent
   ],
   imports: [
     BrowserModule,
