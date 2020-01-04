@@ -17,27 +17,36 @@ export class ShowObjectComponent implements OnInit {
 
   ngOnInit() {
 
+// only dummy
     let strTemp: string = '{ "name":"R123", "details": [ {"name": "Bezeichung", "typ":"textfield", "mandatory":"1", "value":"R123"}, {"name": "Sitzform", "typ":"textfield", "mandatory":"0", "value":"U-Form" }, {"name": "Anzahl", "typ":"number", "mandatory":"1", "value":34 } ] }';
     let jsonTemp: JSON = null;
 
     try {
-      JSON.parse(strTemp);
+      jsonTemp = JSON.parse(strTemp);
+
       console.log("jsonTemp is valid");
       console.log(jsonTemp);
-
       this.dataService.setObjectDetails(jsonTemp);
-
-      this.jsonObjectDetails = this.dataService.getObjectDetails();
-      this.objObjectDetails = this.jsonObjectDetails;
-
-      console.log( this.objObjectDetails.name );
-
-      this.initialiseScreenWithJSON();
 
     } catch( exception ) {
       console.log("jsonTemp is not valid");
     }
+// only dummy
 
+    this.jsonObjectDetails = this.dataService.getObjectDetails();
+    this.objObjectDetails = this.jsonObjectDetails;
+    console.log(this.objObjectDetails);
+
+    if( this.objObjectDetails ) {
+
+      if ('Fehler' in this.objObjectDetails) {
+        this.objObjectDetails = null;
+        alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+      }
+      else {
+        this.initialiseScreenWithJSON();
+      }
+    }
 
   }
 
