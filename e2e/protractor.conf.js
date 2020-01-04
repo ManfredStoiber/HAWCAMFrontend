@@ -19,8 +19,7 @@ exports.config = {
     binary: '/usr/bin/chromium-browser',
   },
   chromeDriver: '/usr/bin/chromedriver',
-  seleniumAddress: 'http://localhost:4444/wd/hub',
-  directConnect: false,
+  directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {

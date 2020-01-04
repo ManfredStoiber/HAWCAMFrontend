@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateCategoryComponent } from './create-category.component';
+import { Component } from '@angular/core';
 
 describe('CreateCategoryComponent', () => {
   let component: CreateCategoryComponent;
@@ -8,7 +9,10 @@ describe('CreateCategoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateCategoryComponent ]
+      declarations: [
+        CreateCategoryComponent,
+        StubCreateCategoryForms
+       ]
     })
     .compileComponents();
   }));
@@ -23,3 +27,11 @@ describe('CreateCategoryComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+@Component({
+  selector: 'app-create-category-forms',
+  template: ''
+})
+class StubCreateCategoryForms {
+}

@@ -36,7 +36,7 @@ import { ShowCategoryComponent } from './show-category/show-category.component';
 // declaration of services to module
 import { RESTService } from './rest.service';
 import { DataService } from './data.service';
-
+import { HeaderData } from './headerData.model';
 
 const modules: any[] = [
   MatAutocompleteModule,

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateCategoryEditorComponent } from './create-category-editor.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('CreateCategoryEditorComponent', () => {
   let component: CreateCategoryEditorComponent;
@@ -8,7 +10,8 @@ describe('CreateCategoryEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateCategoryEditorComponent ]
+      declarations: [ CreateCategoryEditorComponent ],
+      imports: [ReactiveFormsModule, HttpClientModule]
     })
     .compileComponents();
   }));

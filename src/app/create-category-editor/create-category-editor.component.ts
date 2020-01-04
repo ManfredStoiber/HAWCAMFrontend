@@ -1,5 +1,5 @@
 import { Component, OnInit, ContentChild } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 
