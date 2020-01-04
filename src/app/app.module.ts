@@ -37,6 +37,7 @@ import { CreateObjectComponent } from './create-object/create-object.component';
 import { RESTService } from './rest.service';
 import { DataService } from './data.service';
 import { HeaderData } from './headerData.model';
+import { ShowObjectComponent } from './show-object/show-object.component';
 
 const modules: any[] = [
   MatAutocompleteModule,
@@ -66,6 +67,7 @@ const modules: any[] = [
     PageNotFoundComponent,
     ChooseCategoryComponent,
     CreateObjectComponent,
+    ShowObjectComponent,
   ],
   imports: [
     BrowserModule,

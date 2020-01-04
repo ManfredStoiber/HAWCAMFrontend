@@ -1,0 +1,13 @@
+<p>show-object works!</p>
+
+<p>{{objObjectDetails.name}}</p>
+
+<p *ngIf="objObjectDetails?.name">{{objObjectDetails.name}}</p>
+
+<div class="container" *ngIf="objObjectDetails?.details.length > 0">
+
+  <div class="details"  *ngFor="let detail of objObjectDetails?.details">
+      <p>{{detail.value}}</p>
+  </div>
+
+</div>
