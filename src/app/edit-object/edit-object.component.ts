@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { DataService } from '../data.service';
-import { RESTService } from '../rest.service';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-edit-object',
+  selector: 'app-show-object',
   templateUrl: './edit-object.component.html',
   styleUrls: ['./edit-object.component.css']
 })
@@ -14,7 +14,7 @@ export class EditObjectComponent implements OnInit {
   objObjectDetails: any = null;
   form: FormGroup;
 
-  constructor( private fb: FormBuilder, private restService: RESTService, private dataService: DataService ) {
+  constructor( private fb: FormBuilder, private dataService: DataService, private location: Location) {
 
    }
 
@@ -75,10 +75,10 @@ export class EditObjectComponent implements OnInit {
   }
 
 
-  onSubmit(){
-
-    alert("Objekt bearbeiten");
-    //this code will be in branch editObject
-  }
+    // onClick from Button edit
+   // opens the EditCategoryComponents
+   abort() {
+    this.location.back();
+   }
 
 }
