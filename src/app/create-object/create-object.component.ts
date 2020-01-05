@@ -33,23 +33,27 @@ export class CreateObjectComponent implements OnInit {
 
   ngOnInit() {
 
-    this.jsonAttributes = this.dataService.getJsonAttributes();
-    console.log("CreateObject --onInit")
-    console.log(this.jsonAttributes);
+   this.jsonAttributes = this.dataService.getJsonAttributes();
+   this.objAttributes = this.jsonAttributes;
+   console.log("CreateObject --onInit this.objAttributes")
+   console.log(this.objAttributes);
 
-    this.objAttributes = this.jsonAttributes;
-
-
-   // this.initialiseScreen();
-   this.initialiseScreenWithJSON();
-
+   if( this.objAttributes ) {
+     if ('Fehler' in this.objAttributes) {
+       this.objAttributes = null;
+       alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+     }
+     else {
+       this.initialiseScreenWithJSON();
+     }
+   }
   }
 
   initialiseScreenWithJSON() {
 
     // create further form controls depending on the given json
     // if required make the inputs mandatory
-    console.log("UNDEFINED?: "+ this.objAttributes.attributes);
+    // console.log("UNDEFINED?: "+ this.objAttributes.attributes);
     for ( let i=0; i < this.objAttributes.attributes.length; i++ ) {
       if ( this.objAttributes.attributes[i].mandatory == "1" ) {
         if ( this.objAttributes.attributes[i].typ == "dateAndTime" ) {
@@ -74,22 +78,16 @@ export class CreateObjectComponent implements OnInit {
 
   // send the form data to the backend
   onSubmit() {
-    alert("Objekt wurde angelegt!");
-
 
     // get the form data as an object
     let formObj = this.form.getRawValue();
 
     let jsonObject: any = formObj;
 
-    let strTemp:string = ' { "catName": "' + this.objAttributes.name +
+    let strTemp:string = ' { "catName": "' + this.objAttributes.name  +
      '", "objObjName":"' +  jsonObject.objObjName + '" ,  "details": {';
 
-
-
-
      let keys = Object.keys(jsonObject);
-
      let j: number = 0;
      for (let key in jsonObject){
        if(j !== 0){
@@ -106,32 +104,42 @@ export class CreateObjectComponent implements OnInit {
      console.log("alle attributes");
      console.log(strTemp);
 
-    this.restService.putToRESTService("createObject", jsonObject)
-        .subscribe( (jsonResponse :JSON) => {
-             console.log("createObject subscribe");
-             console.log(jsonResponse);
+     // send it to the backend
+     let jsonSerializedForm: JSON = null;
+
+     try {
+       jsonSerializedForm = JSON.parse(strTemp);
+       console.log("jsonSerializedForm is valid");
+       console.log(jsonSerializedForm);
+
+       this.restService.putToRESTService("createObject", jsonObject)
+           .subscribe( (jsonResponse :JSON) => {
+             this.checkResponse(jsonResponse);
            }
         );
 
-        // send it to the backend
-        let jsonSerializedForm: JSON = null;
+      } catch ( exception ) {
+        console.log("jsonSerializedForm is not valid");
+        alert("Objekt konnte nicht gespeichert werden");
+      }
+  }
 
-        try {
-          jsonSerializedForm = JSON.parse(strTemp);
-          console.log("jsonSerializedForm is valid");
-          console.log(jsonSerializedForm);
 
-          this.restService.putToRESTService("createObject", jsonObject)
-              .subscribe( (jsonResponse :JSON) => {
-                   console.log("createObject subscribe");
-                   console.log(jsonResponse);
-                 }
-              );
+  checkResponse( jsonResponse: JSON ) {
 
-        } catch ( exception ) {
-          console.log("jsonSerializedForm is not valid");
-          alert("Objekt konnte nicht gespeichert werden");
-        }
+    let objResponse = jsonResponse;
+    console.log("createObject checkResponse:");
+    console.log(objResponse);
 
+    if( objResponse ) {
+      if ('Fehler' in objResponse) {
+        alert("Objekt konnte nicht gespeichert werden");
+      }
+      else {
+          alert("Objekt erfolgreich erstellt");
+      }
+    } else {
+        alert("Objekt konnte nicht gespeichert werden");
+    }
   }
 }
