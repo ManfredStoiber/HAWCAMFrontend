@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { RESTService } from '../rest.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-object',
@@ -14,7 +15,7 @@ export class ShowObjectComponent implements OnInit {
   objObjectDetails: any = null;
   form: FormGroup;
 
-  constructor( private fb: FormBuilder, private dataService: DataService ) {
+  constructor( private fb: FormBuilder, private dataService: DataService, private router: Router ) {
 
    }
 
@@ -60,7 +61,6 @@ export class ShowObjectComponent implements OnInit {
     // console.log("det");
     // console.log(this.objObjectDetails.details[0].value);
 
-
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
     this.form = this.fb.group({
@@ -95,11 +95,11 @@ export class ShowObjectComponent implements OnInit {
   }
 
 
-  onSubmit(){
-
-    alert("Objekt bearbeiten");
-    //this code will be in branch editObject
-  }
-
+    // onClick from Button edit
+   // opens the EditCategoryComponents
+   openEditObjectComponent() {
+     console.log("bttn bearbeiten");
+    // this.router.navigate(["/editCategory"]);
+   }
 
 }
