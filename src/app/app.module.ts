@@ -38,6 +38,7 @@ import { RESTService } from './rest.service';
 import { DataService } from './data.service';
 import { HeaderData } from './headerData.model';
 import { ShowObjectComponent } from './show-object/show-object.component';
+import { EditObjectComponent } from './edit-object/edit-object.component';
 
 const modules: any[] = [
   MatAutocompleteModule,
@@ -68,6 +69,7 @@ const modules: any[] = [
     ChooseCategoryComponent,
     CreateObjectComponent,
     ShowObjectComponent,
+    EditObjectComponent,
   ],
   imports: [
     BrowserModule,
