@@ -84,7 +84,7 @@ export class CreateObjectComponent implements OnInit {
 
     let jsonObject: any = formObj;
 
-    let strTemp:string = ' { "catName": "' + this.objAttributes.name  +
+    let strTemp:string = ' { "catName": "' + "'" + this.objAttributes.name + "'" +
      '", "objObjName":"' +  jsonObject.objObjName + '" ,  "details": {';
 
      let keys = Object.keys(jsonObject);
@@ -112,7 +112,7 @@ export class CreateObjectComponent implements OnInit {
        console.log("jsonSerializedForm is valid");
        console.log(jsonSerializedForm);
 
-       this.restService.putToRESTService("createObject", jsonObject)
+       this.restService.putToRESTService("createObject", jsonSerializedForm)
            .subscribe( (jsonResponse :JSON) => {
              this.checkResponse(jsonResponse);
            }
