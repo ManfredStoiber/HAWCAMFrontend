@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ChooseCategoryComponent } from './choose-category/choose-category.component';
 import { CreateObjectComponent } from './create-object/create-object.component';
 import { ShowCategoryComponent } from './show-category/show-category.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'showCategory', component: ShowCategoryComponent },
   { path: 'chooseCategory', component: ChooseCategoryComponent },
   { path: 'createObject', component: CreateObjectComponent},
-
+  { path: 'search', component: SearchComponent},
   // wenn nichts greift -> Startseite
   { path: '**', redirectTo: "/pageNotFound", pathMatch: "full" }
 ];
