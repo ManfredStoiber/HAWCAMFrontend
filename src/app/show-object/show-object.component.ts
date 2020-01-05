@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { RESTService } from '../rest.service';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-show-object',
@@ -10,9 +12,14 @@ export class ShowObjectComponent implements OnInit {
 
   private jsonObjectDetails: JSON = null;
   objObjectDetails: any = null;
+  form: FormGroup;
+
+  constructor( private fb: FormBuilder, private restService: RESTService,private dataService: DataService ) {
 
 
-  constructor( private dataService: DataService ) { }
+
+
+   }
 
 
   ngOnInit() {
@@ -56,6 +63,55 @@ export class ShowObjectComponent implements OnInit {
     // Kevins shit
     console.log("Wer macht das Form ?");
     console.log("JA, Kevin macht das Form");
+
+
+    console.log("this.objObjectDetails");
+    console.log(this.objObjectDetails);
+
+
+    console.log("det");
+    console.log(this.objObjectDetails.details[0].value);
+
+
+    // create a form group, at first only with the input for the objects name
+    // "''" is the initial value of the input
+    this.form = this.fb.group({
+        objObjName: [this.objObjectDetails.name, Validators.required]
+      });
+
+
+
+
+    // create further form controls depending on the given json
+    // if required make the inputs mandatory
+    for ( let i=0; i < this.objObjectDetails.details.length; i++ ) {
+      if ( this.objObjectDetails.details[i].mandatory == "1" ) {
+        if ( this.objObjectDetails.details[i].typ == "dateAndTime" ) {
+          console.log("in_if_name:" + this.objObjectDetails.details[i].name);
+          this.form.addControl(this.objObjectDetails.details[i].name+"-Date", new FormControl(this.objObjectDetails.details[i].value, Validators.required));
+          this.form.addControl(this.objObjectDetails.details[i].name+"-Clock", new FormControl(this.objObjectDetails.details[i].value, Validators.required));
+        } else {
+          console.log("in if #2");
+          this.form.addControl(this.objObjectDetails.details[i].name, new FormControl(this.objObjectDetails.details[i].value, Validators.required));
+        }
+      } else if ( this.objObjectDetails.details[i].mandatory == "0" ) {
+        console.log("in if #3");
+        if ( this.objObjectDetails.details[i].typ == "dateAndTime" ) {
+          this.form.addControl(this.objObjectDetails.details[i].name+"-Date", new FormControl(this.objObjectDetails.details[i].value));
+          this.form.addControl(this.objObjectDetails.details[i].name+"-Clock", new FormControl(this.objObjectDetails.details[i].value));
+        } else {
+          console.log("in if #4");
+          this.form.addControl(this.objObjectDetails.details[i].name, new FormControl(this.objObjectDetails.details[i].value));
+        }
+      }
+    }
+
   }
+
+  onSubmit(){
+
+    alert("Objekt bearbeiten");
+  }
+
 
 }
