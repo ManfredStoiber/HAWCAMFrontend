@@ -95,16 +95,16 @@ export class SearchComponent implements OnInit {
 
     let jsonSerializedForm: JSON = null;
 
-    //try {
+    try {
       jsonSerializedForm = JSON.parse(strTemp);
       console.log("jsonSerializedForm is valid");
       console.log(jsonSerializedForm);
 
       this.objSearchResult = jsonSerializedForm;
 
-    //} catch ( exception ) {
-    //  console.log("jsonSerializedForm is not valid");
-    //}
+    } catch ( exception ) {
+      console.log("jsonSerializedForm is not valid");
+    }
 
 
   }
