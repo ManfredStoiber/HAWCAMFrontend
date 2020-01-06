@@ -17,36 +17,30 @@ export class SearchComponent implements OnInit {
   // addable attributes
   constructor(private fb: FormBuilder, private restService: RESTService) {
     this.form = this.fb.group({
-        searchString: ['', Validators.required]
+        search: ['', Validators.required]
       });
   }
 
 
   ngOnInit() {
 
-
   }
 
 
-
   onSubmit() {
-
-      this.initialiseScreenWithJSON();
 
       // get the form data as an object
       let formObj = this.form.getRawValue();
 
       let jsonSearch: JSON = formObj;
+      console.log("Input jsonSearch");
+      console.log(jsonSearch);
 
-
-
-      this.restService.putToRESTService("search", jsonSearch)
+      this.restService.putToRESTService("searchOneObjecft", jsonSearch)
           .subscribe( (jsonResponse :JSON) => {
             this.checkResponse(jsonResponse);
-            this.initialiseScreenWithJSON();
           }
         );
-
 
     }
 
@@ -63,23 +57,17 @@ export class SearchComponent implements OnInit {
       }
       else {
           this.jsonSearchResult = jsonResponse;
+          this.objSearchResult = this.jsonSearchResult;
       }
     } else {
           alert("Suche konnte nicht durchgeführt werden");
     }
   }
 
+      // to be deleted
+  testmethod() {
 
-  initialiseScreenWithJSON() {
-
-    // ergebnisse auflisten ?
-    // überhaupt nötig?
-    // reicht auflisten über html ? ja oder
-    // hier mit leeren array ein "erfolglose Suche" simulieren
-    //let strTemp:string = '{"objects": [ ] }';
-    //let strTemp:string = '{"objects": [ {"name": "R231"}, {"name": "E123"}, {"name": "F123"} ] }';
-
-    // mit kategorien und mit objekten
+      // mit kategorien und mit objekten
     let strTemp:string ='{"categories":[{"name": "Raum"},{"name": "Raumtisch"},{"name": "Raumwand"}],"objects": [ {"name": "Raum1", "cat":"Raum"},{"name": "Raum2", "cat":"Raum"},{"name": "Raumtisch2", "cat":"Raumtisch"},{"name": "Raumschiff", "cat":"NASA"}]}';
 
     // ohne kategorien
@@ -90,7 +78,6 @@ export class SearchComponent implements OnInit {
 
     //ohne kategorien und ohne objekte
     //let strTemp:string ='{"categories":[],"objects": []}';
-
 
 
     let jsonSerializedForm: JSON = null;

@@ -67,7 +67,8 @@ export class RESTService {
       // server-side error
       strErrorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    window.alert(strErrorMessage);
+    window.alert("Fehlgeschlagen, Info siehe Console");
+    console.log(strErrorMessage);
     return throwError(strErrorMessage);
 
   }

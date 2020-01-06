@@ -7,12 +7,10 @@
       <label>
 
         <h1>Volltextsuche:</h1>
-        <input  type="text" formControlName="searchString" placeholder="z. B. 'U-Form'" >
+        <input  type="text" formControlName="search" placeholder="z. B. 'Raum 232'" >
 
       </label>
     </div>
-
-
 
 
     <div class="row submitrow">
@@ -25,6 +23,7 @@
 
 
 <div class="all" *ngIf="objSearchResult">
+
   <div *ngIf="objSearchResult.objects.length == 0">
       <p class="noRecordsFound">Keine Objekte zu Ihrer Eingabe gefunden.</p>
   </div>
@@ -52,16 +51,16 @@
 
    </div>
 
-      </div>
+  </div>
 
 <hr class="resultDelimiter"/>
 
-   <div *ngIf="objSearchResult.categories.length == 0">
+  <div *ngIf="objSearchResult.categories.length == 0">
        <p class="noRecordsFound">Keine Kategorien zu Ihrer Eingabe gefunden.</p>
-   </div>
-   <div *ngIf="objSearchResult.categories.length > 0">
+  </div>
+  <div *ngIf="objSearchResult.categories.length > 0">
 
-     <h2>{{objSearchResult.categories.length}} Kategorien gefunden:</h2>
+    <h2>{{objSearchResult.categories.length}} Kategorien gefunden:</h2>
 
     <div class="container redBackground" *ngFor="let category of objSearchResult?.categories">
 
@@ -79,11 +78,6 @@
 
     </div>
 
+  </div>
 
-
-
-
-
-
-
-</div>
+  </div>
