@@ -7,3 +7,15 @@
   <p>danke kevin</p>
 
 </div>
+
+
+<div class="all" *ngIf="objSearchResult">
+
+  <p>Suchergebnisse:</p>
+   <div class="container" *ngFor="let object of objSearchResult?.objects">
+
+     <p>Objekt: {{object.name}}</p>
+
+   </div>
+
+</div>
