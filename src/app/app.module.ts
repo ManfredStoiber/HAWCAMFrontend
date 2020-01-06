@@ -31,6 +31,8 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ChooseCategoryComponent } from './choose-category/choose-category.component';
 import { CreateObjectComponent } from './create-object/create-object.component';
+import { ShowCategoryComponent } from './show-category/show-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 
 // declaration of services to module
@@ -39,6 +41,7 @@ import { DataService } from './data.service';
 import { HeaderData } from './headerData.model';
 import { ShowObjectComponent } from './show-object/show-object.component';
 import { EditObjectComponent } from './edit-object/edit-object.component';
+
 
 const modules: any[] = [
   MatAutocompleteModule,
@@ -70,6 +73,9 @@ const modules: any[] = [
     CreateObjectComponent,
     ShowObjectComponent,
     EditObjectComponent,
+    ShowCategoryComponent,
+    EditCategoryComponent
+
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 
 export class DataService {
 
+  // JSON for parameter passing from choseCategory to CreateObject
+  // value are the attributes from a category necessary to create an object
   private jsonAttributes: JSON = null;
   private jsonObjectDetails: JSON = null;
 
@@ -36,7 +38,6 @@ export class DataService {
   public setObjectDetails( jsonObjectDetails: JSON) {
     this.jsonObjectDetails = jsonObjectDetails;
   }
-
 
 
 }

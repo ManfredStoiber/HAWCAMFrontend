@@ -11,7 +11,7 @@
 
     <h1>vorhandene Kategorien: </h1>
 
-    <div id="container" class="redBackground" *ngFor="let category of jsonData?.categories">
+    <div id="container" class="redBackground" *ngFor="let category of jsonData?.categories" (click)="navigateToChosenCategory( category.name )">
 
       <div class="leftPlaceholder">
       </div>

@@ -30,7 +30,6 @@ export class CreateCategoryEditorComponent implements OnInit {
   }
 
   onSubmit() {
-    alert("Kategorie wurde angelegt!");
 
     // get the form data as an object
     let formObj = this.form.getRawValue();
@@ -55,7 +54,7 @@ export class CreateCategoryEditorComponent implements OnInit {
          strTemp += '"typ":"' + formObj.contentDescriptions[i].detailType + '",';
          if( formObj.contentDescriptions[i].optionalOrMandatory === "mandatory") {
            nMandatory = 1;
-         } else if (formObj.contentDescriptions[i].optionalOrMandatory === "optional") {
+         } else if ( formObj.contentDescriptions[i].optionalOrMandatory === "optional") {
            nMandatory = 0;
          }
          strTemp += '"optionalOrMandatory":"' + nMandatory + '",';
@@ -81,17 +80,39 @@ export class CreateCategoryEditorComponent implements OnInit {
       console.log(jsonSerializedForm);
 
       this.restService.putToRESTService("createCategory", jsonSerializedForm)
-          .subscribe( (JSONresponse :JSON) => {
-                console.log(JSONresponse);
+          .subscribe( (jsonResponse :JSON) => {
+                this.checkResponse(jsonResponse);
               }
            );
 
     } catch ( exception ) {
       console.log("jsonSerializedForm is not valid");
+      alert("Kategorie konnte nicht gespeichert werden");
     }
 
-
   }
+
+
+  checkResponse( jsonResponse: JSON ) {
+
+    let objResponse = jsonResponse;
+    console.log("createCategory checkResponse:");
+    console.log(objResponse);
+
+    if( objResponse ) {
+      if ('Fehler' in objResponse) {
+        alert("Kategorie konnte nicht gespeichert werden");
+      }
+      else {
+          alert("Kategorie erfolgreich erstellt");
+      }
+    } else {
+        alert("Kategorie konnte nicht gespeichert werden");
+    }
+  }
+
+
+
 
   // getter for the content descriptions array
   get contentDescriptions(){
