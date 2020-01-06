@@ -1,6 +1,15 @@
-<main>
+<div class="all" *ngIf="objCatAttributes === null">
 
-  <div class="container" *ngIf="objAttributes?.attributes.length > 0">
+  <p>Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden</p>
+
+</div>
+
+
+<div class="all" *ngIf="objCatAttributes">
+
+  <div class="container" *ngIf="objCatAttributes?.attributes.length > 0">
+<!--    <form [formGroup]="form" (ngSubmit)="onSubmit()" > -->
+    
     <form [formGroup]="form">
 
       <div class="row">
@@ -45,7 +54,7 @@
           </div>
         </div>
       </div>
-
+      
 
     </form>
 
@@ -56,11 +65,11 @@
 
   </div>
 
-  <div class="container" *ngIf="objAttributes?.attributes.length == 0">
+  <div class="container" *ngIf="objCatAttributes?.attributes.length == 0">
 
     <p>Kategorie hat noch keine Attribute</p>
     <p>Über "Kategorie bearbeiten" hinzufügen</p>
 
   </div>
 
-</main>
+</div>

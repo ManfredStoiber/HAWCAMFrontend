@@ -1,5 +1,5 @@
 import { Component, OnInit, ContentChild } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 
@@ -30,7 +30,6 @@ export class CreateCategoryEditorComponent implements OnInit {
   }
 
   onSubmit() {
-    alert("Kategorie wurde angelegt!");
 
     // get the form data as an object
     let formObj = this.form.getRawValue();
@@ -81,17 +80,39 @@ export class CreateCategoryEditorComponent implements OnInit {
       console.log(jsonSerializedForm);
 
       this.restService.putToRESTService("createCategory", jsonSerializedForm)
-          .subscribe( (JSONresponse :JSON) => {
-                console.log(JSONresponse);
+          .subscribe( (jsonResponse :JSON) => {
+                this.checkResponse(jsonResponse);
               }
            );
 
     } catch ( exception ) {
       console.log("jsonSerializedForm is not valid");
+      alert("Kategorie konnte nicht gespeichert werden");
     }
 
-
   }
+
+
+  checkResponse( jsonResponse: JSON ) {
+
+    let objResponse = jsonResponse;
+    console.log("createCategory checkResponse:");
+    console.log(objResponse);
+
+    if( objResponse ) {
+      if ('Fehler' in objResponse) {
+        alert("Kategorie konnte nicht gespeichert werden");
+      }
+      else {
+          alert("Kategorie erfolgreich erstellt");
+      }
+    } else {
+        alert("Kategorie konnte nicht gespeichert werden");
+    }
+  }
+
+
+
 
   // getter for the content descriptions array
   get contentDescriptions(){

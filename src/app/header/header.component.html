@@ -2,15 +2,15 @@
 
   <div id="app-title">
     <button mat-button id="bttnBack" class="redBackground" type="button" name="bttnBack" (click)="clickedBack()">Zurück</button>
-    <h1>
-      {{objHeaderData.getTitle()}}
+    <h1 id="h1InAppTitle">
+      {{objHeaderData?.getTitle()}}
     </h1>
   </div>
 
   <div id="app-path">
     <p>
         <a routerLink="/start">
-          {{objHeaderData.getPath()}}
+         {{objHeaderData?.getPath()}}
         </a>
     </p>
   </div>
@@ -23,7 +23,7 @@
 
   <div id="app-message">
     <p>
-      {{objHeaderData.getMessage()}}
+      {{objHeaderData?.getMessage()}}
     </p>
   </div>
 

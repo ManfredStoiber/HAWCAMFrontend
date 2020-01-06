@@ -10,7 +10,6 @@ export class DataService {
   // value are the attributes from a category necessary to create an object
   private jsonAttributes: JSON = null;
 
-
   constructor() { }
 
   public getJsonAttributes(): JSON {
