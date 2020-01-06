@@ -39,9 +39,7 @@ export class CreateObjectComponent implements OnInit {
 
     this.objAttributes = this.jsonAttributes;
 
-
-   // this.initialiseScreen();
-   this.initialiseScreenWithJSON();
+    this.initialiseScreenWithJSON();
 
   }
 
@@ -70,6 +68,7 @@ export class CreateObjectComponent implements OnInit {
     }
 
   }
+
 
   // send the form data to the backend
   onSubmit() {
