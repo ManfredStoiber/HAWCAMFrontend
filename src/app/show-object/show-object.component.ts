@@ -95,10 +95,11 @@ export class ShowObjectComponent implements OnInit {
   }
 
 
-    // onClick from Button edit
-   // opens the EditCategoryComponents
-   openEditObjectComponent() {
-    this.router.navigate(["/editObject"]);
+    // onClick from Button fertig
+   // opens the ShowCategoryComponents
+   openShowObjectComponent() {
+    alert("Objekt wurde geändert");
+    //this.router.navigate(["/editObject"]);
    }
 
 }
