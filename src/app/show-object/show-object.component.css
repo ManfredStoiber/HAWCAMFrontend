@@ -1,0 +1,65 @@
+
+*{
+  font-size: 25px;
+}
+
+
+main {
+  margin: 40px;
+}
+
+main > h1 {
+  font-size: 33px;
+  margin-left: 9px;
+  margin-bottom: 20px;
+}
+
+
+
+input{
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
+
+}
+
+/*
+button.submit[disabled]:hover {
+    cursor: not-allowed;
+}
+
+.submit{
+  background-color: lightgreen;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: black;
+  padding: 5px;
+}
+*/
+
+
+.detailName{
+    -margin-top:10px;
+}
+.attributeName{
+    -margin-top:10px;
+}
+
+.mandatory{
+  color:red;
+}
+
+.edit{
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: black;
+  padding: 5px;
+}
+
+hr{
+  border: 0.5px solid grey;
+  opacity: 0.5;
+  margin: 10px 0px;
+}

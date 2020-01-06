@@ -47,6 +47,7 @@ export class CreateObjectComponent implements OnInit {
        this.initialiseScreenWithJSON();
      }
    }
+
   }
 
   initialiseScreenWithJSON() {
@@ -75,6 +76,7 @@ export class CreateObjectComponent implements OnInit {
     }
 
   }
+
 
   // send the form data to the backend
   onSubmit() {

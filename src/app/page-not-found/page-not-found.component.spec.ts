@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageNotFoundComponent } from './page-not-found.component';
+import { Component } from '@angular/core';
 
 describe('PageNotFoundComponent', () => {
   let component: PageNotFoundComponent;
@@ -8,7 +9,10 @@ describe('PageNotFoundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageNotFoundComponent ]
+      declarations: [
+        PageNotFoundComponent,
+        StubStartButtonsComponent
+      ]
     })
     .compileComponents();
   }));
@@ -23,3 +27,11 @@ describe('PageNotFoundComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+@Component({
+  selector: 'app-start-buttons',
+  template: ''
+})
+class StubStartButtonsComponent {
+}
