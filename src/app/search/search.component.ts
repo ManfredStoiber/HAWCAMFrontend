@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RESTService } from '../rest.service';
 
 @Component({
@@ -13,16 +13,25 @@ export class SearchComponent implements OnInit {
   private jsonSearchResult: JSON = null;
   objSearchResult: any = null;
 
-  constructor(private fb: FormBuilder, private restService: RESTService) { }
+  // create a form group with the category name and an empty array for
+  // addable attributes
+  constructor(private fb: FormBuilder, private restService: RESTService) {
+    this.form = this.fb.group({
+        searchString: ['', Validators.required]
+      });
+  }
+
 
   ngOnInit() {
 
-    this.initialiseScreenWithJSON();
+
   }
 
 
 
   onSubmit() {
+
+      this.initialiseScreenWithJSON();
 
       // get the form data as an object
       let formObj = this.form.getRawValue();
@@ -64,7 +73,8 @@ export class SearchComponent implements OnInit {
     // ergebnisse auflisten ?
     // überhaupt nötig?
     // reicht auflisten über html ? ja oder
-
+    // hier mit leeren array ein "erfolglose Suche" simulieren
+    //let strTemp:string = '{"objects": [ ] }';
     let strTemp:string = '{"objects": [ {"name": "R231"}, {"name": "E123"}, {"name": "F123"} ] }';
     let jsonSerializedForm: JSON = null;
 

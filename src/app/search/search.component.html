@@ -1,20 +1,58 @@
 
 <div class="container">
 
-  <p>Bitte geben Sie den Begriff ein mit dem die Suche gestartet werden soll</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" >
 
-  <p>hier form mit einem input</p>
-  <p>danke kevin</p>
+    <div class="row">
+      <label>
+
+        <h1>Volltextsuche:</h1>
+        <input  type="text" formControlName="searchString" placeholder="z. B. 'U-Form'" >
+
+      </label>
+    </div>
+
+
+
+
+    <div class="row submitrow">
+      <button disabled mat-button class="submit" type="submit" [disabled]="!form.valid">Such!</button>
+    </div>
+
+  </form>
 
 </div>
 
 
 <div class="all" *ngIf="objSearchResult">
 
-  <p>Suchergebnisse:</p>
-   <div class="container" *ngFor="let object of objSearchResult?.objects">
+  <div *ngIf="objSearchResult.objects.length == 0">
+      <p class="noRecordsFound">Keine Objekte zu Ihrer Eingabe gefunden.</p>
+  </div>
+  <div *ngIf="objSearchResult.objects.length > 0">
 
-     <p>Objekt: {{object.name}}</p>
+    <h2>{{objSearchResult.objects.length}} Objekte gefunden:</h2>
+
+   <div class="container redBackground" *ngFor="let object of objSearchResult?.objects">
+
+     <div class="leftPlaceholder">
+     </div>
+
+     <div class="objname">
+       <p>Objekt: {{object.name}}</p>
+
+     </div>
+
+     <div class="catname">
+       <p>Kategoriename</p>
+     </div>
+
+     <div class="rightPlaceholder">
+     </div>
+
+     <p></p>
+
+   </div>
 
    </div>
 
