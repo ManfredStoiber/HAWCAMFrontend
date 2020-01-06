@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-category',
@@ -13,7 +14,7 @@ export class ShowCategoryComponent implements OnInit {
   objCatAttributes: any = null;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private dataService: DataService ) {
+  constructor(private fb: FormBuilder, private dataService: DataService, private router: Router ) {
 
   }
 
@@ -27,7 +28,6 @@ export class ShowCategoryComponent implements OnInit {
     // errorhandling
     // when error occurs, alert for user and deny loading of html
     if( this.objCatAttributes ) {
-
       if ('Fehler' in this.objCatAttributes) {
         this.objCatAttributes = null;
         alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
@@ -50,29 +50,34 @@ export class ShowCategoryComponent implements OnInit {
       });
 
 
-  // create further form controls depending on the given json
-  // if required make the inputs mandatory
-  for ( let i=0; i < this.objCatAttributes.attributes.length; i++ ) {
-        let ctrl = <FormArray>this.form.get('contentDescriptions');
 
+    // create further form controls depending on the given json
+    // if required make the inputs mandatory
+    for ( let i=0; i < this.objCatAttributes.attributes.length; i++ ) {
+          let ctrl = <FormArray>this.form.get('contentDescriptions');
 
+            ctrl.push(this.fb.group({
+              hiddenIndex: [i],
+              detailName: [this.objAttributes.attributes[i].name, Validators.required],
+              detailType: [this.objAttributes.attributes[i].typ, Validators.required],
+              mandatory: [this.objAttributes.attributes[i].mandatory, Validators.required]
 
-        ctrl.push(this.fb.group({
-          hiddenIndex: [i],
-          detailName: [this.objCatAttributes.attributes[i].name, Validators.required],
-          detailType: [this.objCatAttributes.attributes[i].typ, Validators.required],
-          mandatory: [this.objCatAttributes.attributes[i].mandatory, Validators.required]
-
-        }));
-
+            }));
+    }
 
   }
 
-}
 
-get contentDescriptions(){
-  return <FormArray> this.form.get('contentDescriptions');
-};
+  get contentDescriptions(){
+    return <FormArray> this.form.get('contentDescriptions');
+  };
+
+
+  // onClick from Button edit
+  // opens the EditCategoryComponents
+  openEditCategoryComponent() {
+    this.router.navigate(["/editCategory"]);
+  }
 
 
 }

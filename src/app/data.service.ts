@@ -10,10 +10,13 @@ export class DataService {
   // value are the attributes from a category necessary to create an object
   private jsonAttributes: JSON = null;
   private jsonSearchResult: JSON = null;
+  private jsonObjectDetails: JSON = null;
 
 
   constructor() { }
 
+
+// DataService for chooseCategory, showCategory, editCategory
   public getJsonAttributes(): JSON {
     if ( this.jsonAttributes != null ) {
       return this.jsonAttributes;
@@ -26,6 +29,19 @@ export class DataService {
   }
 
 
+// DataService for showObject
+  public getObjectDetails(): JSON {
+    if ( this.jsonObjectDetails != null ) {
+      return this.jsonObjectDetails;
+    }
+    return JSON.parse('{"Fehler":"JSON ist null"}');
+  }
+
+  public setObjectDetails( jsonObjectDetails: JSON) {
+    this.jsonObjectDetails = jsonObjectDetails;
+  }
+
+  
   public getJsonSearchResult(): JSON {
     if ( this.jsonSearchResult != null ) {
       return this.jsonSearchResult;
