@@ -1,42 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { RESTService } from '../rest.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-show-object',
-  templateUrl: './show-object.component.html',
-  styleUrls: ['./show-object.component.css']
+  templateUrl: './edit-object.component.html',
+  styleUrls: ['./edit-object.component.css']
 })
-export class ShowObjectComponent implements OnInit {
+export class EditObjectComponent implements OnInit {
 
   private jsonObjectDetails: JSON = null;
   objObjectDetails: any = null;
   form: FormGroup;
 
-  constructor( private fb: FormBuilder, private dataService: DataService, private router: Router ) {
+  constructor( private fb: FormBuilder, private dataService: DataService, private location: Location) {
 
    }
 
 
   ngOnInit() {
-
-// only dummy
-    let strTemp: string = '{ "name":"R123", "details": [ {"name": "Bezeichung", "typ":"textfield", "mandatory":"1", "value":"R123"}, {"name": "Sitzform", "typ":"textfield", "mandatory":"0", "value":"U-Form" }, {"name": "Anzahl", "typ":"number", "mandatory":"1", "value":34 } ] }';
-    let jsonTemp: JSON = null;
-
-    try {
-      jsonTemp = JSON.parse(strTemp);
-
-      console.log("jsonTemp is valid");
-      console.log(jsonTemp);
-      this.dataService.setObjectDetails(jsonTemp);
-
-    } catch( exception ) {
-      console.log("jsonTemp is not valid");
-    }
-// only dummy
 
     this.jsonObjectDetails = this.dataService.getObjectDetails();
     this.objObjectDetails = this.jsonObjectDetails;
@@ -57,9 +40,6 @@ export class ShowObjectComponent implements OnInit {
 
 
   initialiseScreenWithJSON() {
-
-    // console.log("det");
-    // console.log(this.objObjectDetails.details[0].value);
 
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
@@ -95,11 +75,10 @@ export class ShowObjectComponent implements OnInit {
   }
 
 
-    // onClick from Button fertig
-   // opens the ShowCategoryComponents
-   openShowObjectComponent() {
-    alert("Objekt wurde geändert");
-    //this.router.navigate(["/editObject"]);
+    // onClick from Button edit
+   // opens the EditCategoryComponents
+   abort() {
+    this.location.back();
    }
 
 }
