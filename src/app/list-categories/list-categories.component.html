@@ -1,17 +1,17 @@
 
 <main>
 
-  <div *ngIf="jsonData?.categories.length == 0" >
+  <div *ngIf="jsonAllCategories?.categories.length == 0" >
     <h1> Keine Kategorien vorhanden </h1>
     <br>
     <p>Zum Anlegen von Kategorien bitte "Kategorie erstellen" wählen </p>
   </div>
 
-  <div *ngIf="jsonData?.categories.length > 0">
+  <div *ngIf="jsonAllCategories?.categories.length > 0">
 
     <h1>vorhandene Kategorien: </h1>
 
-    <div id="container" class="redBackground" *ngFor="let category of jsonData?.categories" (click)="navigateToChosenCategory( category.name )">
+    <div id="container" class="redBackground" *ngFor="let category of jsonAllCategories?.categories" (click)="listAttributesForCategory( category.name )">
 
       <div class="leftPlaceholder">
       </div>

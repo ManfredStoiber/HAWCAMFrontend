@@ -48,8 +48,7 @@ export class EditCategoryComponent implements OnInit {
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
     this.form = this.fb.group({
-                                                                                  // objCatName: [this.objCatAttributes.name , Validators.required],
-        objCatName: ['kommentier mich ein', Validators.required],
+        objCatName: [this.objCatAttributes.name , Validators.required],
         contentDescriptions: this.fb.array([])
       });
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -16,7 +16,8 @@ export class RESTService {
   private headerDict : any;
 
 
-    // declaration of the HttpClient - dependency injection
+  // declaration of the HttpClient - dependency injection
+  // declaration of the headerDict
   constructor( private http: HttpClient ) {
 
     this.headerDict = {
@@ -30,6 +31,9 @@ export class RESTService {
   }
 
 
+  // getFromRESTService - method to send a GET-request to Backend
+  // @param   strPathending   adress ending of the backendservice that will be called
+  // @return                  response from backendservice parsed to a JSON
   public getFromRESTService( strPathending: string ) : Observable<JSON> {
 
     console.log("--getFromRESTService");
@@ -40,11 +44,13 @@ export class RESTService {
     return this.http.get<JSON>( this.strUrl + strPathending, httpOptions )
         .pipe( catchError( this.handleError))
     ;
-
   }
 
 
-  public putToRESTService( strPathending: string, jsonData: JSON) {
+  // putToRESTService - method to send a PUT-request to Backend
+  // @param   strPathending   adress ending of the backendservice that will be called
+  // @return                  response from backendservice parsed to a JSON
+  public putToRESTService( strPathending: string, jsonData: JSON) : Observable<JSON> {
 
     console.log("--putToRESTService");
     let httpOptions = {
@@ -57,7 +63,10 @@ export class RESTService {
   }
 
 
-  handleError( error: any) {
+  // handleError - method to handle errors: ParseErrors, HttpErrors...
+  // @param   error   error from calling backendservice
+  // @return          errormessage
+  private handleError( error: any) {
 
     let strErrorMessage = '';
     if (error.error instanceof ErrorEvent) {
