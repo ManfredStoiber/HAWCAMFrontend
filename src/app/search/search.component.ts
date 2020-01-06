@@ -38,6 +38,8 @@ export class SearchComponent implements OnInit {
 
       let jsonSearch: JSON = formObj;
 
+
+
       this.restService.putToRESTService("search", jsonSearch)
           .subscribe( (jsonResponse :JSON) => {
             this.checkResponse(jsonResponse);
@@ -75,19 +77,34 @@ export class SearchComponent implements OnInit {
     // reicht auflisten über html ? ja oder
     // hier mit leeren array ein "erfolglose Suche" simulieren
     //let strTemp:string = '{"objects": [ ] }';
-    let strTemp:string = '{"objects": [ {"name": "R231"}, {"name": "E123"}, {"name": "F123"} ] }';
+    //let strTemp:string = '{"objects": [ {"name": "R231"}, {"name": "E123"}, {"name": "F123"} ] }';
+
+    // mit kategorien und mit objekten
+    let strTemp:string ='{"categories":[{"name": "Raum"},{"name": "Raumtisch"},{"name": "Raumwand"}],"objects": [ {"name": "Raum1", "cat":"Raum"},{"name": "Raum2", "cat":"Raum"},{"name": "Raumtisch2", "cat":"Raumtisch"},{"name": "Raumschiff", "cat":"NASA"}]}';
+
+    // ohne kategorien
+    //let strTemp:string ='{"categories":[],"objects": [ {"name": "Raum1", "cat":"Raum"},{"name": "Raum2", "cat":"Raum"},{"name": "Raumtisch2", "cat":"Raumtisch"},{"name": "Raumschiff", "cat":"NASA"}]}';
+
+    //ohne objekte
+    //let strTemp:string ='{"categories":[{"name": "Raum"},{"name": "Raumtisch"},{"name": "Raumwand"}],"objects": [ ]}';
+
+    //ohne kategorien und ohne objekte
+    //let strTemp:string ='{"categories":[],"objects": []}';
+
+
+
     let jsonSerializedForm: JSON = null;
 
-    try {
+    //try {
       jsonSerializedForm = JSON.parse(strTemp);
       console.log("jsonSerializedForm is valid");
       console.log(jsonSerializedForm);
 
       this.objSearchResult = jsonSerializedForm;
 
-    } catch ( exception ) {
-      console.log("jsonSerializedForm is not valid");
-    }
+    //} catch ( exception ) {
+    //  console.log("jsonSerializedForm is not valid");
+    //}
 
 
   }

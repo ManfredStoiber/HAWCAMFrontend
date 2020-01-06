@@ -51,6 +51,16 @@ input{
   grid-row: 1 / 1;
 }
 
+.catnameAsResult {
+  grid-column: 2 / 3;
+  grid-row: 1 / 1;
+}
+
+.catnameAsResult > p {
+  font-size: 25px;
+  color: white;
+}
+
 .catname {
   grid-column: 3 / 4;
   grid-row: 1 / 1;
@@ -65,6 +75,12 @@ input{
   font-size: 20px;
   color: white;
 }
+
+.resultDelimiter{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 
 button.submit[disabled]:hover {
     cursor: not-allowed;
