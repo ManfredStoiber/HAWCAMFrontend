@@ -8,11 +8,9 @@ import { ChooseCategoryComponent } from './choose-category/choose-category.compo
 import { CreateObjectComponent } from './create-object/create-object.component';
 import { ShowObjectComponent } from './show-object/show-object.component';
 import { EditObjectComponent } from './edit-object/edit-object.component';
-
 import { ShowCategoryComponent } from './show-category/show-category.component';
+import { SearchComponent } from './search/search.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
-
-
 
 const routes: Routes = [
   { path: '', redirectTo: "/start", pathMatch: "full" },
@@ -26,6 +24,7 @@ const routes: Routes = [
   { path: 'showObject', component: ShowObjectComponent },
   { path: 'editObject', component: EditObjectComponent },
   { path: 'createObject', component: CreateObjectComponent},
+  { path: 'search', component: SearchComponent},
   // wenn nichts greift -> Startseite
   { path: '**', redirectTo: "/pageNotFound", pathMatch: "full" }
 ];

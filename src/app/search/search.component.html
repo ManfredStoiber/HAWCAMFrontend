@@ -1,0 +1,83 @@
+
+<div class="container">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+
+    <div class="row">
+      <label>
+
+        <h1>Volltextsuche:</h1>
+        <input  type="text" formControlName="search" placeholder="z. B. 'Raum 232'" >
+
+      </label>
+    </div>
+
+
+    <div class="row submitrow">
+      <button disabled mat-button class="submit" type="submit" [disabled]="!form.valid">Such!</button>
+    </div>
+
+  </form>
+
+</div>
+
+
+<div class="all" *ngIf="objSearchResult">
+
+  <div *ngIf="objSearchResult.objects.length == 0">
+      <p class="noRecordsFound">Keine Objekte zu Ihrer Eingabe gefunden.</p>
+  </div>
+  <div *ngIf="objSearchResult.objects.length > 0">
+
+    <h2>{{objSearchResult.objects.length}} Objekte gefunden:</h2>
+
+   <div class="container redBackground" *ngFor="let object of objSearchResult?.objects">
+
+     <div class="leftPlaceholder">
+     </div>
+
+     <div class="objname">
+       <p>Objekt: {{object.name}}</p>
+     </div>
+
+     <div class="catname">
+       <p>{{object.cat}}</p>
+     </div>
+
+     <div class="rightPlaceholder">
+     </div>
+
+     <p></p>
+
+   </div>
+
+  </div>
+
+<hr class="resultDelimiter"/>
+
+  <div *ngIf="objSearchResult.categories.length == 0">
+       <p class="noRecordsFound">Keine Kategorien zu Ihrer Eingabe gefunden.</p>
+  </div>
+  <div *ngIf="objSearchResult.categories.length > 0">
+
+    <h2>{{objSearchResult.categories.length}} Kategorien gefunden:</h2>
+
+    <div class="container redBackground" *ngFor="let category of objSearchResult?.categories">
+
+      <div class="leftPlaceholder">
+      </div>
+
+      <div class="catnameAsResult">
+        <p>Kategorie: {{category.name}}</p>
+      </div>
+
+      <div class="rightPlaceholder">
+      </div>
+
+      <p></p>
+
+    </div>
+
+  </div>
+
+  </div>

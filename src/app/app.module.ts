@@ -39,6 +39,9 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { RESTService } from './rest.service';
 import { DataService } from './data.service';
 import { HeaderData } from './headerData.model';
+
+import { SearchComponent } from './search/search.component';
+
 import { ShowObjectComponent } from './show-object/show-object.component';
 import { EditObjectComponent } from './edit-object/edit-object.component';
 
@@ -71,11 +74,12 @@ const modules: any[] = [
     PageNotFoundComponent,
     ChooseCategoryComponent,
     CreateObjectComponent,
+    ShowCategoryComponent,
+    SearchComponent,
     ShowObjectComponent,
     EditObjectComponent,
     ShowCategoryComponent,
     EditCategoryComponent
-
   ],
   imports: [
     BrowserModule,
