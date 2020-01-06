@@ -98,7 +98,6 @@ export class EditCategoryComponent implements OnInit {
 
 
   onSubmit() {
-    alert("Kategorie wurde geändert!");
 
     // get the form data as an object
     let formObj = this.form.getRawValue();
@@ -148,8 +147,8 @@ export class EditCategoryComponent implements OnInit {
       console.log(jsonSerializedForm);
 
       this.restService.putToRESTService("editCategory", jsonSerializedForm)
-          .subscribe( (JSONresponse :JSON) => {
-                console.log(JSONresponse);
+          .subscribe( (jsonResponse :JSON) => {
+                this.checkResponse(jsonResponse);
               }
            );
 
@@ -158,5 +157,24 @@ export class EditCategoryComponent implements OnInit {
     }
 
   }
+
+
+  checkResponse( jsonResponse: JSON ) {
+
+     let objResponse = jsonResponse;
+     console.log("editCategory checkResponse:");
+     console.log(objResponse);
+
+     if( objResponse ) {
+       if ('Fehler' in objResponse) {
+         alert("Kategorie konnte nicht geändert werden");
+       }
+       else {
+           alert("Kategorie erfolgreich geändert");
+       }
+     } else {
+         alert("Kategorie konnte nicht geändert werden");
+     }
+   }
 
 }

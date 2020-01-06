@@ -24,7 +24,6 @@ import { MatButtonModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { StartButtonsComponent } from './start-buttons/start-buttons.component';
 import { HeaderComponent } from './header/header.component';
-import { CreateCategoryFormsComponent } from './create-category-forms/create-category-forms.component';
 import { CreateCategoryEditorComponent } from './create-category-editor/create-category-editor.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
@@ -33,17 +32,14 @@ import { ChooseCategoryComponent } from './choose-category/choose-category.compo
 import { CreateObjectComponent } from './create-object/create-object.component';
 import { ShowCategoryComponent } from './show-category/show-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { ShowObjectComponent } from './show-object/show-object.component';
+import { EditObjectComponent } from './edit-object/edit-object.component';
+import { SearchComponent } from './search/search.component';
 
 
 // declaration of services to module
 import { RESTService } from './rest.service';
 import { DataService } from './data.service';
-import { HeaderData } from './headerData.model';
-
-import { SearchComponent } from './search/search.component';
-
-import { ShowObjectComponent } from './show-object/show-object.component';
-import { EditObjectComponent } from './edit-object/edit-object.component';
 
 
 const modules: any[] = [
@@ -67,7 +63,6 @@ const modules: any[] = [
     AppComponent,
     StartButtonsComponent,
     HeaderComponent,
-    CreateCategoryFormsComponent,
     CreateCategoryEditorComponent,
     CreateCategoryComponent,
     ListCategoriesComponent,

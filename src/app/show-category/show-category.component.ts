@@ -58,9 +58,9 @@ export class ShowCategoryComponent implements OnInit {
 
             ctrl.push(this.fb.group({
               hiddenIndex: [i],
-              detailName: [this.objAttributes.attributes[i].name, Validators.required],
-              detailType: [this.objAttributes.attributes[i].typ, Validators.required],
-              mandatory: [this.objAttributes.attributes[i].mandatory, Validators.required]
+              detailName: [this.objCatAttributes.attributes[i].name, Validators.required],
+              detailType: [this.objCatAttributes.attributes[i].typ, Validators.required],
+              mandatory: [this.objCatAttributes.attributes[i].mandatory, Validators.required]
 
             }));
     }

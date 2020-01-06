@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
       console.log("Input jsonSearch");
       console.log(jsonSearch);
 
-      this.restService.putToRESTService("searchOneObjecft", jsonSearch)
+      this.restService.putToRESTService("search", jsonSearch)
           .subscribe( (jsonResponse :JSON) => {
             this.checkResponse(jsonResponse);
           }
