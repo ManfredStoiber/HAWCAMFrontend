@@ -39,6 +39,7 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { RESTService } from './rest.service';
 import { DataService } from './data.service';
 import { HeaderData } from './headerData.model';
+import { ShowObjectComponent } from './show-object/show-object.component';
 
 
 const modules: any[] = [
@@ -69,6 +70,7 @@ const modules: any[] = [
     PageNotFoundComponent,
     ChooseCategoryComponent,
     CreateObjectComponent,
+    ShowObjectComponent,
     ShowCategoryComponent,
     EditCategoryComponent
   ],

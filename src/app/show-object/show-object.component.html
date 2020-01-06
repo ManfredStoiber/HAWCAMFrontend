@@ -1,0 +1,68 @@
+
+
+
+<div class="all" *ngIf="objObjectDetails === null">
+
+  <p>Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden</p>
+
+</div>
+
+
+<div class="all" *ngIf="objObjectDetails">
+
+  <main>
+
+    <form [formGroup]="form" >
+
+      <!-- display the meta input field for the name of the object -->
+      <div class="row">
+        <label>
+          <span >Objektname:</span><span class="mandatory">*</span>
+          <input disabled type="text" formControlName="objObjName" placeholder="z. B. '2-232'" >
+        </label>
+      </div>
+      <hr />
+
+      <div class="container" *ngIf="objObjectDetails?.details.length > 0">
+
+            <!-- iterate through the attributes array -->
+            <div *ngFor="let detail of objObjectDetails?.details; let i=index">
+                  <p class="attributeName">{{detail.name}}<span class="mandatory" *ngIf="detail.mandatory == '1'">*</span></p>
+                  <!-- display the input fields with the proper type depending on array -->
+                  <div *ngIf="detail.typ === 'textfield'">
+                    <input disabled  formControlName="{{detail.name}}" type="text"  placeholder="Wert des Attributs" name="attribute">
+                  </div>
+                  <div *ngIf="detail.typ === 'date'">
+                    <input disabled  formControlName="{{detail.name}}" type="date"  placeholder="Wert des Attributs" name="attribute">
+                  </div>
+                  <div *ngIf="detail.typ === 'file'">
+                    <input disabled  formControlName="{{detail.name}}" type="file"  placeholder="Wert des Attributs" name="attribute">
+                  </div>
+                  <div *ngIf="detail.typ === 'number'">
+                    <input disabled  formControlName="{{detail.name}}" type="number"  placeholder="Wert des Attributs" name="attribute">
+                  </div>
+                  <div *ngIf="detail.typ === 'dateAndTime'">
+                    Datum: <input disabled  formControlName="{{detail.name}}-Date" type="date"  placeholder="Wert des Attributs" name="attribute">
+                    Uhrzeit: <input disabled  formControlName="{{detail.name}}-Clock" type="time"  placeholder="Wert des Attributs" name="attribute">
+                  </div>
+                  <hr />
+            </div>
+
+      </div>
+
+
+      <div class="container" *ngIf="objObjectDetails?.details.length == 0">
+          <p>Kategorie hat noch keine Attribute</p>
+          <p>Über "Kategorie bearbeiten" hinzufügen</p>
+      </div>
+
+    </form>
+
+
+    <div class="row submitrow">
+          <button  mat-button class="edit" type="button" (click)="openEditObjectComponent()">Bearbeiten!</button>
+    </div>
+
+  </main>
+
+</div>
