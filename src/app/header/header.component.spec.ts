@@ -52,6 +52,9 @@ describe('HeaderComponent', () => {
     expect(testHostFixture.nativeElement.querySelector('#h1InAppTitle').innerText).toEqual('Inventarverwaltung');
   });
 
+  it('should show correct weekdays', () => {
+    expect()
+  })
 
 
   @Component({
