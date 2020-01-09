@@ -13,7 +13,7 @@ import { RESTService } from '../rest.service';
 })
 export class CreateCategoryEditorComponent implements OnInit {
 
-
+  // membervariables
   form: FormGroup;
 
   // create a form group with the category name and an empty array for
@@ -29,6 +29,11 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   }
 
+  // onSubmit - sends the form value to the backend
+  // gets the form data
+  // creates a hidden index field for a better handling in the backend
+  // parses the input into a JSON format
+  // put it to REST service
   onSubmit() {
 
     // get the form data as an object
@@ -92,7 +97,9 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   }
 
-
+  // checkResponse - error handling for PUT-request
+  // alerts user if necessary, else sends response to dataService and changes components
+  // @input   jsonResponse    response from backend service in JSON format
   checkResponse( jsonResponse: JSON ) {
 
     let objResponse = jsonResponse;
@@ -114,14 +121,16 @@ export class CreateCategoryEditorComponent implements OnInit {
 
 
 
-  // getter for the content descriptions array
+  // get contentDesciptions getter for the array within the formgroup
+  // @return this.form.get('contentDescriptions')   array within the formgroup
   get contentDescriptions(){
     return <FormArray> this.form.get('contentDescriptions');
   };
 
 
-  // add a new attribute by clicking on the button
-  // results in adding some new form controls in the array
+  // addNewDetail - allows the user onClick to add a new Detail
+  // gets the formarray 'contentDesciptions'
+  // add a new formgroup to the contentDescriptions array
   addNewDetail(){
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.push(this.fb.group({
@@ -134,7 +143,11 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   }
 
+  // deleteContentDescription
   // remove the chosen form controls from the array
+  // gets the contentDesciptions array
+  // removes the formgroup
+  // @input    i       the row respectively the chosen index in the formgroup contentDesciptions
   deleteContentDescription(i: number){
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.removeAt(i);

@@ -52,6 +52,9 @@ export class ShowObjectComponent implements OnInit {
   }
 
 
+  // initialiseScreenWithJSON - adds form controls to every input
+  // adds a form control for the object name
+  // adds further form controls depending on the given json object
   initialiseScreenWithJSON(): void{
 
     // create a form group, at first only with the input for the objects name

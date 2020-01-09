@@ -10,6 +10,8 @@ import {Location} from '@angular/common';
 })
 export class EditObjectComponent implements OnInit {
 
+
+  // membervariables
   private jsonObjectDetails: JSON = null;
   objObjectDetails: any = null;
   form: FormGroup;
@@ -18,7 +20,9 @@ export class EditObjectComponent implements OnInit {
 
    }
 
-
+  // ngOnInit - gets the object details in json format
+  // gets the object deatils
+  // alerts user if necessary, else calls this.initialiseScreenWithJSON()
   ngOnInit() {
 
     this.jsonObjectDetails = this.dataService.getObjectDetails();
@@ -42,7 +46,9 @@ export class EditObjectComponent implements OnInit {
 
   }
 
-
+  // initialiseScreenWithJSON - adds form controls to form inputs
+  // adds the name contorl
+  // adds controls according to the given json
   initialiseScreenWithJSON() {
 
     // create a form group, at first only with the input for the objects name

@@ -14,9 +14,9 @@ import { DataService } from '../data.service';
 })
 export class CreateObjectComponent implements OnInit {
 
+  // membervariables
   detailsObj:any;
   form: FormGroup;
-
   private jsonAttributes: JSON = null;
   objAttributes: any = null;
 
@@ -30,7 +30,8 @@ export class CreateObjectComponent implements OnInit {
 
   }
 
-
+  // ngOnInit - gets the category attribute in json format
+  // alerts user if necessary, else calls this.initialiseScreenWithJSON()
   ngOnInit() {
 
    this.jsonAttributes = this.dataService.getJsonCatAttributes();
@@ -50,10 +51,12 @@ export class CreateObjectComponent implements OnInit {
 
   }
 
+  // initialiseScreenWithJSON - adds form controls for every form input
+  // iterates through the array and adds form controls
+  // splits the dateAndTime field in two pieces
+  // adds mandatory validation depending on the attributes FormArray
   initialiseScreenWithJSON() {
 
-    // create further form controls depending on the given json
-    // if required make the inputs mandatory
     // console.log("UNDEFINED?: "+ this.objAttributes.attributes);
     for ( let i=0; i < this.objAttributes.attributes.length; i++ ) {
       if ( this.objAttributes.attributes[i].mandatory == "1" ) {
@@ -78,7 +81,10 @@ export class CreateObjectComponent implements OnInit {
   }
 
 
-  // send the form data to the backend
+  // onSubmit - sends the form value to the backend and handles errors
+  // gets the form data
+  // parses the input into a JSON format
+  // irgendwas mit put
   onSubmit() {
 
     // get the form data as an object
@@ -126,7 +132,9 @@ export class CreateObjectComponent implements OnInit {
       }
   }
 
-
+  // checkResponse - error handling for PUT-request
+  // alerts user if necessary, else sends response to dataService and changes components
+  // @input   jsonResponse    response from backend service in JSON format
   checkResponse( jsonResponse: JSON ) {
 
     let objResponse = jsonResponse;

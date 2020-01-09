@@ -12,12 +12,13 @@ import { Router } from '@angular/router';
 })
 export class ChooseCategoryComponent implements OnInit {
 
+  // membervariables
   jsonData : any = null;
 
   constructor( private restService: RESTService, private router: Router, private dataService: DataService ) {
   }
 
-  // get the existing categories from the backend and list them in the template
+  // ngOnInit - gets a list of all existing categories in json format
   ngOnInit() {
 
     this.restService.getFromRESTService("listCategories")
@@ -30,7 +31,11 @@ export class ChooseCategoryComponent implements OnInit {
 
   }
 
-
+  // sendChosenCat - onClick from user on a shown category button -
+  // parses the input into a JSON format
+  // sends request for category to backend service
+  // waits for asynchronous response and calls checkResponsePUT after receiving the response
+  // @input   strChosenCat    the string represented on the clicked category button
   sendChosenCat( strChosenCat:string ) {
 
     let strTemp: string = null;

@@ -50,11 +50,12 @@ export class ShowCategoryComponent implements OnInit {
 
   }
 
-
+  // initialiseScreenWithJSON - adds form controls to every input
+  // adds a form control
+  // adds further controls depending on the given json object
   initialiseScreenWithJSON(): void {
 
     // create a form group, at first only with the input for the objects name
-    // "''" is the initial value of the input
     this.form = this.fb.group({
         objCatName: [this.objCatAttributes.name , Validators.required],
         contentDescriptions: this.fb.array([])
@@ -79,6 +80,8 @@ export class ShowCategoryComponent implements OnInit {
 
   // to be deleted: returntype ?
 
+  // getter for contentDescriptions array
+  // @return    this.form.get('contentDescriptions')     containts the variable amount of category details
   get contentDescriptions(){
     return <FormArray> this.form.get('contentDescriptions');
   };

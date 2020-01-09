@@ -11,6 +11,8 @@ import { RESTService } from '../rest.service';
 })
 export class EditCategoryComponent implements OnInit {
 
+
+  // membervariables
   private jsonCatAttributes: JSON = null;
   objCatAttributes: any = null;
   form: FormGroup;
@@ -19,7 +21,9 @@ export class EditCategoryComponent implements OnInit {
 
   }
 
+  // ngOnInit - gets the category details in json format
   // initialisation of membervariables and errorhandling
+  // alerts user if necessary, else calls this.initialiseScreenWithJSON()
   ngOnInit() {
 
     this.jsonCatAttributes = this.dataService.getJsonCatAttributes();
@@ -46,7 +50,9 @@ export class EditCategoryComponent implements OnInit {
 
   }
 
-
+  // initialiseScreenWithJSON - adds form controls to every input
+  // creates a form and add formcontrol
+  // creates a form group and push further form controls
   initialiseScreenWithJSON() {
 
     // create a form group, at first only with the input for the objects name
@@ -73,12 +79,13 @@ export class EditCategoryComponent implements OnInit {
       }
     }
 
-
+  // get contentDesciptions getter for the array within the formgroup
+  // @return this.form.get('contentDescriptions')   array within the formgroup
   get contentDescriptions(){
     return <FormArray> this.form.get('contentDescriptions');
   };
 
-
+  // addNewDetail - adds new form controls to the formgroup (contentDesciptions)
   // add a new attribute by clicking on the button
   // results in adding some new form controls in the array
   addNewDetail(){
@@ -93,13 +100,18 @@ export class EditCategoryComponent implements OnInit {
 
   }
 
-  // remove the chosen form controls from the array
+  // deleteContentDescription - deletes onClick a category detail respectively a formgroup in the array
+  // remove the chosen form controls from the array at the index i
+  // @input   i    the chosen row to delete
   deleteContentDescription(i: number){
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.removeAt(i);
   }
 
-
+  // onSubmit - gets the form value and sends it to backend and handles errors
+  // gets the form values
+  // adds a hidden index for a better handling in the backend
+  // parses the input into a JSON format
   onSubmit() {
 
     // get the form data as an object
@@ -161,7 +173,9 @@ export class EditCategoryComponent implements OnInit {
 
   }
 
-
+  // checkResponse - error handling for PUT-request
+  // alerts user if necessary, else sends response to dataService and changes components
+  // @input   jsonResponse    response from backend service in JSON format
   checkResponse( jsonResponse: JSON ) {
 
      let objResponse = jsonResponse;
