@@ -8,7 +8,7 @@ export class DataService {
 
   // JSON for parameter passing from choseCategory to CreateObject
   // value are the attributes from a category necessary to create an object
-  private jsonAttributes: JSON = null;
+  private jsonCatAttributes: JSON = null;
   private jsonObjectDetails: JSON = null;
 
 
@@ -16,15 +16,15 @@ export class DataService {
 
 
 // DataService for chooseCategory, showCategory, editCategory
-  public getJsonAttributes(): JSON {
-    if ( this.jsonAttributes != null ) {
-      return this.jsonAttributes;
+  public getJsonCatAttributes(): JSON {
+    if ( this.jsonCatAttributes != null ) {
+      return this.jsonCatAttributes;
     }
     return JSON.parse('{"Fehler":"JSON ist null"}');
   }
 
-  public setJsonAttributes( jsonAttributes: JSON) {
-    this.jsonAttributes = jsonAttributes;
+  public setJsonCatAttributes( jsonCatAttributes: JSON) {
+    this.jsonCatAttributes = jsonCatAttributes;
   }
 
 

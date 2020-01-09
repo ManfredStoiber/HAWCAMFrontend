@@ -33,7 +33,7 @@ export class CreateObjectComponent implements OnInit {
 
   ngOnInit() {
 
-   this.jsonAttributes = this.dataService.getJsonAttributes();
+   this.jsonAttributes = this.dataService.getJsonCatAttributes();
    this.objAttributes = this.jsonAttributes;
    console.log("CreateObject --onInit this.objAttributes")
    console.log(this.objAttributes);

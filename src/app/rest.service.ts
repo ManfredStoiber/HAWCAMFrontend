@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 
 export class RESTService {
 
+  // membervariables
   private nPort: number = 5001;
   private strUrl: string = "http://snirps.ddns.net:" + this.nPort + "/api/v1.0/";
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { RESTService } from '../rest.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,55 +10,49 @@ import { Router } from '@angular/router';
 })
 export class ShowObjectComponent implements OnInit {
 
+  // membervariables
   private jsonObjectDetails: JSON = null;
   objObjectDetails: any = null;
   form: FormGroup;
 
+  // declaration of the FormBuilder, DataService, Router - dependency injection
   constructor( private fb: FormBuilder, private dataService: DataService, private router: Router ) {
 
-   }
+  }
 
 
+  // ngOnInit - used for initialisation of membervariables
+  // usage of dataService to load jsonObjectDetails
+  // error handling of jsonObjectDetails
+  // alerts user if necessary, else calls this.initialiseScreenWithJSON()
   ngOnInit() {
 
-// only dummy
-    let strTemp: string = '{ "name":"R123", "details": [ {"name": "Bezeichung", "typ":"textfield", "mandatory":"1", "value":"R123"}, {"name": "Sitzform", "typ":"textfield", "mandatory":"0", "value":"U-Form" }, {"name": "Anzahl", "typ":"number", "mandatory":"1", "value":34 } ] }';
-    let jsonTemp: JSON = null;
-
-    try {
-      jsonTemp = JSON.parse(strTemp);
-
-      console.log("jsonTemp is valid");
-      console.log(jsonTemp);
-      this.dataService.setObjectDetails(jsonTemp);
-
-    } catch( exception ) {
-      console.log("jsonTemp is not valid");
-    }
-// only dummy
-
+    // initialisation of membervariables
     this.jsonObjectDetails = this.dataService.getObjectDetails();
     this.objObjectDetails = this.jsonObjectDetails;
     console.log(this.objObjectDetails);
 
-    if( this.objObjectDetails ) {
 
+    // errorhandling
+    // when error occurs, alert for user and deny loading of html
+    if( this.objObjectDetails ) {
       if ('Fehler' in this.objObjectDetails) {
         this.objObjectDetails = null;
         alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+        console.log("this.objObjectDetails contains errorJSON - site needs to be loaded again");
       }
       else {
         this.initialiseScreenWithJSON();
       }
+    } else {
+      alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+      console.log("this.objObjectDetails is null");
     }
 
   }
 
 
-  initialiseScreenWithJSON() {
-
-    // console.log("det");
-    // console.log(this.objObjectDetails.details[0].value);
+  initialiseScreenWithJSON(): void{
 
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
@@ -95,11 +88,10 @@ export class ShowObjectComponent implements OnInit {
   }
 
 
-    // onClick from Button fertig
-   // opens the ShowCategoryComponents
-   openShowObjectComponent() {
-    alert("Objekt wurde geändert");
-    //this.router.navigate(["/editObject"]);
-   }
+  // openEditObjectComponent - onClick of Button "Bearbeiten!"
+  // opens the EditCategoryComponent
+  openEditObjectComponent(): void{
+    this.router.navigate(["/editObject"]);
+  }
 
 }

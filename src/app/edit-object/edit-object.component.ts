@@ -30,10 +30,14 @@ export class EditObjectComponent implements OnInit {
       if ('Fehler' in this.objObjectDetails) {
         this.objObjectDetails = null;
         alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+        console.log("this.objObjectDetails contains errorJSON - site needs to be loaded again");
       }
       else {
         this.initialiseScreenWithJSON();
       }
+    } else {
+      alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+      console.log("this.jsonObjectDetails is null");
     }
 
   }
@@ -75,10 +79,10 @@ export class EditObjectComponent implements OnInit {
   }
 
 
-    // onClick from Button edit
-   // opens the EditCategoryComponents
-   abort() {
+  // abort - onClick from Button "Abbrechen!"
+  // opens the ShowCategoryComponent
+  abort() {
     this.location.back();
-   }
+  }
 
 }

@@ -10,6 +10,7 @@ import { RESTService } from '../rest.service';
 })
 export class ListCategoriesComponent implements OnInit {
 
+  // membervariables
   jsonAllCategories : any = null;
 
 
@@ -19,9 +20,8 @@ export class ListCategoriesComponent implements OnInit {
 
 
   // ngOnInit -  gets called after constructor
-  // used for initialisation of jsonAllCategories with the usage of GET-request to backendservice
+  // used for initialisation of jsonAllCategories with the usage of GET-request to backend service
   ngOnInit() {
-
     this.restService.getFromRESTService("listCategories")
        .subscribe( (jsonResponse :JSON) => {
              this.checkResponseGET(jsonResponse);
@@ -30,8 +30,10 @@ export class ListCategoriesComponent implements OnInit {
   }
 
 
-  // listAttributesForCategory - sends PUT-request to backendservice
-  // gets called by the user when he has chosen a category to be shown
+  // listAttributesForCategory - onClick from user on a shown category
+  // parses the input into a JSON format
+  // sends request for categoryattributes to backend service
+  // waits for asynchronous response and calls checkResponsePUT after receiving the response
   // @input   strChosenCatName    the clicked categoryname
   listAttributesForCategory( strChosenCatName: string): void {
 
@@ -59,7 +61,7 @@ export class ListCategoriesComponent implements OnInit {
 
   // checkResponseGET - error handling for GET-request
   // alerts user if necessary, else sets the membervariable
-  // @input   jsonResponse    response from backend in JSON format
+  // @input   jsonResponse    response from backend service in JSON format
   checkResponseGET( jsonResponse: JSON ): void {
 
     let objResponse = jsonResponse;
@@ -81,7 +83,7 @@ export class ListCategoriesComponent implements OnInit {
 
   // checkResponsePUT - error handling for PUT-request
   // alerts user if necessary, else sends response to dataService and changes components
-  // @input   jsonResponse    response from backend in JSON format
+  // @input   jsonResponse    response from backend service in JSON format
   checkResponsePUT( jsonResponse: JSON ): void {
 
     let objResponse = jsonResponse;
@@ -93,7 +95,7 @@ export class ListCategoriesComponent implements OnInit {
         alert("Kategorie konnte nicht geladen werden");
       }
       else {
-        this.dataService.setJsonAttributes(jsonResponse);
+        this.dataService.setJsonCatAttributes(jsonResponse);
         this.router.navigate(["/showCategory"]);
       }
     } else {

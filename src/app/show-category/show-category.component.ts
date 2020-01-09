@@ -10,19 +10,26 @@ import { Router } from '@angular/router';
 })
 export class ShowCategoryComponent implements OnInit {
 
+  // membervariables
   private jsonCatAttributes: JSON = null;
   objCatAttributes: any = null;
   form: FormGroup;
 
+
+  // declaration of the FormBuilder, DataService, Router - dependency injection
   constructor(private fb: FormBuilder, private dataService: DataService, private router: Router ) {
 
   }
 
-  // initialisation of membervariables and errorhandling
+
+  // ngOnInit - used for initialisation of membervariables
+  // usage of dataService to load jsonCatAttributes
+  // error handling of jsonCatAttributes
+  // alerts user if necessary, else calls this.initialiseScreenWithJSON()
   ngOnInit() {
 
     // initialisation of membervariables
-    this.jsonCatAttributes = this.dataService.getJsonAttributes();
+    this.jsonCatAttributes = this.dataService.getJsonCatAttributes();
     this.objCatAttributes = this.jsonCatAttributes;
 
     // errorhandling
@@ -31,16 +38,20 @@ export class ShowCategoryComponent implements OnInit {
       if ('Fehler' in this.objCatAttributes) {
         this.objCatAttributes = null;
         alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+        console.log("this.objCatAttributes contains errorJSON - site needs to be loaded again");
       }
       else {
         this.initialiseScreenWithJSON();
       }
+    } else {
+      alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+      console.log("this.objCatAttributes is null");
     }
 
   }
 
 
-  initialiseScreenWithJSON() {
+  initialiseScreenWithJSON(): void {
 
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
@@ -48,7 +59,6 @@ export class ShowCategoryComponent implements OnInit {
         objCatName: [this.objCatAttributes.name , Validators.required],
         contentDescriptions: this.fb.array([])
       });
-
 
 
     // create further form controls depending on the given json
@@ -67,15 +77,16 @@ export class ShowCategoryComponent implements OnInit {
 
   }
 
+  // to be deleted: returntype ?
 
   get contentDescriptions(){
     return <FormArray> this.form.get('contentDescriptions');
   };
 
 
-  // onClick from Button edit
+  // openEditCategoryComponent - onClick of Button "Bearbeiten!"
   // opens the EditCategoryComponents
-  openEditCategoryComponent() {
+  openEditCategoryComponent(): void {
     this.router.navigate(["/editCategory"]);
   }
 

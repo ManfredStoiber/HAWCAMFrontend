@@ -28,7 +28,7 @@ input{
 button.submit[disabled]:hover {
     cursor: not-allowed;
 }
-*/
+
 .submit{
   background-color: lightgreen;
   border: 1px solid black;
@@ -36,7 +36,7 @@ button.submit[disabled]:hover {
   color: black;
   padding: 5px;
 }
-
+*/
 
 
 .detailName{

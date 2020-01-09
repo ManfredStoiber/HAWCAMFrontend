@@ -22,7 +22,7 @@ export class EditCategoryComponent implements OnInit {
   // initialisation of membervariables and errorhandling
   ngOnInit() {
 
-    this.jsonCatAttributes = this.dataService.getJsonAttributes();
+    this.jsonCatAttributes = this.dataService.getJsonCatAttributes();
     this.objCatAttributes = this.jsonCatAttributes;
     console.log("Category:");
     console.log(this.jsonCatAttributes);
@@ -34,10 +34,14 @@ export class EditCategoryComponent implements OnInit {
       if ('Fehler' in this.objCatAttributes) {
         this.objCatAttributes = null;
         alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+        console.log("this.objCatAttributes contains errorJSON - site needs to be loaded again");
       }
       else {
         this.initialiseScreenWithJSON();
       }
+    } else {
+      alert("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+      console.log("this.objCatAttributes is null");
     }
 
   }

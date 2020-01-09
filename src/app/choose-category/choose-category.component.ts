@@ -48,7 +48,7 @@ export class ChooseCategoryComponent implements OnInit {
       this.restService.putToRESTService("listAttributesForCategory", jsonSerializedForm)
           .subscribe( (jsonResponse :JSON) => {
                 console.log(jsonResponse);
-                this.dataService.setJsonAttributes(jsonResponse);
+                this.dataService.setJsonCatAttributes(jsonResponse);
                 this.router.navigate(["/createObject"]);
               }
            );
