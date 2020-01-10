@@ -40,16 +40,25 @@ export class SearchComponent implements OnInit {
 
       // get the form data as an object
       let formObj = this.form.getRawValue();
+      let strTemp: string = ' { "search":"' + "'" + formObj.search + "'" + '" }';
 
-      let jsonSearch: JSON = formObj;
-      console.log("Input jsonSearch");
-      console.log(jsonSearch);
+      // send it to the backend
+      let jsonSerializedForm: JSON = null;
 
-      this.restService.putToRESTService("search", jsonSearch)
-          .subscribe( (jsonResponse :JSON) => {
-            this.checkResponseSearch(jsonResponse);
-          }
-        );
+      try {
+        jsonSerializedForm = JSON.parse(strTemp);
+        console.log("jsonSerializedForm is valid");
+        console.log(jsonSerializedForm);
+
+        this.restService.putToRESTService("search", jsonSerializedForm)
+            .subscribe( (jsonResponse :JSON) => {
+              this.checkResponseSearch(jsonResponse);
+            }
+          );
+
+      } catch ( exception ) {
+        console.log("jsonSerializedForm is not valid");
+      }
 
     }
 
