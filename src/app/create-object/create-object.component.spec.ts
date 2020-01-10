@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from '../data.service';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import {Location} from '@angular/common';
 
 describe('CreateObjectComponent', () => {
   let component: CreateObjectComponent;
@@ -18,7 +19,7 @@ describe('CreateObjectComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CreateObjectComponent ],
       imports: [ ReactiveFormsModule, HttpClientModule ],
-      providers: [{provide: DataService, useClass: DataServiceMock}]
+      providers: [{provide: DataService, useClass: DataServiceMock}, {provide: Location} ]
     })
     .compileComponents();
   }));

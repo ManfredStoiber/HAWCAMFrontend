@@ -7,6 +7,7 @@ import { DebugElement, Type } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { RESTService } from '../rest.service';
+import {Location} from '@angular/common';
 
 describe('CreateCategoryEditorComponent', () => {
   let component: CreateCategoryEditorComponent;
@@ -27,7 +28,7 @@ describe('CreateCategoryEditorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CreateCategoryEditorComponent ],
       imports: [ReactiveFormsModule, HttpClientModule],
-      providers: [{provide: RESTService, useClass: RestServiceMock}]
+      providers: [{provide: RESTService, useClass: RestServiceMock}, {provide: Location}]
     })
     .compileComponents();
   }));

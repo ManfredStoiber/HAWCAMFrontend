@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import {Location} from '@angular/common';
 import { EditCategoryComponent } from './edit-category.component';
 
 describe('EditCategoryComponent', () => {
@@ -12,6 +12,7 @@ describe('EditCategoryComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EditCategoryComponent ],
       imports: [ReactiveFormsModule, HttpClientModule],
+      providers: [ {provide: Location} ]
     })
     .compileComponents();
   }));
