@@ -15,11 +15,22 @@
   border-radius: 8px;
 }
 
+.abort{
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: black;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 select{
   border: 1px solid black;
   border-radius: 8px;
   padding: 5px;
   margin: 5px;
+  width: 270px;
 }
 
 

@@ -21,7 +21,7 @@ export class ListCategoriesComponent implements OnInit {
 
   // ngOnInit -  gets called after constructor
   // used for initialisation of jsonAllCategories with the usage of GET-request to backend service
-  ngOnInit() {
+  ngOnInit():void {
     this.restService.getFromRESTService("listCategories")
        .subscribe( (jsonResponse :JSON) => {
              this.checkResponseGET(jsonResponse);

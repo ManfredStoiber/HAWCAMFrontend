@@ -25,7 +25,7 @@ export class ShowObjectComponent implements OnInit {
   // usage of dataService to load jsonObjectDetails
   // error handling of jsonObjectDetails
   // alerts user if necessary, else calls this.initialiseScreenWithJSON()
-  ngOnInit() {
+  ngOnInit():void {
 
     // initialisation of membervariables
     this.jsonObjectDetails = this.dataService.getObjectDetails();

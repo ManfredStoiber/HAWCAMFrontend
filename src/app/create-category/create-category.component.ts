@@ -9,7 +9,7 @@ export class CreateCategoryComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit():void {
   }
 
 }

@@ -51,7 +51,9 @@
 
 
       <div class="row submitrow">
-
+        <button mat-button (click)="abort()" type="button" class="abort">
+         Abbrechen!
+        </button>
         <!-- if all required inputs fields are filled it is clickable and can be sent to backend -->
         <button  mat-button class="submit" type="submit" [disabled]="!form.valid">Fertig!</button>
       </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { DataService } from '../data.service';
 import { RESTService } from '../rest.service';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -17,14 +18,14 @@ export class EditCategoryComponent implements OnInit {
   objCatAttributes: any = null;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private dataService: DataService,  private restService: RESTService ) {
+  constructor(private fb: FormBuilder, private dataService: DataService,  private restService: RESTService, private location: Location ) {
 
   }
 
   // ngOnInit - gets the category details in json format
   // initialisation of membervariables and errorhandling
   // alerts user if necessary, else calls this.initialiseScreenWithJSON()
-  ngOnInit() {
+  ngOnInit():void {
 
     this.jsonCatAttributes = this.dataService.getJsonCatAttributes();
     this.objCatAttributes = this.jsonCatAttributes;
@@ -53,7 +54,7 @@ export class EditCategoryComponent implements OnInit {
   // initialiseScreenWithJSON - adds form controls to every input
   // creates a form and add formcontrol
   // creates a form group and push further form controls
-  initialiseScreenWithJSON() {
+  initialiseScreenWithJSON():void {
 
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
@@ -81,14 +82,14 @@ export class EditCategoryComponent implements OnInit {
 
   // get contentDesciptions getter for the array within the formgroup
   // @return this.form.get('contentDescriptions')   array within the formgroup
-  get contentDescriptions(){
+  get contentDescriptions():FormArray{
     return <FormArray> this.form.get('contentDescriptions');
   };
 
   // addNewDetail - adds new form controls to the formgroup (contentDesciptions)
   // add a new attribute by clicking on the button
   // results in adding some new form controls in the array
-  addNewDetail(){
+  addNewDetail():void{
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.push(this.fb.group({
       hiddenIndex: [''],
@@ -103,7 +104,7 @@ export class EditCategoryComponent implements OnInit {
   // deleteContentDescription - deletes onClick a category detail respectively a formgroup in the array
   // remove the chosen form controls from the array at the index i
   // @input   i    the chosen row to delete
-  deleteContentDescription(i: number){
+  deleteContentDescription(i: number):void{
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.removeAt(i);
   }
@@ -112,7 +113,7 @@ export class EditCategoryComponent implements OnInit {
   // gets the form values
   // adds a hidden index for a better handling in the backend
   // parses the input into a JSON format
-  onSubmit() {
+  onSubmit():void {
 
     // get the form data as an object
     let formObj = this.form.getRawValue();
@@ -176,7 +177,7 @@ export class EditCategoryComponent implements OnInit {
   // checkResponse - error handling for PUT-request
   // alerts user if necessary, else sends response to dataService and changes components
   // @input   jsonResponse    response from backend service in JSON format
-  checkResponse( jsonResponse: JSON ) {
+  checkResponse( jsonResponse: JSON ):void {
 
      let objResponse = jsonResponse;
      console.log("editCategory checkResponse:");
@@ -191,6 +192,15 @@ export class EditCategoryComponent implements OnInit {
        }
      } else {
          alert("Kategorie konnte nicht geändert werden");
+     }
+   }
+
+   // abort - onClick from Button "Abbrechen!"
+   // opens the ShowCategoryComponent
+   abort():void {
+     let test: boolean = confirm("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
+     if(test){
+       this.location.back();
      }
    }
 

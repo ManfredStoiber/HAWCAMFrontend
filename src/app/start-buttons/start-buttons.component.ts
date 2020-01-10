@@ -10,7 +10,7 @@ export class StartButtonsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit():void {
   }
 
 }

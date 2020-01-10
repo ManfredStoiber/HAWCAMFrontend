@@ -4,6 +4,7 @@ import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { RESTService } from '../rest.service';
 import { DataService } from '../data.service';
+import {Location} from '@angular/common';
 
 
 
@@ -20,7 +21,8 @@ export class CreateObjectComponent implements OnInit {
   private jsonAttributes: JSON = null;
   objAttributes: any = null;
 
-  constructor(private fb: FormBuilder, private restService: RESTService, private dataService: DataService ) {
+  // initialisation of the membervariable "form"
+  constructor(private fb: FormBuilder, private restService: RESTService, private dataService: DataService , private location: Location ) {
 
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
@@ -32,7 +34,7 @@ export class CreateObjectComponent implements OnInit {
 
   // ngOnInit - gets the category attribute in json format
   // alerts user if necessary, else calls this.initialiseScreenWithJSON()
-  ngOnInit() {
+  ngOnInit():void {
 
    this.jsonAttributes = this.dataService.getJsonCatAttributes();
    this.objAttributes = this.jsonAttributes;
@@ -55,7 +57,7 @@ export class CreateObjectComponent implements OnInit {
   // iterates through the array and adds form controls
   // splits the dateAndTime field in two pieces
   // adds mandatory validation depending on the attributes FormArray
-  initialiseScreenWithJSON() {
+  initialiseScreenWithJSON():void {
 
     // console.log("UNDEFINED?: "+ this.objAttributes.attributes);
     for ( let i=0; i < this.objAttributes.attributes.length; i++ ) {
@@ -85,7 +87,7 @@ export class CreateObjectComponent implements OnInit {
   // gets the form data
   // parses the input into a JSON format
   // irgendwas mit put
-  onSubmit() {
+  onSubmit():void {
 
     // get the form data as an object
     let formObj = this.form.getRawValue();
@@ -135,7 +137,7 @@ export class CreateObjectComponent implements OnInit {
   // checkResponse - error handling for PUT-request
   // alerts user if necessary, else sends response to dataService and changes components
   // @input   jsonResponse    response from backend service in JSON format
-  checkResponse( jsonResponse: JSON ) {
+  checkResponse( jsonResponse: JSON ):void {
 
     let objResponse = jsonResponse;
     console.log("createObject checkResponse:");
@@ -152,4 +154,14 @@ export class CreateObjectComponent implements OnInit {
         alert("Objekt konnte nicht gespeichert werden");
     }
   }
+
+  // abort - onClick from Button "Abbrechen!"
+  // opens the ShowCategoryComponent
+  abort():void {
+    let test: boolean = confirm("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
+    if(test){
+      this.location.back();
+    }
+  }
+
 }

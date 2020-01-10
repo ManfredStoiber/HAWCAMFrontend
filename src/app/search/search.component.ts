@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
 
 
   // ngOnInit - unused but necessary by angular
-  ngOnInit() {
+  ngOnInit():void {
 
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit, ContentChild } from '@angular/core';
 import { FormGroup, FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-
+import {Location} from '@angular/common';
 import { RESTService } from '../rest.service';
 
 
@@ -18,14 +18,14 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   // create a form group with the category name and an empty array for
   // addable attributes
-  constructor(private fb: FormBuilder, private restService: RESTService) {
+  constructor(private fb: FormBuilder, private restService: RESTService, private location: Location) {
     this.form = this.fb.group({
         objCatName: ['', Validators.required],
         contentDescriptions: this.fb.array([])
       });
   }
 
-  ngOnInit() {
+  ngOnInit():void {
 
   }
 
@@ -34,7 +34,7 @@ export class CreateCategoryEditorComponent implements OnInit {
   // creates a hidden index field for a better handling in the backend
   // parses the input into a JSON format
   // put it to REST service
-  onSubmit() {
+  onSubmit():void {
 
     // get the form data as an object
     let formObj = this.form.getRawValue();
@@ -100,7 +100,7 @@ export class CreateCategoryEditorComponent implements OnInit {
   // checkResponse - error handling for PUT-request
   // alerts user if necessary, else sends response to dataService and changes components
   // @input   jsonResponse    response from backend service in JSON format
-  checkResponse( jsonResponse: JSON ) {
+  checkResponse( jsonResponse: JSON ):void {
 
     let objResponse = jsonResponse;
     console.log("createCategory checkResponse:");
@@ -123,7 +123,7 @@ export class CreateCategoryEditorComponent implements OnInit {
 
   // get contentDesciptions getter for the array within the formgroup
   // @return this.form.get('contentDescriptions')   array within the formgroup
-  get contentDescriptions(){
+  get contentDescriptions():FormArray{
     return <FormArray> this.form.get('contentDescriptions');
   };
 
@@ -131,7 +131,7 @@ export class CreateCategoryEditorComponent implements OnInit {
   // addNewDetail - allows the user onClick to add a new Detail
   // gets the formarray 'contentDesciptions'
   // add a new formgroup to the contentDescriptions array
-  addNewDetail(){
+  addNewDetail():void{
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.push(this.fb.group({
       hiddenIndex: [''],
@@ -148,9 +148,20 @@ export class CreateCategoryEditorComponent implements OnInit {
   // gets the contentDesciptions array
   // removes the formgroup
   // @input    i       the row respectively the chosen index in the formgroup contentDesciptions
-  deleteContentDescription(i: number){
+  deleteContentDescription(i: number):void{
     let ctrl = <FormArray>this.form.get('contentDescriptions');
     ctrl.removeAt(i);
+  }
+
+
+  // abort - onClick from Button "Abbrechen!"
+  // opens the ShowCategoryComponent
+  abort():void {
+
+    let test: boolean = confirm("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
+    if(test){
+      this.location.back();
+    }
   }
 
 
