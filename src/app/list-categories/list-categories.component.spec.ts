@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListCategoriesComponent } from './list-categories.component';
 import { of } from 'rxjs/internal/observable/of';
 import { RESTService } from '../rest.service';
+import { Router } from '@angular/router';
 
 describe('ListCategoriesComponent', () => {
 
@@ -13,9 +14,9 @@ describe('ListCategoriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [ HttpClientModule ],
       declarations: [ ListCategoriesComponent ],
-      providers: [{provide: RESTService, useClass: RESTServiceMock}]
+      providers: [ {provide: RESTService, useClass: RESTServiceMock}, {provide: Router} ]
     })
     .compileComponents();
   }));

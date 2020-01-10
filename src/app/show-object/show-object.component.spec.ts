@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { ShowObjectComponent } from './show-object.component';
 
 describe('ShowObjectComponent', () => {
@@ -8,7 +10,9 @@ describe('ShowObjectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowObjectComponent ]
+      declarations: [ ShowObjectComponent ],
+      imports: [ ReactiveFormsModule, HttpClientModule ],
+      providers: [{provide: Router}]
     })
     .compileComponents();
   }));

@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { EditCategoryComponent } from './edit-category.component';
 
@@ -8,7 +10,8 @@ describe('EditCategoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditCategoryComponent ]
+      declarations: [ EditCategoryComponent ],
+      imports: [ReactiveFormsModule, HttpClientModule],
     })
     .compileComponents();
   }));

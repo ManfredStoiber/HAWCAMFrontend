@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 import { ShowCategoryComponent } from './show-category.component';
 
@@ -8,7 +11,9 @@ describe('ShowCategoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowCategoryComponent ]
+      declarations: [ ShowCategoryComponent ],
+      imports: [ReactiveFormsModule ],
+      providers: [{provide: Router}]
     })
     .compileComponents();
   }));

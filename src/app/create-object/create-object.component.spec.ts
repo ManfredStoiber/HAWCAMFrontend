@@ -81,11 +81,11 @@ class DataServiceMock {
     this.jsonAttributes = JSON.parse(JSON.stringify(obj));
   }
 
-  public getJsonAttributes(): JSON {
+  public getJsonCatAttributes(): JSON {
     return this.jsonAttributes;
   }
 
-  public setJsonAttributes( jsonAttributes: JSON) {
+  public setJsonCatAttributes( jsonAttributes: JSON) {
     this.jsonAttributes = jsonAttributes;
   }
 

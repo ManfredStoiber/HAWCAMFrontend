@@ -11,11 +11,11 @@ describe('DataService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should have working getter and setter', () => {
+  it('should have working getter and setter for CatAttributes', () => {
     let service = TestBed.get(DataService);
-    service.setJsonAttributes(null);
-    expect(service.getJsonAttributes()).toEqual({"Fehler": "JSON ist null"});
-    service.setJsonAttributes({"Name": "Testattribute"});
-    expect(service.getJsonAttributes()).toEqual({"Name": "Testattribute"});
+    service.setJsonCatAttributes(null);
+    expect(service.getJsonCatAttributes()).toEqual({"Fehler": "JSON ist null"});
+    service.setJsonCatAttributes({"Name": "Testattribute"});
+    expect(service.getJsonCatAttributes()).toEqual({"Name": "Testattribute"});
   })
 });

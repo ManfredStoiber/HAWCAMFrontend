@@ -4,7 +4,7 @@ import { HeaderData } from './headerData.model';
 
 describe('HeaderData', () => {
 
-  let headerData;
+  let headerData: HeaderData;
 
   beforeEach(() => TestBed.configureTestingModule({}));
 
