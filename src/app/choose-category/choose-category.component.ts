@@ -19,7 +19,7 @@ export class ChooseCategoryComponent implements OnInit {
   }
 
   // ngOnInit - gets a list of all existing categories in json format
-  ngOnInit() {
+  ngOnInit():void{
 
     this.restService.getFromRESTService("listCategories")
        .subscribe( (jsonResponse :JSON) => {
@@ -36,7 +36,7 @@ export class ChooseCategoryComponent implements OnInit {
   // sends request for category to backend service
   // waits for asynchronous response and calls checkResponsePUT after receiving the response
   // @input   strChosenCat    the string represented on the clicked category button
-  sendChosenCat( strChosenCat:string ) {
+  sendChosenCat( strChosenCat:string ) :void {
 
     let strTemp: string = null;
 

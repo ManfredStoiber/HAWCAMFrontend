@@ -82,7 +82,7 @@ export class ShowCategoryComponent implements OnInit {
 
   // getter for contentDescriptions array
   // @return    this.form.get('contentDescriptions')     containts the variable amount of category details
-  get contentDescriptions(){
+  get contentDescriptions():FormArray{
     return <FormArray> this.form.get('contentDescriptions');
   };
 

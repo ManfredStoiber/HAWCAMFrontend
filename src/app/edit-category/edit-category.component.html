@@ -57,6 +57,9 @@
         <button mat-button (click)="addNewDetail()" type="button" class="addField">
          Detail hinzufügen!
         </button>
+        <button mat-button (click)="abort()" type="button" class="abort">
+         Abbrechen!
+        </button>
         <button disabled mat-button class="submit" type="submit" [disabled]="!form.valid">Fertig!</button>
       </div>
 

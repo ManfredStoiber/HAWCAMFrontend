@@ -14,7 +14,15 @@ main > h1 {
   margin-bottom: 20px;
 }
 
-
+.abort{
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: black;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 input{
   border: 1px solid black;

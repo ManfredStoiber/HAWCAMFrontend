@@ -21,15 +21,15 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  ngOnInit() {
+  ngOnInit():void {
     this.setStrDateTime();
   }
 
-  clickedBack() {
+  clickedBack():void {
     this.location.back();
   }
 
-  setStrDateTime() {
+  setStrDateTime():void {
 
     let letCurrentDate = new Date();
     let nDay: number = letCurrentDate.getDay().valueOf();

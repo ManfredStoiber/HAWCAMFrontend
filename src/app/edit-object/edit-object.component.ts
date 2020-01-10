@@ -23,7 +23,7 @@ export class EditObjectComponent implements OnInit {
   // ngOnInit - gets the object details in json format
   // gets the object deatils
   // alerts user if necessary, else calls this.initialiseScreenWithJSON()
-  ngOnInit() {
+  ngOnInit():void {
 
     this.jsonObjectDetails = this.dataService.getObjectDetails();
     this.objObjectDetails = this.jsonObjectDetails;
@@ -49,7 +49,7 @@ export class EditObjectComponent implements OnInit {
   // initialiseScreenWithJSON - adds form controls to form inputs
   // adds the name contorl
   // adds controls according to the given json
-  initialiseScreenWithJSON() {
+  initialiseScreenWithJSON():void {
 
     // create a form group, at first only with the input for the objects name
     // "''" is the initial value of the input
@@ -87,8 +87,13 @@ export class EditObjectComponent implements OnInit {
 
   // abort - onClick from Button "Abbrechen!"
   // opens the ShowCategoryComponent
-  abort() {
-    this.location.back();
+  abort():void {
+
+      let test: boolean = confirm("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
+      if(test){
+        this.location.back();
+      }
   }
+
 
 }

@@ -18,7 +18,7 @@
       <div class="row">
         <label>
           <span >Objektname:</span><span class="mandatory">*</span>
-          <input  type="text" formControlName="objObjName" placeholder="z. B. '2-232'" >
+          <input disabled  type="text" formControlName="objObjName" placeholder="z. B. '2-232'" >
         </label>
       </div>
       <hr />
@@ -30,20 +30,20 @@
                   <p class="attributeName">{{detail.name}}<span class="mandatory" *ngIf="detail.mandatory == '1'">*</span></p>
                   <!-- display the input fields with the proper type depending on array -->
                   <div *ngIf="detail.typ === 'textfield'">
-                    <input  formControlName="{{detail.name}}" type="text"  placeholder="Wert des Attributs" name="attribute">
+                    <input disabled formControlName="{{detail.name}}" type="text"  placeholder="Wert des Attributs" name="attribute">
                   </div>
                   <div *ngIf="detail.typ === 'date'">
-                    <input  formControlName="{{detail.name}}" type="date"  placeholder="Wert des Attributs" name="attribute">
+                    <input disabled formControlName="{{detail.name}}" type="date"  placeholder="Wert des Attributs" name="attribute">
                   </div>
                   <div *ngIf="detail.typ === 'file'">
-                    <input  formControlName="{{detail.name}}" type="file"  placeholder="Wert des Attributs" name="attribute">
+                    <input disabled formControlName="{{detail.name}}" type="file"  placeholder="Wert des Attributs" name="attribute">
                   </div>
                   <div *ngIf="detail.typ === 'number'">
-                    <input  formControlName="{{detail.name}}" type="number"  placeholder="Wert des Attributs" name="attribute">
+                    <input disabled formControlName="{{detail.name}}" type="number"  placeholder="Wert des Attributs" name="attribute">
                   </div>
                   <div *ngIf="detail.typ === 'dateAndTime'">
-                    Datum: <input  formControlName="{{detail.name}}-Date" type="date"  placeholder="Wert des Attributs" name="attribute">
-                    Uhrzeit: <input  formControlName="{{detail.name}}-Clock" type="time"  placeholder="Wert des Attributs" name="attribute">
+                    Datum: <input disabled formControlName="{{detail.name}}-Date" type="date"  placeholder="Wert des Attributs" name="attribute">
+                    Uhrzeit: <input disabled formControlName="{{detail.name}}-Clock" type="time"  placeholder="Wert des Attributs" name="attribute">
                   </div>
                   <hr />
             </div>
