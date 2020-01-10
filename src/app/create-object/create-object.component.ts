@@ -94,7 +94,7 @@ export class CreateObjectComponent implements OnInit {
 
     let jsonObject: any = formObj;
 
-    let strTemp:string = ' { "catName": "' + "'" + this.objAttributes.name + "'" +
+    let strTemp:string = ' { "catName": "' +  this.objAttributes.name +
      '", "objObjName":"' +  jsonObject.objObjName + '" ,  "details": {';
 
      let keys = Object.keys(jsonObject);
