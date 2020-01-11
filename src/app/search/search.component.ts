@@ -57,6 +57,7 @@ export class SearchComponent implements OnInit {
           );
 
       } catch ( exception ) {
+        alert("Suche konnte nicht durchgeführt werden, Fehler bei Eingabe");
         console.log("jsonSerializedForm is not valid");
       }
 
