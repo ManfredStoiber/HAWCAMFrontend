@@ -13,8 +13,6 @@ describe('CreateCategoryEditorComponent', () => {
   let component: CreateCategoryEditorComponent;
   let fixture: ComponentFixture<CreateCategoryEditorComponent>;
 
-  //let form: MockForm;
-
   let catNameInputElement: DebugElement;
   let submitButtonElement: DebugElement;
 
@@ -24,8 +22,6 @@ describe('CreateCategoryEditorComponent', () => {
   let alertSpy;
   let locationBackSpy;
   let confirmDialogSpy;
-
-  let mockService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,7 +33,6 @@ describe('CreateCategoryEditorComponent', () => {
   }));
 
   beforeEach(() => {
-    mockService = TestBed.get(RESTService);
     serviceSpy = spyOn(TestBed.get(RESTService), 'putToRESTService').and.callThrough();
     fixture = TestBed.createComponent(CreateCategoryEditorComponent);
     component = fixture.componentInstance;
@@ -55,7 +50,7 @@ describe('CreateCategoryEditorComponent', () => {
         {"hiddenIndex": 0, "optionalOrMandatory": "mandatory"},
         {"hiddenIndex": 0, "optionalOrMandatory": "optional"},
         {"hiddenIndex": 1}
-      ]});//.and.callFake(() => {console.log("Aufruf!!!!!")});
+      ]});
 
     catNameInputElement = fixture.debugElement.query(By.css('input[formControlName="objCatName"]'));
     submitButtonElement = fixture.debugElement.query(By.css('button[type="submit"]'));
@@ -75,7 +70,6 @@ describe('CreateCategoryEditorComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
     expect(component.form.getRawValue).toHaveBeenCalled();
     expect(component.form.getRawValue().contentDescriptions.length).toEqual(3);
-    expect(mockService.putToRESTService).toHaveBeenCalled();
     expect(serviceSpy).toHaveBeenCalled();
     expect(component.contentDescriptions.length).toEqual(0);
 
