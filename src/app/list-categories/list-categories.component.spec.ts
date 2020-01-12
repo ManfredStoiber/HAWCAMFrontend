@@ -15,6 +15,7 @@ describe('ListCategoriesComponent', () => {
   let alertSpy;
   let dataServiceSetJsonCatAttributesSpy;
   let routerNavigateSpy;
+  let putToRESTServiceSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,11 +28,14 @@ describe('ListCategoriesComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ListCategoriesComponent);
+
     component = fixture.componentInstance;
     getFromRESTServiceSpy = spyOn(TestBed.get(RESTService), "getFromRESTService").and.callThrough();
+    putToRESTServiceSpy =  spyOn(TestBed.get(RESTService), "putToRESTService").and.callThrough();
     alertSpy = spyOn(window, "alert");
     dataServiceSetJsonCatAttributesSpy = spyOn(TestBed.get(DataService), "setJsonCatAttributes");
     routerNavigateSpy = spyOn(TestBed.get(Router), "navigate");
+
     fixture.detectChanges();
 
   });
@@ -41,9 +45,28 @@ describe('ListCategoriesComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
   it('should get categories from restService', () => {
     expect(getFromRESTServiceSpy).toHaveBeenCalled();
   });
+
+
+  it('should get attributes for chosen category', () => {
+
+    let strErrorString: string = " Falscher " + '"' + " String";
+    component.listAttributesForCategory( strErrorString );
+    expect(window.alert).toHaveBeenCalledWith('Fehler bei Kategorieauswahl');
+
+    let strValidString: string = "Raum";
+    let strTemp: string = ' {"catName":"' + "'" + strValidString + "'" + '"}';
+
+    component.listAttributesForCategory( strValidString );
+    expect(putToRESTServiceSpy).toHaveBeenCalledWith( "listAttributesForCategory", JSON.parse(strTemp) );
+
+
+  });
+
+
 
   it('should have working error-handling', () => {
 
@@ -74,6 +97,8 @@ describe('ListCategoriesComponent', () => {
 
 class RESTServiceMock {
 
+
+
   getFromRESTService() {
     return of({
       "categories": [
@@ -81,8 +106,12 @@ class RESTServiceMock {
         {"count": 10, "name": "Testkategorie2"}
       ]
     });
-
   }
+
+  putToRESTService( strInput:string, jsonData: JSON ) {
+    return of ( jsonData );
+  };
+
 }
 
 class DataServiceStub {

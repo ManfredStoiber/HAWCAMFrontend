@@ -2,8 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
 import { HeaderData } from '../headerData.model';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
 
 describe('HeaderComponent', () => {
@@ -12,9 +13,8 @@ describe('HeaderComponent', () => {
   let testHostComponent: TestHostComponent;
   let testHostFixture: ComponentFixture<TestHostComponent>;
 
-  const locationStub = {
-    back: jasmine.createSpy('back')
-  }
+  let backButtonElement: DebugElement;
+  let callBackFunctionSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,7 +24,7 @@ describe('HeaderComponent', () => {
       ],
       imports: [RouterTestingModule],
       providers: [
-        {provide: Location, useValue: locationStub}
+        {provide: Location, useClass: LocationStub}
       ]
     })
       .compileComponents();
@@ -39,7 +39,9 @@ describe('HeaderComponent', () => {
     testHostComponent = testHostFixture.componentInstance;
     testHostFixture.detectChanges();
 
-    const location = headerFixture.debugElement.injector.get(Location);
+    backButtonElement = headerFixture.debugElement.query(By.css('button[type="button"]'));
+    callBackFunctionSpy = spyOn(headerComponent, 'clickedBack').and.callThrough();
+
   });
 
 
@@ -51,6 +53,14 @@ describe('HeaderComponent', () => {
   it('should have a title with "Inventarverwaltung"', () => {
     expect(testHostFixture.nativeElement.querySelector('#h1InAppTitle').innerText).toEqual('Inventarverwaltung');
   });
+
+
+  it('should call the back function"', () => {
+    expect(backButtonElement.nativeElement.textContent).toBe('Zurück');
+    backButtonElement.nativeElement.click();
+    expect(headerComponent.clickedBack).toHaveBeenCalled();
+  });
+
 
   it('should show correct weekdays', () => {
     // Monday
@@ -94,6 +104,7 @@ describe('HeaderComponent', () => {
     jasmine.clock().mockDate(baseTime);
     headerComponent.setStrDateTime();
     expect(headerComponent.strDatetime).toEqual("Sonntag, der 12.1.2020");
+
   })
 
 
@@ -114,6 +125,11 @@ describe('HeaderComponent', () => {
       this.objHeaderData = new HeaderData(strTitle, strPath, strMessage);
     }
 
+  }
+
+
+  class LocationStub {
+    back() { }
   }
 
 });

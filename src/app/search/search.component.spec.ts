@@ -27,7 +27,7 @@ describe('SearchComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
       imports: [ReactiveFormsModule, HttpClientModule],
-      providers: [ {provide: DataService, useClass: DataServiceMock}, {provide: RESTService, useClass: RestServiceMock}, {provide: Router, useClass: RouterMock} ]
+      providers: [ {provide: DataService, useClass: DataServiceStub}, {provide: RESTService, useClass: RestServiceMock}, {provide: Router, useClass: RouterStub} ]
     })
     .compileComponents();
   }));
@@ -163,7 +163,7 @@ describe('SearchComponent', () => {
 });
 
 
-class DataServiceMock {
+class DataServiceStub {
 
   setObjectDetails( jsonResponse: JSON ) { }
   setJsonCatAttributes( jsonResponse: JSON ) { }
@@ -177,6 +177,6 @@ class RestServiceMock {
 
 }
 
-class RouterMock {
+class RouterStub {
   navigate( commands: any[]) { }
 }

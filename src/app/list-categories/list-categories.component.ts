@@ -53,6 +53,7 @@ export class ListCategoriesComponent implements OnInit {
           );
 
     } catch ( exception ) {
+      alert("Fehler bei Kategorieauswahl");
       console.log("jsonSerializedForm is not valid");
     }
 
