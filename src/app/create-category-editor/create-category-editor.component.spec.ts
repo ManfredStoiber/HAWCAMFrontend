@@ -21,6 +21,9 @@ describe('CreateCategoryEditorComponent', () => {
   let serviceSpy;
   let formSpy;
   let onSubmitMethodSpy;
+  let alertSpy;
+  let locationBackSpy;
+  let confirmDialogSpy;
 
   let mockService;
 
@@ -28,7 +31,7 @@ describe('CreateCategoryEditorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CreateCategoryEditorComponent ],
       imports: [ReactiveFormsModule, HttpClientModule],
-      providers: [{provide: RESTService, useClass: RestServiceMock}, {provide: Location}]
+      providers: [{provide: RESTService, useClass: RestServiceMock}, {provide: Location, useClass: LocationStub}]
     })
     .compileComponents();
   }));
@@ -41,8 +44,8 @@ describe('CreateCategoryEditorComponent', () => {
     fixture.detectChanges();
 
 
-
-
+    locationBackSpy = spyOn(TestBed.get(Location), "back");
+    alertSpy = spyOn(window, "alert");
 
     onSubmitMethodSpy = spyOn(component, 'onSubmit').and.callThrough();
 
@@ -77,8 +80,42 @@ describe('CreateCategoryEditorComponent', () => {
     expect(component.contentDescriptions.length).toEqual(0);
 
   });
+
+  it('should have working error-handling', () => {
+    component.checkResponse(null);
+    expect(alertSpy).toHaveBeenCalledWith("Kategorie konnte nicht gespeichert werden");
+    alertSpy.calls.reset();
+
+    component.checkResponse(JSON.parse(JSON.stringify({"Fehler": "Beispielfehler"})));
+    expect(window.alert).toHaveBeenCalledWith("Kategorie konnte nicht gespeichert werden");
+    alertSpy.calls.reset();
+
+    component.checkResponse(JSON.parse(JSON.stringify({"message": "ok"})));
+    expect(window.alert).toHaveBeenCalledWith("Kategorie erfolgreich erstellt");
+    alertSpy.calls.reset();
+  });
+
+  it('should have working abort-button', () => {
+    confirmDialogSpy = spyOn(window, "confirm").and.returnValue(true);
+    component.abort();
+    expect(confirmDialogSpy).toHaveBeenCalledWith("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
+    expect(locationBackSpy).toHaveBeenCalled();
+
+    // reset spies and chose "no" in next confirm dialog
+    confirmDialogSpy.calls.reset();
+    confirmDialogSpy.and.returnValue(false);
+    locationBackSpy.calls.reset();
+    component.abort();
+    expect(confirmDialogSpy).toHaveBeenCalledWith("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
+    expect(locationBackSpy).not.toHaveBeenCalled();
+
+  });
 });
 
 class RestServiceMock {
   putToRESTService(strPathending: String, jsonData: JSON) {}
+}
+
+class LocationStub {
+  back() {}
 }

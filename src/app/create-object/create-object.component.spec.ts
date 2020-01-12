@@ -14,12 +14,15 @@ describe('CreateObjectComponent', () => {
   let submitButtonElement: DebugElement;
   let formSpy;
   let onSubmitMethodSpy;
+  let locationBackSpy;
+  let confirmDialogSpy;
+  let alertSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CreateObjectComponent ],
       imports: [ ReactiveFormsModule, HttpClientModule ],
-      providers: [{provide: DataService, useClass: DataServiceMock}, {provide: Location} ]
+      providers: [{provide: DataService, useClass: DataServiceMock}, {provide: Location, useClass: LocationStub} ]
     })
     .compileComponents();
   }));
@@ -38,6 +41,8 @@ describe('CreateObjectComponent', () => {
       ]});
 
       onSubmitMethodSpy = spyOn(component, 'onSubmit').and.callThrough();
+      locationBackSpy = spyOn(TestBed.get(Location), "back");
+      alertSpy = spyOn(window, "alert");
 
       submitButtonElement = fixture.debugElement.query(By.css('button[type="submit"]'));
 
@@ -55,8 +60,42 @@ describe('CreateObjectComponent', () => {
         submitButtonElement.nativeElement.click();
         expect(onSubmitMethodSpy).toHaveBeenCalled();
         expect(component.form.getRawValue).toHaveBeenCalled();
-  })
+  });
+
+  it('should have working error-handling', () => {
+    component.checkResponse(null);
+    expect(alertSpy).toHaveBeenCalledWith("Objekt konnte nicht gespeichert werden");
+    alertSpy.calls.reset();
+
+    component.checkResponse(JSON.parse(JSON.stringify({"Fehler": "Beispielfehler"})));
+    expect(window.alert).toHaveBeenCalledWith("Objekt konnte nicht gespeichert werden");
+    alertSpy.calls.reset();
+
+    component.checkResponse(JSON.parse(JSON.stringify({"message": "ok"})));
+    expect(window.alert).toHaveBeenCalledWith("Objekt erfolgreich erstellt");
+    alertSpy.calls.reset();
+  });
+
+  it('should have working abort-button', () => {
+    confirmDialogSpy = spyOn(window, "confirm").and.returnValue(true);
+    component.abort();
+    expect(confirmDialogSpy).toHaveBeenCalledWith("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
+    expect(locationBackSpy).toHaveBeenCalled();
+
+    // reset spies and chose "no" in next confirm dialog
+    confirmDialogSpy.calls.reset();
+    confirmDialogSpy.and.returnValue(false);
+    locationBackSpy.calls.reset();
+    component.abort();
+    expect(confirmDialogSpy).toHaveBeenCalledWith("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
+    expect(locationBackSpy).not.toHaveBeenCalled();
+
+  });
 });
+
+class LocationStub {
+  back() {}
+}
 
 class RESTServiceMock {
   putToRESTService(strPathending: String, jsonData: JSON) {}

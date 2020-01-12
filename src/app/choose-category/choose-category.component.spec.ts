@@ -35,15 +35,6 @@ describe('ChooseCategoryComponent', () => {
 
   beforeEach(() => {
 
-    /* getFromRESTServiceSpy = spyOn(TestBed.get(RESTService), "getFromRESTService").and.returnValue({
-      "categories": [
-        {"count": 0, "name": "Testkategorie1"},
-        {"count": 10, "name": "Testkategorie2"}
-      ]
-    });
-    */
-
-
     fixture = TestBed.createComponent(ChooseCategoryComponent);
     component = fixture.componentInstance;
     spyOn(component, "ngOnInit").and.callThrough();
@@ -52,29 +43,6 @@ describe('ChooseCategoryComponent', () => {
     fixture.detectChanges();
 
     httpMock = TestBed.get(HttpTestingController);
-    /*const req = httpMock.expectOne("http://snirps.ddns.net:5001/api/v1.0/listCategories");
-    req.flush({
-      "categories": [
-        {"count": 0, "name": "Testkategorie1"},
-        {"count": 10, "name": "Testkategorie2"}
-      ]
-    });
-    */
-
-    //httpMock.ex
-
-
-    /*getFromRESTServiceSpy = spyOn(TestBed.get(RESTService), "getFromRESTService").and.callFake(() => {
-      console.log("getFromRESTService");
-      const req = httpMock.expectOne("listCategories");
-      req.flush({
-        "categories": [
-          {"count": 0, "name": "Testkategorie1"},
-          {"count": 10, "name": "Testkategorie2"}
-        ]
-      });
-    })
-    */
 
     let buttons = fixture.debugElement.queryAll(By.css("button"));
     for (let b of buttons) {
@@ -108,7 +76,6 @@ class RESTServiceMock {
 
   putToRESTService(strPathending: String, jsonData: JSON) {}
   getFromRESTService() {
-    console.log("Jawoll!!");
     return of({
       "categories": [
         {"count": 0, "name": "Testkategorie1"},

@@ -8,11 +8,13 @@ describe('ShowObjectComponent', () => {
   let component: ShowObjectComponent;
   let fixture: ComponentFixture<ShowObjectComponent>;
 
+  let routerNavigateSpy;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ShowObjectComponent ],
       imports: [ ReactiveFormsModule, HttpClientModule ],
-      providers: [{provide: Router}]
+      providers: [{provide: Router, useClass: RouterStub}]
     })
     .compileComponents();
   }));
@@ -20,10 +22,20 @@ describe('ShowObjectComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShowObjectComponent);
     component = fixture.componentInstance;
+    routerNavigateSpy = spyOn(TestBed.get(Router), "navigate");
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should open EditObjectComponent', () => {
+    component.openEditObjectComponent();
+    expect(routerNavigateSpy).toHaveBeenCalledWith(["/editObject"]);
+  });
 });
+
+class RouterStub {
+  navigate(destination: String) {}
+}
