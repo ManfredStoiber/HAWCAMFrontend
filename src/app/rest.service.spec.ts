@@ -62,33 +62,33 @@ describe('RESTService', () => {
   });
 
 
-  // it('should have a POST that returns a Observable<JSON>', () => {
-  //
-  //   const jsonToBackend: JSON = JSON.parse('{"search": "' + "'" + "Raum" + "'" + '"}');
-  //
-  //   const dummyResponse: any =
-  //   {
-  //   categories:
-  //       [
-  //           {name: "Raum"}
-  //       ],
-  //       objects:
-  //       [
-  //           {name: "Raum1", cat:"Raum"},
-  //           {name: "Raum2", cat:"Raum"}
-  //       ]
-  //   };
-  //
-  //   service.putToRESTService('test', jsonToBackend).subscribe( response => {
-  //     expect(response).toBe(dummyResponse);
-  //   });
-  //
-  //   const request = httpMock.expectOne( service.strUrl + 'test');
-  //
-  //   expect( request.request.method).toBe('PUT');
-  //   request.flush(dummyResponse);
-  //
-  // });
+  it('should have a POST that returns a Observable<JSON>', () => {
+
+    const jsonToBackend: JSON = JSON.parse('{"search": "' + "'" + "Raum" + "'" + '"}');
+
+    const dummyResponse: any =
+    {
+    categories:
+        [
+            {name: "Raum"}
+        ],
+        objects:
+        [
+            {name: "Raum1", cat:"Raum"},
+            {name: "Raum2", cat:"Raum"}
+        ]
+    };
+
+    service.putToRESTService('test', jsonToBackend).subscribe( response => {
+      expect(response).toBe(dummyResponse);
+    });
+
+    const request = httpMock.expectOne( service.strUrl + 'test');
+
+    expect( request.request.method).toBe('PUT');
+    request.flush(dummyResponse);
+
+  });
 
 
 
