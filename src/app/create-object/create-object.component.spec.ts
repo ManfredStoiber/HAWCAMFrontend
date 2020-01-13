@@ -17,6 +17,7 @@ describe('CreateObjectComponent', () => {
   let locationBackSpy;
   let confirmDialogSpy;
   let alertSpy;
+  let initialiseScreenWithJSONSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,6 +43,7 @@ describe('CreateObjectComponent', () => {
 
       onSubmitMethodSpy = spyOn(component, 'onSubmit').and.callThrough();
       locationBackSpy = spyOn(TestBed.get(Location), "back");
+      initialiseScreenWithJSONSpy = spyOn(component, 'initialiseScreenWithJSON').and.callThrough();
       alertSpy = spyOn(window, "alert");
 
       submitButtonElement = fixture.debugElement.query(By.css('button[type="submit"]'));
@@ -52,6 +54,28 @@ describe('CreateObjectComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
+  it('should have working ngOnInit', () => {
+
+    let dataService = TestBed.get(DataService);
+
+    dataService.setJsonCatAttributes(null);
+    component.ngOnInit();
+    expect(window.alert).toHaveBeenCalledWith("Kategorien konnten nicht geladen werden");
+
+    let jsonTemp: JSON = JSON.parse('{"Fehler":"Test"}');
+    dataService.setJsonCatAttributes(jsonTemp);
+    component.ngOnInit();
+    expect(window.alert).toHaveBeenCalledWith("Fehler bei der Dateiübertragung, bitte Seite erneut mit Auswahl laden");
+
+    jsonTemp = JSON.parse('{"attributes": [ {"name": "TestDetail 1", "mandatory": 0}, {"name": "TestDetail 2", "mandatory": 0, "typ": "dateAndTime"} ] }' );
+    dataService.setJsonCatAttributes(jsonTemp);
+    component.ngOnInit();
+    expect(initialiseScreenWithJSONSpy).toHaveBeenCalledWith();
+
+  });
+
+
   it('should call submit() on button pressed and process data', () => {
 
         expect(submitButtonElement.nativeElement.textContent).toBe('Fertig!');
@@ -61,6 +85,7 @@ describe('CreateObjectComponent', () => {
         expect(onSubmitMethodSpy).toHaveBeenCalled();
         expect(component.form.getRawValue).toHaveBeenCalled();
   });
+
 
   it('should have working error-handling', () => {
     component.checkResponse(null);
@@ -75,6 +100,7 @@ describe('CreateObjectComponent', () => {
     expect(window.alert).toHaveBeenCalledWith("Objekt erfolgreich erstellt");
     alertSpy.calls.reset();
   });
+
 
   it('should have working abort-button', () => {
     confirmDialogSpy = spyOn(window, "confirm").and.returnValue(true);

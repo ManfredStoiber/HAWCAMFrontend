@@ -6,6 +6,7 @@ import { RESTService } from '../rest.service';
 import { By } from '@angular/platform-browser';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs/internal/observable/of';
+import { Router } from '@angular/router';
 
 describe('ChooseCategoryComponent', () => {
   let component: ChooseCategoryComponent;
@@ -17,6 +18,7 @@ describe('ChooseCategoryComponent', () => {
   let checkAlertSpy;
   let putToRESTServiceSpy;
   let getFromRESTServiceSpy;
+  let routerNavigateSpy;
 
   let httpMock: HttpTestingController;
 
@@ -29,7 +31,7 @@ describe('ChooseCategoryComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule
       ],
-      providers: [{provide: RESTService, useClass: RESTServiceMock}]
+      providers: [{provide: RESTService, useClass: RESTServiceMock}, {provide: Router, useClass: RouterStub}]
     })
     .compileComponents();
   }));
@@ -43,6 +45,9 @@ describe('ChooseCategoryComponent', () => {
     checkAlertSpy   = spyOn(window, 'alert').and.callThrough();
     getFromRESTServiceSpy = spyOn(TestBed.get(RESTService), "getFromRESTService").and.callThrough();
     putToRESTServiceSpy = spyOn(TestBed.get(RESTService), "putToRESTService").and.callThrough();
+
+    routerNavigateSpy = spyOn(TestBed.get(Router), "navigate");
+
     fixture.detectChanges();
 
     httpMock = TestBed.get(HttpTestingController);
@@ -63,6 +68,7 @@ describe('ChooseCategoryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 
   it('should call sendChosenCat when category gets clicked', () => {
 
@@ -86,7 +92,9 @@ describe('ChooseCategoryComponent', () => {
 
     component.sendChosenCat( strValidString );
     expect(putToRESTServiceSpy).toHaveBeenCalledWith("listAttributesForCategory", JSON.parse(strTemp) );
-    // expect(putToRESTServiceSpy).toHaveBeenCalled();
+
+    expect(routerNavigateSpy).toHaveBeenCalled();
+
   });
 
 
@@ -116,4 +124,9 @@ class RESTServiceMock {
     });
 
   }
+}
+
+
+class RouterStub {
+  navigate(destination: String) {}
 }

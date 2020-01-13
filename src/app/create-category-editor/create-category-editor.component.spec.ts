@@ -61,6 +61,7 @@ describe('CreateCategoryEditorComponent', () => {
     expect(component).toBeTruthy();
   });
 
+
   it('should call onSubmit() on button click and process values', () => {
 
     expect(submitButtonElement.nativeElement.textContent).toBe('Fertig!');
@@ -75,6 +76,7 @@ describe('CreateCategoryEditorComponent', () => {
 
   });
 
+
   it('should have working error-handling', () => {
     component.checkResponse(null);
     expect(alertSpy).toHaveBeenCalledWith("Kategorie konnte nicht gespeichert werden");
@@ -88,6 +90,7 @@ describe('CreateCategoryEditorComponent', () => {
     expect(window.alert).toHaveBeenCalledWith("Kategorie erfolgreich erstellt");
     alertSpy.calls.reset();
   });
+
 
   it('should have working abort-button', () => {
     confirmDialogSpy = spyOn(window, "confirm").and.returnValue(true);
@@ -105,6 +108,7 @@ describe('CreateCategoryEditorComponent', () => {
 
   });
 });
+
 
 class RestServiceMock {
 

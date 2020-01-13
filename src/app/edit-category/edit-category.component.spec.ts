@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { DebugElement } from '@angular/core';
 import { RESTService } from '../rest.service';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs/internal/observable/of';
 
 describe('EditCategoryComponent', () => {
   let component: EditCategoryComponent;
@@ -25,7 +26,7 @@ describe('EditCategoryComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EditCategoryComponent ],
       imports: [ReactiveFormsModule, HttpClientModule],
-      providers: [{provide: Location, useClass: LocationStub}, {provide: DataService, useClass: DataServiceMock}, {provide: RESTService, useClass: RESTServiceStub}]
+      providers: [{provide: Location, useClass: LocationStub}, {provide: DataService, useClass: DataServiceMock}, {provide: RESTService, useClass: RESTServiceMock}]
     })
     .compileComponents();
   }));
@@ -164,6 +165,7 @@ describe('EditCategoryComponent with error', () => {
 });
 
 class DataServiceMock {
+
   getJsonCatAttributes() {
     return {"attributes": [
       {"mandatory": "0"},
@@ -179,8 +181,11 @@ class LocationStub {
   back() {}
 }
 
-class RESTServiceStub {
-  putToRESTService(strPathending: String, jsonData: JSON) {}
+class RESTServiceMock {
+
+  putToRESTService( strInput:string, jsonData: JSON ) {
+    return of ( jsonData );
+  };
 }
 
 class RouterStub {

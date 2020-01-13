@@ -49,7 +49,11 @@ export class CreateObjectComponent implements OnInit {
      else {
        this.initialiseScreenWithJSON();
      }
+   } else {
+       alert("Kategorien konnten nicht geladen werden");
+       console.log("this.objAttributes is null");
    }
+
 
   }
 
