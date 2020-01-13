@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DebugElement, Type } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { RESTService } from '../rest.service';
 import {Location} from '@angular/common';
 
@@ -107,7 +107,31 @@ describe('CreateCategoryEditorComponent', () => {
 });
 
 class RestServiceMock {
-  putToRESTService(strPathending: String, jsonData: JSON) {}
+
+  putToRESTService(strPathending: String, jsonData: JSON) {
+    return of( {
+    "name":"123",
+    "contentDescriptions":
+        {
+            "1":
+                {
+                    "name":"32",
+                    "typ":"textfield",
+                    "optionalOrMandatory":"0",
+                    "deleted":"0"
+                },
+            "2":
+                {
+                    "name":"21",
+                    "typ":"textfield",
+                    "optionalOrMandatory":"0",
+                    "deleted":"0"
+                }
+        },
+    "deleted":"0"
+} );
+  }
+
 }
 
 class LocationStub {

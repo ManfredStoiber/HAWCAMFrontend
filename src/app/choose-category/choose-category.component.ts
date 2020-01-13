@@ -59,6 +59,7 @@ export class ChooseCategoryComponent implements OnInit {
            );
 
     } catch ( exception ) {
+      alert("Auswahl konnte nicht durchgeführt werden, Fehler bei Eingabe");
       console.log("jsonSerializedForm is not valid");
     }
 

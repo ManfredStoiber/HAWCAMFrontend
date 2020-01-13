@@ -14,6 +14,7 @@ describe('ChooseCategoryComponent', () => {
   let buttonTestCat1;
   let buttonTestCat2;
 
+  let checkAlertSpy;
   let putToRESTServiceSpy;
   let getFromRESTServiceSpy;
 
@@ -37,7 +38,9 @@ describe('ChooseCategoryComponent', () => {
 
     fixture = TestBed.createComponent(ChooseCategoryComponent);
     component = fixture.componentInstance;
+
     spyOn(component, "ngOnInit").and.callThrough();
+    checkAlertSpy   = spyOn(window, 'alert').and.callThrough();
     getFromRESTServiceSpy = spyOn(TestBed.get(RESTService), "getFromRESTService").and.callThrough();
     putToRESTServiceSpy = spyOn(TestBed.get(RESTService), "putToRESTService").and.callThrough();
     fixture.detectChanges();
@@ -52,7 +55,6 @@ describe('ChooseCategoryComponent', () => {
         buttonTestCat2 = b;
       }
     }
-
 
     spyOn(component, "sendChosenCat").and.callThrough();
 
@@ -69,12 +71,42 @@ describe('ChooseCategoryComponent', () => {
     buttonTestCat1.nativeElement.click();
     expect(component.sendChosenCat).toHaveBeenCalledWith("Testkategorie1");
     expect(putToRESTServiceSpy).toHaveBeenCalled();
-  })
+  });
+
+
+  it('should have working error handling', () => {
+
+    let strErrorString: string = " Falscher " + '"' + " String";
+    component.sendChosenCat( strErrorString );
+    expect(component.sendChosenCat).toHaveBeenCalled();
+    expect(window.alert).toHaveBeenCalledWith('Auswahl konnte nicht durchgeführt werden, Fehler bei Eingabe');
+
+    let strValidString: string = "Raum";
+    let strTemp: string = ' {"catName":"' + "'" + strValidString + "'" + '"}';
+
+    component.sendChosenCat( strValidString );
+    expect(putToRESTServiceSpy).toHaveBeenCalledWith("listAttributesForCategory", JSON.parse(strTemp) );
+    // expect(putToRESTServiceSpy).toHaveBeenCalled();
+  });
+
+
 });
+
+
 
 class RESTServiceMock {
 
-  putToRESTService(strPathending: String, jsonData: JSON) {}
+  putToRESTService(strPathending: String, jsonData: JSON) {
+    return of( {
+      "name":"Raum",
+      "attributes":
+      [
+          {"name": "Bezeichung", "typ":"Einfaches Textfeld", "mandatory":"1" },
+          {"name": "Hersteller", "typ":"Einfaches Textfeld", "mandatory":"0" }
+      ]
+    } );
+  }
+
   getFromRESTService() {
     return of({
       "categories": [
