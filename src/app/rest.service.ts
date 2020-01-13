@@ -12,7 +12,7 @@ export class RESTService {
 
   // membervariables
   private nPort: number = 5001;
-  private strUrl: string = "http://snirps.ddns.net:" + this.nPort + "/api/v1.0/";
+  strUrl: string = "http://snirps.ddns.net:" + this.nPort + "/api/v1.0/";
 
   private headerDict : any;
 
@@ -67,7 +67,7 @@ export class RESTService {
   // handleError - method to handle errors: ParseErrors, HttpErrors...
   // @param   error   error from calling backendservice
   // @return          errormessage
-  private handleError( error: any) {
+  public handleError( error: any) {
 
     let strErrorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -85,68 +85,5 @@ export class RESTService {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-  // processing response
-  private processingResponse( strResponse: string ) : JSON {
-
-    console.log("--processingResponse");
-
-    let valid : boolean = this.validateResponse(strResponse);
-    if( valid == true ){
-          console.log("yes yes yes");
-          console.log("mach was");
-          return this.json;
-    } else {
-        console.log("abbruch");
-        this.json = null;
-        return JSON.parse( '{"Fehler":"fehlerhaftes JSON aus Backend"}' )
-    }
-
-  }
-
-
-  // method for validating the response
-  // check whether the returned JSON is valid
-  private validateResponse( strResponse: string ) : boolean {
-
-    console.log("--validateResponse");
-    console.log("------------");
-    console.log("Response wäre:");
-    console.log(strResponse);
-    console.log("------------");
-
-    try {
-        // kann er nicht wegen dem vorangestellten Test
-        // das ist schon ein JSON - kann er nicht nochmal da rein hauen
-    // this.json = JSON.parse( 'Test {"name":"bob","age":34}' );
-
-      // kann er
-      this.json = JSON.parse( '[ {"id": 1, "name": "Leanne Graham", "username": "Bret" } ]' );
-      // this.json = JSON.parse( strResponse );
-
-      console.log("--validateResponse nach JSON.parse");
-      console.log(this.json)
-      return true;
-
-    } catch ( exception ) {
-      console.log("no no no");
-      console.log("errorroutine here");
-    }
-    return false;
-  }
-
-*/
 
 }
