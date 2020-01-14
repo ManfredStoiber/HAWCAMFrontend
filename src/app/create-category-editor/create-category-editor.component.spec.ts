@@ -15,6 +15,8 @@ describe('CreateCategoryEditorComponent', () => {
 
   let catNameInputElement: DebugElement;
   let submitButtonElement: DebugElement;
+  let addRowButtonElement: DebugElement;
+
 
   let serviceSpy;
   let formSpy;
@@ -22,6 +24,7 @@ describe('CreateCategoryEditorComponent', () => {
   let alertSpy;
   let locationBackSpy;
   let confirmDialogSpy;
+  let addNewDetailSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -41,7 +44,7 @@ describe('CreateCategoryEditorComponent', () => {
 
     locationBackSpy = spyOn(TestBed.get(Location), "back");
     alertSpy = spyOn(window, "alert");
-
+    addNewDetailSpy = spyOn(component, 'addNewDetail').and.callThrough();
     onSubmitMethodSpy = spyOn(component, 'onSubmit').and.callThrough();
 
     formSpy = spyOn(component.form, 'getRawValue').and.returnValue({
@@ -54,7 +57,7 @@ describe('CreateCategoryEditorComponent', () => {
 
     catNameInputElement = fixture.debugElement.query(By.css('input[formControlName="objCatName"]'));
     submitButtonElement = fixture.debugElement.query(By.css('button[type="submit"]'));
-
+    addRowButtonElement = fixture.debugElement.query(By.css('#addRow'));
   });
 
   it('should create', () => {
@@ -105,8 +108,20 @@ describe('CreateCategoryEditorComponent', () => {
     component.abort();
     expect(confirmDialogSpy).toHaveBeenCalledWith("Sie verlassen diese Seite und verwerfen alle nicht gespeicherten Eingaben");
     expect(locationBackSpy).not.toHaveBeenCalled();
+  });
+
+
+  it('should have working addRow', () => {
+
+    expect(addRowButtonElement.nativeElement.textContent).toBe(' Detail hinzufügen! ');
+    // enable button to be able to click
+    addRowButtonElement.nativeElement.disabled = false;
+    addRowButtonElement.nativeElement.click();
+    expect(addNewDetailSpy).toHaveBeenCalled();
 
   });
+
+
 });
 
 
