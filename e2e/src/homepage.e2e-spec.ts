@@ -11,7 +11,6 @@ describe('HAWCAM homepage', function () {
 		expect(element(by.id('bttnSearch')).isPresent()).toBe(true);
 		expect(element(by.id('bttnCreateCategory')).isPresent()).toBe(true);
 		expect(element(by.id('bttnListCategories')).isPresent()).toBe(true);
-		expect(element(by.id('bttnTestFeature')).isPresent()).toBe(true);
 
 	});
 });
